@@ -21,8 +21,8 @@
 <!--
 Start of about
 -->
-<a name="about-tercontrol" />
-**Tercontrol** is a lightweight terminal control library for python. Tercontrol gives the end-user all the tools needed to create a terminal application (Look at [features](#features) for a full list of features).
+###### <a name="about-tercontrol" />
+**Tercontrol** is a lightweight POSIX terminal control library for python. Tercontrol gives the end-user all the tools needed to create a terminal application (Look at [features](#features) for a full list of features).
 <!--
 End of about
 -->
@@ -70,7 +70,7 @@ Don't forget to give the project a star! Thanks again!
 End of contributing
 -->
 
-## Licence <a name="licence" />
+## Licence <a name="license" />
 All code is distributed under the [GNU GPLv3 licence](https://github.com/ZackeryRSmith/tercontrol/blob/main/LICENSE)
 
 ## Contact <a name="contact" />
