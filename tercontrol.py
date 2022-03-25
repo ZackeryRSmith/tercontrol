@@ -165,7 +165,7 @@ TC_KEY_DELETE       =  HEX+"[3~"  # Delete (del)
 TC_KEY_END          =  HEX+"[F"   # End
 
 
-def getch():  # Naming conflicts can occur if python's "getch" module is imported!
+def getkey():
     fd = sys.stdin.fileno() 
     settings = termios.tcgetattr(fd)
     try:
