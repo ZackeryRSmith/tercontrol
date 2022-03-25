@@ -10,7 +10,6 @@
 ***********************************************************************************
 '''
 
-import os
 import sys
 import tty
 import termios
@@ -38,7 +37,6 @@ TC_B_MAG   =  HEX+"[0;35m"  # Bright Magenta
 TC_B_CYN   =  HEX+"[0;36m"  # Bright Cyan 
 TC_B_WHT   =  HEX+"[0;37m"  # Bright White 
 
-#TC_BG_NRM  =  HEX+"[40m"    # Normalize Background Color
 TC_BG_BLK  =  HEX+"[40m"    # Background Black
 TC_BG_RED  =  HEX+"[41m"    # Background Red 
 TC_BG_GRN  =  HEX+"[42m"    # Background Green
@@ -81,9 +79,11 @@ def tc_enter_alt_screen(): sys.stdout.write("%s[?1049h%s[H" % (OCT, OCT))
 def tc_exit_alt_screen(): sys.stdout.write(OCT+"[?1049l")
 
 def tc_get_cols_rows():
-    # For now we use os.get_term_size().
-    # I plan on implementing this on my own tomorrow
-    return os.get_terminal_size()
+    import fcntl, struct
+    th, tw, hp, wp = struct.unpack('HHHH',
+        fcntl.ioctl(0, termios.TIOCGWINSZ,
+        struct.pack('HHHH', 0, 0, 0, 0)))
+    return tw, th
 
 def tc_echo_off():
     fd = sys.stdin.fileno()
