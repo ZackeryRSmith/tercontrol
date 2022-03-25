@@ -1,11 +1,11 @@
-<h1 align="center">Tercontrol</h1>
+<h1 align="center">TerControl</h1>
 
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-tercontrol">About Tercontrol</a>
+      <a href="#about-tercontrol">About TerControl</a>
       <a href="#features">Features</a>
     </li>
     <li>
@@ -23,7 +23,7 @@
 Start of about
 -->
 ###### <a name="about-tercontrol" />
-**Tercontrol** is a lightweight POSIX terminal control library for python. Tercontrol gives the end-user all the tools needed to create a terminal application (Look at [features](#features) for a full list of features).
+**TerControl** is a lightweight POSIX terminal control library for python2 & python3. TerControl gives the end-user all the tools needed to create a terminal application (Look at [features](#features) for a full list of features).
 <!--
 End of about
 -->
@@ -33,7 +33,7 @@ Start of features
 -->
 ## Features <a name="features" />
 
-- No dependencies (other then pythons standard library) 
+- No dependencies (other then python's standard library) 
 - Cursor
     - Move the cursor N times (up, down, left, right)
     - Set/get the cursor position
@@ -57,7 +57,7 @@ End of features
 Start of installation
 -->
 ## Installation
-As of right now I don't plan on making this a PYPI package unless this actully gains any attraction. If you would like to use Tercontrol: 
+As of right now I don't plan on making this a PYPI package unless this actully gains any attraction. If you would like to use TerControl: 
 1. download tercontrol.py
 2. Place tercontrol.py into your projects directory
 3. import tercontrol I.e. `from tercontrol import *`
