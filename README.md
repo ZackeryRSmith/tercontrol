@@ -6,6 +6,7 @@
   <ol>
     <li>
       <a href="#about-tercontrol">About Tercontrol</a>
+      <a href="#features">Features</a>
     </li>
     <li>
       <a href="#installation">Installation</a>
@@ -51,6 +52,16 @@ Start of features
 <!--
 End of features
 -->
+
+<!-- 
+Start of installation
+-->
+## Installation
+As of right now I don't plan on making this a PYPI package unless this actully gains any attraction. If you would like to use Tercontrol: 
+1. download tercontrol.py
+2. Place tercontrol.py into your projects directory
+3. import tercontrol I.e. `from tercontrol import *`
+
 
 <!--
 Start of contributing
