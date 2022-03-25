@@ -1,4 +1,4 @@
-<h1 align="center">Tercontrol</h1>
+<h1 align="center">TerControl</h1>
 
 <!-- TABLE OF CONTENTS -->
 <details>
