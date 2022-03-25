@@ -13,6 +13,7 @@
 import sys
 import tty
 import termios
+import re  # Could remove this dependency
 
 HEX = "\x1B"
 OCT = "\033"
@@ -66,15 +67,6 @@ def tc_clear_entire_line(): sys.stdout.write(HEX+"[2K")
 def tc_clear_line_till_cursor(): sys.stdout.write(HEX+"[1K")
 def tc_clear_line_from_cursor(): sys.stdout.write(HEX+"[0K")
 
-def tc_set_cursor(X, Y): sys.stdout.write(OCT+"[%s;%sH" % (Y, X))
-
-def tc_move_cursor(X, Y): 
-    if    X > 0: sys.stdout.write(OCT+"[%sC" % (X))
-    elif  X < 0: sys.stdout.write(OCT+"[%sD" % (X*-1))
-        
-    if    Y > 0: sys.stdout.write(OCT+"[%sB" % (Y))
-    elif  Y < 0: sys.stdout.write(OCT+'[%sA' % (Y*-1))
-
 def tc_enter_alt_screen(): sys.stdout.write("%s[?1049h%s[H" % (OCT, OCT))
 def tc_exit_alt_screen(): sys.stdout.write(OCT+"[?1049l")
 
@@ -109,6 +101,29 @@ def tc_canon_on():
     settings[3] |= termios.ICANON
     termios.tcsetattr(fd, termios.TCSANOW, settings)
 
+def tc_get_cursor_pos():
+    # There is a better way to do this function
+    tc_echo_off()
+    tc_canon_off()
+    try:
+        temp = ""
+        sys.__stdout__.write(HEX+"[6n")
+        sys.__stdout__.flush()
+        while not (temp := temp + sys.stdin.read(1)).endswith('R'):
+            pass
+        res = re.match(r".*\[(?P<Y>\d*);(?P<X>\d*)R", temp)
+    finally:
+        tc_echo_on()
+        tc_canon_on()
+    if res:
+        return (int(res.group("X")), int(res.group("Y")))
+def tc_set_cursor(X, Y): sys.stdout.write(OCT+"[%s;%sH" % (Y, X))
+def tc_move_cursor(X, Y): 
+    if    X > 0: sys.stdout.write(OCT+"[%sC" % (X))
+    elif  X < 0: sys.stdout.write(OCT+"[%sD" % (X*-1))
+        
+    if    Y > 0: sys.stdout.write(OCT+"[%sB" % (Y))
+    elif  Y < 0: sys.stdout.write(OCT+'[%sA' % (Y*-1))
 
 ##################################################
 #    Some extra code to handle keyboard input    #
