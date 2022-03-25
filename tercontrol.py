@@ -52,13 +52,13 @@ TC_BG_WHT  =  HEX+"[47m"    # Background White
 #   Additional formatting (ANSI)   #
 ####################################
 
-TC_BLD     =  HEX+"[1m"  # Bold
-TC_DIM     =  HEX+"[2m"  # Dim
-TC_SNSO    =  HEX+"[3m"  # Standout (italics)
-TC_UNDR    =  HEX+"[4m"  # Underline
-TC_BLNK    =  HEX+"[5m"  # Blink
-TC_REV     =  HEX+"[7m"  # Reverse
-TC_INV     =  HEX+"[8m"  # Invisible
+TC_BLD     =  HEX+"[1m"     # Bold
+TC_DIM     =  HEX+"[2m"     # Dim
+TC_SNSO    =  HEX+"[3m"     # Standout (italics)
+TC_UNDR    =  HEX+"[4m"     # Underline
+TC_BLNK    =  HEX+"[5m"     # Blink
+TC_REV     =  HEX+"[7m"     # Reverse
+TC_INV     =  HEX+"[8m"     # Invisible
 
 #####################################
 
@@ -116,35 +116,38 @@ def tc_canon_on():
 
 # Function key definitions are kind of sketchy.
 # I had no good way to test them and get their code.
-TC_KEY_ESCAPE       =  HEX
-TC_KEY_F1           =  HEX+"OP"
-TC_KEY_F2           =  HEX+"OQ"
-TC_KEY_F3           =  HEX+"OR"
-TC_KEY_F4           =  HEX+"OS"
-TC_KEY_F5           =  HEX+"15"
-TC_KEY_F6           =  HEX+"17"
-TC_KEY_F7           =  HEX+"18"
-TC_KEY_F8           =  HEX+"19"
-TC_KEY_F9           =  HEX+"20"
-TC_KEY_F10          =  HEX+"21"
-TC_KEY_F11          =  HEX+"23"
-TC_KEY_F12          =  HEX+"24"
+TC_KEY_ESCAPE       =  HEX        # esc
+TC_KEY_F1           =  HEX+"OP"   # F1
+TC_KEY_F2           =  HEX+"OQ"   # F2
+TC_KEY_F3           =  HEX+"OR"   # F3
+TC_KEY_F4           =  HEX+"OS"   # F4
+TC_KEY_F5           =  HEX+"15"   # F5
+TC_KEY_F6           =  HEX+"17"   # F6
+TC_KEY_F7           =  HEX+"18"   # F7
+TC_KEY_F8           =  HEX+"19"   # F8
+TC_KEY_F9           =  HEX+"20"   # F9
+TC_KEY_F10          =  HEX+"21"   # F10
+TC_KEY_F11          =  HEX+"23"   # F11
+TC_KEY_F12          =  HEX+"24"   # F12
 
-TC_KEY_ARROW_UP     =  HEX+"[A"
-TC_KEY_ARROW_DOWN   =  HEX+"[B"
-TC_KEY_ARROW_LEFT   =  HEX+"[D"
-TC_KEY_ARROW_RIGHT  =  HEX+"[C"
+TC_KEY_ARROW_UP     =  HEX+"[A"   # Arrow up
+TC_KEY_ARROW_DOWN   =  HEX+"[B"   # Arrow down
+TC_KEY_ARROW_LEFT   =  HEX+"[D"   # Arrow left
+TC_KEY_ARROW_RIGHT  =  HEX+"[C"   # Arrow right
 
-TC_KEY_TAB          =  "\t"
-TC_KEY_RETURN       =  "\r"
-TC_KEY_ENTER        =  "\r"
+TC_KEY_TAB          =  "\t"       # Tab
+TC_KEY_RETURN       =  "\r"       # Return
+TC_KEY_ENTER        =  "\r"       # Enter
 
-TC_KEY_INSERT       =  HEX+"[2~"
-TC_KEY_HOME         =  HEX+"[H"
-TC_KEY_PAGE_UP      =  HEX+"[5~"
-TC_KEY_PAGE_DOWN    =  HEX+"[6~"
-TC_KEY_DELETE       =  HEX+"[3~"
-TC_KEY_END          =  HEX+"[F"
+TC_FRMF             =  "\x0c"     # Formfeed (ctrl+l)
+TC_XMIT             =  "\x04"     # XMIT (ctrl+d)
+TC_ETX              =  "\x03"     # ETX (ctrl+c)
+TC_KEY_INSERT       =  HEX+"[2~"  # Insert (ins)
+TC_KEY_HOME         =  HEX+"[H"   # Home
+TC_KEY_PAGE_UP      =  HEX+"[5~"  # Page up
+TC_KEY_PAGE_DOWN    =  HEX+"[6~"  # Page down
+TC_KEY_DELETE       =  HEX+"[3~"  # Delete (del)
+TC_KEY_END          =  HEX+"[F"   # End
 
 
 def getch():  # Naming conflicts can occur if python's "getch" module is imported!
@@ -156,6 +159,6 @@ def getch():  # Naming conflicts can occur if python's "getch" module is importe
     finally:
         termios.tcsetattr(fd, termios.TCSADRAIN, settings)
             
-    if ch.decode("utf-8") == TC_KEY_END:  # Just in case programmer forgets to add one ;)
+    if ch.decode("utf-8") == TC_ETX:  # Just in case programmer forgets to add one ;)
         raise KeyboardInterrupt("Default failsafe (ctrl+c)")
     return ch
