@@ -101,7 +101,7 @@ def tc_canon_on():
     settings[3] |= termios.ICANON
     termios.tcsetattr(fd, termios.TCSANOW, settings)
 
-def tc_get_cursor_pos():
+def tc_get_cursor():
     # There is a better way to do this function
     tc_echo_off()
     tc_canon_off()
