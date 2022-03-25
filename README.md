@@ -23,7 +23,7 @@
 Start of about
 -->
 ###### <a name="about-tercontrol" />
-**TerControl** is a lightweight POSIX terminal control library for python. TerControl gives the end-user all the tools needed to create a terminal application (Look at [features](#features) for a full list of features).
+**TerControl** is a lightweight POSIX terminal control library for python2 & python3. TerControl gives the end-user all the tools needed to create a terminal application (Look at [features](#features) for a full list of features).
 <!--
 End of about
 -->
@@ -33,7 +33,7 @@ Start of features
 -->
 ## Features <a name="features" />
 
-- No dependencies (other then pythons standard library) 
+- No dependencies (other then python's standard library) 
 - Cursor
     - Move the cursor N times (up, down, left, right)
     - Set/get the cursor position
