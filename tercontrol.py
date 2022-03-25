@@ -118,6 +118,7 @@ def tc_get_cursor():
     if res:
         return (int(res.group("X")), int(res.group("Y")))
 def tc_set_cursor(X, Y): sys.stdout.write(OCT+"[%s;%sH" % (Y, X))
+def tc_set_col(X): sys.stdout.write(OCT+"[%sG" % (X))
 def tc_move_cursor(X, Y): 
     if    X > 0: sys.stdout.write(OCT+"[%sC" % (X))
     elif  X < 0: sys.stdout.write(OCT+"[%sD" % (X*-1))
