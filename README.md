@@ -44,7 +44,7 @@ Start of features
     - RGB color support
     - Text attributes (bold, dim, italic, underscore, crossed, reversed, blink, invisible)
 - Terminal 
-    - Clear (all lines, current line, from cursor down and up)
+    - Clear (all lines, current line, from cursor down and up, clear partial)
     - Get the terminal size
     - Save/restore screen
     - Alternate screen
