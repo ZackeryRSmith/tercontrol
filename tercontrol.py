@@ -63,18 +63,16 @@ TC_INV     =  HEX+"[8m"     # Invisible
 
 def tc_clear_screen(): sys.stdout.write(HEX+"[2J")
 
+def tc_clear_top_to_cursor(): sys.stdout.write(HEX+"[1J")
+def tc_clear_cursor_to_bottom(): sys.stdout.write(HEX+"[0J")
+
 def tc_clear_entire_line(): sys.stdout.write(HEX+"[2K")
 def tc_clear_line_till_cursor(): sys.stdout.write(HEX+"[1K")
 def tc_clear_line_from_cursor(): sys.stdout.write(HEX+"[0K")
 
-def tc_enter_alt_screen(): sys.stdout.write("%s[?1049h%s[H" % (OCT, OCT))
-def tc_exit_alt_screen(): sys.stdout.write(OCT+"[?1049l")
-
 def tc_get_cols_rows():
     import fcntl, struct
-    th, tw, hp, wp = struct.unpack('HHHH',
-        fcntl.ioctl(0, termios.TIOCGWINSZ,
-        struct.pack('HHHH', 0, 0, 0, 0)))
+    th, tw, hp, wp = struct.unpack('HHHH', fcntl.ioctl(0, termios.TIOCGWINSZ, struct.pack('HHHH', 0, 0, 0, 0)))
     return tw, th
 
 def tc_echo_off():
@@ -100,6 +98,21 @@ def tc_canon_on():
     settings = termios.tcgetattr(fd)
     settings[3] |= termios.ICANON
     termios.tcsetattr(fd, termios.TCSANOW, settings)
+
+############################
+#   Common private modes   #
+############################
+
+def tc_hide_cursor(): sys.stdout.write(HEX+"[?25l")
+def tc_show_cursor(): sys.stdout.write(HEX+"[?25h")
+
+def tc_save_screen(): sys.stdout.write(HEX+"[?47h")
+def tc_restore_screen(): sys.stdout.write(HEX+"?47l")
+
+def tc_enter_alt_screen(): sys.stdout.write("%s[?1049h%s[H" % (OCT, OCT))
+def tc_exit_alt_screen(): sys.stdout.write(OCT+"[?1049l")
+
+############################
 
 def tc_get_cursor():
     # There is a better way to do this function
