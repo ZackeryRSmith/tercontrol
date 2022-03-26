@@ -10,8 +10,13 @@ print(f"""{TC_NRM}
 
 {TC_NRM}
 {TC_BG_BLK}BG BLACK {TC_BLK}{TC_BG_RED}BG RED {TC_BG_GRN}BG GREEN {TC_BG_YEL}BG YELLOW {TC_BG_BLU}BG BLUE {TC_BG_MAG}BG MAGENTA {TC_BG_CYN}BG CYAN {TC_BG_WHT}BG WHITE{TC_NRM}
+
 """)
 
+for i in range(255):
+    print(tc_color_id(i, 0)+"%s " % (i), end="")
+
+print(TC_NRM)
 # Test all text atributes 
 print(TC_BLD+"Bold"+TC_NRM)
 print(TC_DIM+"Dim"+TC_NRM)
