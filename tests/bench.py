@@ -35,38 +35,39 @@ from time import sleep, perf_counter  # Benchmarking
 
 # getkey                           | ≈ 0.017221252000126697
 
-start_time = perf_counter()
-#tc_color_id(1, 0)
-#tc_rgb(20, 10, 0, 0)
+def main():
+    start_time = perf_counter()
+    #tc_color_id(1, 0)
+    #tc_rgb(20, 10, 0, 0)
 
-#tc_clear_screen()
-#tc_clear_from_top_to_cursor()
-#tc_clear_from_cursor_to_bottom()
-#tc_clear_entire_line()
-#tc_clear_line_till_cursor()
-#tc_clear_line_from_cursor()
+    #tc_clear_screen()
+    #tc_clear_from_top_to_cursor()
+    #tc_clear_from_cursor_to_bottom()
+    #tc_clear_entire_line()
+    #tc_clear_line_till_cursor()
+    #tc_clear_line_from_cursor()
 
-#tc_get_cols_rows()
+    #tc_get_cols_rows()
 
-#tc_echo_off()         
-#tc_echo_on()        
-#tc_canon_off()      
-#tc_canon_on()       
+    #tc_echo_off()         
+    #tc_echo_on()        
+    #tc_canon_off()      
+    #tc_canon_on()       
                       
-#tc_hide_cursor()    
-#tc_show_cursor()     
+    #tc_hide_cursor()    
+    #tc_show_cursor()     
                       
-#tc_save_screen()      
-#tc_restore_screen()   
+    #tc_save_screen()      
+    #tc_restore_screen()   
                       
-#tc_enter_alt_screen()
-#tc_exit_alt_screen() 
+    #tc_enter_alt_screen()
+    #tc_exit_alt_screen() 
 
-#tc_get_cursor()
-#tc_set_cursor(0, 0)
-#tc_set_col(0)
-#tc_move_cursor(0, 0)
+    #tc_get_cursor()
+    #tc_set_cursor(0, 0)
+    #tc_set_col(0)
+    #tc_move_cursor(0, 0)
 
-#getkey()
-end_time = perf_counter()
-print("It took %s milisecond(s) to complete task" % (end_time-start_time))
+    #getkey()
+    end_time = perf_counter()
+    print("It took %s milisecond(s) to complete task" % (end_time-start_time))
