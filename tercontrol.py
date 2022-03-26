@@ -1,7 +1,8 @@
 '''
 **********************************************************************************
 
-	Basic Terminal Control Library (Supports VT100, and ANSI standards)
+	Basic Terminal Control Library (Supports VT100, ANSI standards,
+                                        and some modern terminal support)
 	Copyright 2022 Zackery Smith
 	This library is released under the GPLv3 license
 
@@ -47,6 +48,9 @@ TC_BG_MAG  =  HEX+"[45m"    # Background Magenta
 TC_BG_CYN  =  HEX+"[46m"    # Background Cyan 
 TC_BG_WHT  =  HEX+"[47m"    # Background White 
 
+def tc_color_id(cid, l): return HEX+("[48" if l == 0 else "[38")+";5;%sm" % (cid)
+def tc_rgb(r, g, b, l): return HEX+("[48" if l == 0 else "[38")+";2;%s;%s;%sm" % (r, g, b)
+
 ####################################
 #   Additional formatting (ANSI)   #
 ####################################
@@ -71,8 +75,8 @@ def tc_clear_line_till_cursor(): sys.stdout.write(HEX+"[1K")
 def tc_clear_line_from_cursor(): sys.stdout.write(HEX+"[0K")
 
 def tc_get_cols_rows():
-    import fcntl, struct
-    th, tw, hp, wp = struct.unpack('HHHH', fcntl.ioctl(0, termios.TIOCGWINSZ, struct.pack('HHHH', 0, 0, 0, 0)))
+    from fcntl import ioctl; from struct import unpack, pack
+    th, tw, hp, wp = unpack('HHHH', ioctl(0, termios.TIOCGWINSZ, pack('HHHH', 0, 0, 0, 0)))
     return tw, th
 
 def tc_echo_off():
