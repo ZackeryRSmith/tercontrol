@@ -65,17 +65,6 @@ TC_INV     =  HEX+"[8m"     # Invisible
 
 #####################################
 
-def tc_clear_screen(): sys.stdout.write(HEX+"[2J")
-
-def tc_clear_from_top_to_cursor(): sys.stdout.write(HEX+"[1J")
-def tc_clear_from_cursor_to_bottom(): sys.stdout.write(HEX+"[0J")
-def tc_clear_partial(x, y, width, height):
-    pass
-
-def tc_clear_entire_line(): sys.stdout.write(HEX+"[2K")
-def tc_clear_line_till_cursor(): sys.stdout.write(HEX+"[1K")
-def tc_clear_line_from_cursor(): sys.stdout.write(HEX+"[0K")
-
 def tc_get_cols_rows():
     from fcntl import ioctl; from struct import unpack, pack
     th, tw, hp, wp = unpack('HHHH', ioctl(0, termios.TIOCGWINSZ, pack('HHHH', 0, 0, 0, 0)))
@@ -145,6 +134,24 @@ def tc_move_cursor(x, y):
     if    y > 0: sys.stdout.write(OCT+"[%sB" % (y))
     elif  y < 0: sys.stdout.write(OCT+'[%sA' % (y*-1))
 
+def tc_clear_screen(): sys.stdout.write(HEX+"[2J")
+
+def tc_clear_from_top_to_cursor(): sys.stdout.write(HEX+"[1J")
+def tc_clear_from_cursor_to_bottom(): sys.stdout.write(HEX+"[0J")
+def tc_clear_partial(x, y, width, height):
+    olpos = tc_get_cursor()
+
+    tc_set_cursor(x, y)
+    for i in range(height):
+        tc_set_cursor(x, y)
+        sys.stdout.write(" "*width)
+        y += 1
+    tc_set_cursor(olpos[0], olpos[1])
+
+def tc_clear_entire_line(): sys.stdout.write(HEX+"[2K")
+def tc_clear_line_till_cursor(): sys.stdout.write(HEX+"[1K")
+def tc_clear_line_from_cursor(): sys.stdout.write(HEX+"[0K")
+
 ##################################################
 #    Some extra code to handle keyboard input    #
 ##################################################
@@ -173,6 +180,7 @@ TC_KEY_ARROW_RIGHT  =  HEX+"[C"   # Arrow right
 TC_KEY_TAB          =  "\t"       # Tab
 TC_KEY_RETURN       =  "\r"       # Return
 TC_KEY_ENTER        =  "\r"       # Enter
+TC_KEY_BACKSPACE    =  "\x7f"     # Backspace
 
 TC_FRMF             =  "\x0c"     # Formfeed (ctrl+l)
 TC_XMIT             =  "\x04"     # XMIT (ctrl+d)
@@ -197,3 +205,10 @@ def getkey():
     if ch.decode("utf-8") == TC_ETX:  # Just in case programmer forgets to add one ;)
         raise KeyboardInterrupt("Default failsafe (ctrl+c)")
     return ch
+
+
+#################################
+#   Quality of life functions   #
+#################################
+
+def puts(string): sys.stdout.write(string); sys.stdout.flush()
