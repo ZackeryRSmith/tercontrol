@@ -1,5 +1,5 @@
 # Very simple text editor 
-# Ideology from: http://www.finseth.com/craft/#preface.q
+# http://www.finseth.com/craft/#preface.q
 
 # TODO:
 # A better way to manage threads
