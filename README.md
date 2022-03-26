@@ -43,7 +43,7 @@ Start of features
     - Background color (16 base colors)
     - Text attributes (bold, dim, italic, underscore, crossed, reversed, blink, invisible)
 - Terminal 
-    - Clear (all lines, current line, from start of line to cursor, from cursor to end of line)
+    - Clear (all lines, current line, from cursor down and up)
     - Get the terminal size
     - Alternate screen
     - Exit alternate screen
