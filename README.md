@@ -4,15 +4,10 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li>
-      <a href="#about-tercontrol">About TerControl</a>
-    </li>
-    <li>
-      <a href="#features">Features</a>
-    </li>
-    <li>
-      <a href="#installation">Installation</a>
-    </li>
+    <li><a href="#about-tercontrol">About TerControl</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#build">Build</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -63,7 +58,7 @@ End of features
 <!-- 
 Start of installation
 -->
-## Installation
+## Installation <a name="installation" />
 As of right now I don't plan on making this a PYPI package unless this actully gains any attraction. If you would like to use TerControl: 
 1. download one of the builds from the [releases](https://github.com/ZackeryRSmith/cval/releases)
 2. Place the compiled binary into your projects directory
@@ -75,7 +70,7 @@ End of installation
 <!--
 Start of build
 -->
-## Build
+## Build <a name="build" />
 I am currently working on optimising TerControl. I have switched to using a cython module to speed up code. If the compiled binary I supplied in the [releases](https://github.com/ZackeryRSmith/cval/releases) does not work please compile your own.
 1. Enter TerControl's directory
 2. Run `python setup.py build_ext --inplace`
