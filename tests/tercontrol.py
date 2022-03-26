@@ -69,6 +69,8 @@ def tc_clear_screen(): sys.stdout.write(HEX+"[2J")
 
 def tc_clear_from_top_to_cursor(): sys.stdout.write(HEX+"[1J")
 def tc_clear_from_cursor_to_bottom(): sys.stdout.write(HEX+"[0J")
+def tc_clear_partial(x, y, width, height):
+    pass
 
 def tc_clear_entire_line(): sys.stdout.write(HEX+"[2K")
 def tc_clear_line_till_cursor(): sys.stdout.write(HEX+"[1K")
@@ -126,22 +128,21 @@ def tc_get_cursor():
         temp = ""
         sys.__stdout__.write(HEX+"[6n")
         sys.__stdout__.flush()
-        while not (temp := temp + sys.stdin.read(1)).endswith('R'):
-            pass
-        res = re.match(r".*\[(?P<Y>\d*);(?P<X>\d*)R", temp)
+        temp = sys.stdin.read(10)
+        res = re.match(r".*\[(?P<y>\d*);(?P<x>\d*)R", temp)
     finally:
         tc_echo_on()
         tc_canon_on()
     if res:
-        return (int(res.group("X")), int(res.group("Y")))
-def tc_set_cursor(X, Y): sys.stdout.write(OCT+"[%s;%sH" % (Y, X))
-def tc_set_col(X): sys.stdout.write(OCT+"[%sG" % (X))
-def tc_move_cursor(X, Y): 
-    if    X > 0: sys.stdout.write(OCT+"[%sC" % (X))
-    elif  X < 0: sys.stdout.write(OCT+"[%sD" % (X*-1))
+        return (int(res.group("X")), int(res.group("y")))
+def tc_set_cursor(x, y): sys.stdout.write(OCT+"[%s;%sH" % (y, x))
+def tc_set_col(x): sys.stdout.write(OCT+"[%sG" % (x))
+def tc_move_cursor(x, y): 
+    if    x > 0: sys.stdout.write(OCT+"[%sC" % (x))
+    elif  x < 0: sys.stdout.write(OCT+"[%sD" % (x*-1))
         
-    if    Y > 0: sys.stdout.write(OCT+"[%sB" % (Y))
-    elif  Y < 0: sys.stdout.write(OCT+'[%sA' % (Y*-1))
+    if    y > 0: sys.stdout.write(OCT+"[%sB" % (y))
+    elif  y < 0: sys.stdout.write(OCT+'[%sA' % (y*-1))
 
 ##################################################
 #    Some extra code to handle keyboard input    #
