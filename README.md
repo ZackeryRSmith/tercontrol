@@ -6,6 +6,8 @@
   <ol>
     <li>
       <a href="#about-tercontrol">About TerControl</a>
+    </li>
+    <li>
       <a href="#features">Features</a>
     </li>
     <li>
