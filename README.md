@@ -4,15 +4,10 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li>
-      <a href="#about-tercontrol">About TerControl</a>
-    </li>
-    <li>
-      <a href="#features">Features</a>
-    </li>
-    <li>
-      <a href="#installation">Installation</a>
-    </li>
+    <li><a href="#about-tercontrol">About TerControl</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#build">Build</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -63,12 +58,28 @@ End of features
 <!-- 
 Start of installation
 -->
-## Installation
+## Installation <a name="installation" />
 As of right now I don't plan on making this a PYPI package unless this actully gains any attraction. If you would like to use TerControl: 
-1. download tercontrol.py
-2. Place tercontrol.py into your projects directory
+1. download one of the builds from the [releases](https://github.com/ZackeryRSmith/cval/releases)
+2. Place the compiled binary into your projects directory
 3. import tercontrol I.e. `from tercontrol import *`
+<!--
+End of installation
+-->
 
+<!--
+Start of build
+-->
+## Build <a name="build" />
+I am currently working on optimising TerControl. I have switched to using a cython module to speed up code. If the compiled binary I supplied in the [releases](https://github.com/ZackeryRSmith/cval/releases) does not work please compile your own.
+1. Enter TerControl's directory
+2. Run `python setup.py build_ext --inplace`
+3. Your compiled binary should be in the same directory
+4. Place the compiled binary into your project
+5. import it E.g. `from tercontrol import *`
+<!--
+End of build
+-->
 
 <!--
 Start of contributing
@@ -88,13 +99,31 @@ Don't forget to give the project a star! Thanks again!
 End of contributing
 -->
 
+<!--
+Start of licence
+-->
 ## Licence <a name="license" />
 All code is distributed under the [GNU GPLv3 licence](https://github.com/ZackeryRSmith/tercontrol/blob/main/LICENSE)
+<!--
+End of licence
+-->
 
+<!--
+Start of contact
+-->
 ## Contact <a name="contact" />
 Contact me via email or discord
 - zackery.smith82307@gmail.com
 - Dumb Bird#8147
+<!--
+End of contact
+-->
 
+<!--
+Start of thanks
+-->
 ## Thanks <a name="thanks">
 I would like to thank the entirety of the [Program Dream](https://discord.gg/gfmaxgE) discord server for being a great place! Personally being active there for only a few days gave me a new thing to do, I bet I'll be active on there a lot more so join! It's a non-toxic programming community and it's just a great place to be!
+<!--
+End of thanks
+-->
