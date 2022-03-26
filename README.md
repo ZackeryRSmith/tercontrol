@@ -20,7 +20,7 @@
 Start of about
 -->
 ###### <a name="about-tercontrol" />
-**TerControl** is a lightweight opinion based POSIX terminal control library for python2 & python3. TerControl gives the end-user all the tools needed to create a terminal application (Look at [features](#features) for a full list of features). 
+**TerControl** is a lightweight opinion based POSIX terminal control library for python3. TerControl gives the end-user all the tools needed to create a terminal application (Look at [features](#features) for a full list of features). 
 
 TerControl was created to suit my needs for terminal control without having to rely on Curses or NCurses wrappings, thus TerControl is heavily influenced by my needs. I'm very open to ideas and suggestions so if you have an idea open an issue with a feature request! 
 <!--
