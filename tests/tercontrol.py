@@ -1,7 +1,8 @@
 '''
 **********************************************************************************
 
-	Basic Terminal Control Library (Supports VT100, and ANSI standards)
+	Basic Terminal Control Library (Supports VT100, ANSI standards,
+                                        and some modern terminal support)
 	Copyright 2022 Zackery Smith
 	This library is released under the GPLv3 license
 
@@ -46,6 +47,9 @@ TC_BG_BLU  =  HEX+"[44m"    # Background Blue
 TC_BG_MAG  =  HEX+"[45m"    # Background Magenta
 TC_BG_CYN  =  HEX+"[46m"    # Background Cyan 
 TC_BG_WHT  =  HEX+"[47m"    # Background White 
+
+def tc_color_id(cid, l): return HEX+("[48" if l == 0 else "[38")+";5;%sm" % (cid)
+def tc_rgb(r, g, b, l): return HEX+("[48" if l == 0 else "[38")+";2;%s;%s;%sm" % (r, g, b)
 
 ####################################
 #   Additional formatting (ANSI)   #
