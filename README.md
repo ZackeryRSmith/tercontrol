@@ -45,6 +45,7 @@ Start of features
 - Terminal 
     - Clear (all lines, current line, from cursor down and up)
     - Get the terminal size
+    - Save/restore screen
     - Alternate screen
     - Exit alternate screen
 - Event
