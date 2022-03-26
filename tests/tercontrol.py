@@ -134,7 +134,7 @@ def tc_get_cursor():
         tc_echo_on()
         tc_canon_on()
     if res:
-        return (int(res.group("X")), int(res.group("y")))
+        return (int(res.group("x")), int(res.group("y")))
 def tc_set_cursor(x, y): sys.stdout.write(OCT+"[%s;%sH" % (y, x))
 def tc_set_col(x): sys.stdout.write(OCT+"[%sG" % (x))
 def tc_move_cursor(x, y): 
