@@ -45,6 +45,8 @@ Start of features
 - Styled output 
     - Foreground color (16 base colors)
     - Background color (16 base colors)
+    - 256 (ANSI) color support
+    - RGB color support
     - Text attributes (bold, dim, italic, underscore, crossed, reversed, blink, invisible)
 - Terminal 
     - Clear (all lines, current line, from cursor down and up)
