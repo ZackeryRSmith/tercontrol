@@ -63,8 +63,8 @@ TC_INV     =  HEX+"[8m"     # Invisible
 
 def tc_clear_screen(): sys.stdout.write(HEX+"[2J")
 
-def tc_clear_top_to_cursor(): sys.stdout.write(HEX+"[1J")
-def tc_clear_cursor_to_bottom(): sys.stdout.write(HEX+"[0J")
+def tc_clear_from_top_to_cursor(): sys.stdout.write(HEX+"[1J")
+def tc_clear_from_cursor_to_bottom(): sys.stdout.write(HEX+"[0J")
 
 def tc_clear_entire_line(): sys.stdout.write(HEX+"[2K")
 def tc_clear_line_till_cursor(): sys.stdout.write(HEX+"[1K")
