@@ -211,4 +211,8 @@ def getkey():
 #   Quality of life functions   #
 #################################
 
-def puts(string): sys.stdout.write(string); sys.stdout.flush()
+def puts(*values, end=""): 
+    for val in values:
+        sys.stdout.write(val)
+    sys.stdout.write(end)
+    sys.stdout.flush()
