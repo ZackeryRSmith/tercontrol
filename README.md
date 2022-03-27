@@ -20,7 +20,7 @@
 Start of about
 -->
 ###### <a name="about-tercontrol" />
-**TerControl** is a lightweight opinion based POSIX terminal control library for python3. TerControl gives the end-user all the tools needed to create a terminal application (Look at [features](#features) for a full list of features). 
+**TerControl** is a lightweight opinion based POSIX terminal control library for python3. TerControl gives the end-user all the tools needed to manipulate the terminal (Look at [features](#features) for a full list of features). 
 
 TerControl was created to suit my needs for terminal control without having to rely on Curses or NCurses wrappings, thus TerControl is heavily influenced by my needs. I'm very open to ideas and suggestions so if you have an idea open an issue with a feature request! 
 <!--
@@ -123,7 +123,7 @@ End of contact
 Start of thanks
 -->
 ## Thanks <a name="thanks">
-I would like to thank the entirety of the [Program Dream](https://discord.gg/gfmaxgE) discord server for being a great place! Personally being active there for only a few days gave me a new thing to do, I bet I'll be active on there a lot more so join! It's a non-toxic programming community and it's just a great place to be!
+I would like to thank the entirety of the [Program Dream](https://discord.gg/gfmaxgE) discord server for being a great place! Personally being active there gave me a new thing to do, I bet I'll be active on there a lot more so join! It's a non-toxic programming community and it's just a great place to be!
 <!--
 End of thanks
 -->
