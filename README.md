@@ -61,7 +61,7 @@ Start of installation
 -->
 ## Installation <a name="installation" />
 As of right now I don't plan on making this a PYPI package unless this actully gains any attraction. If you would like to use TerControl: 
-1. download one of the builds from the [releases](https://github.com/ZackeryRSmith/cval/releases)
+1. download one of the builds from the [releases](https://github.com/ZackeryRSmith/tercontrol/releases)
 2. Place the compiled binary into your projects directory
 3. import tercontrol I.e. `from tercontrol import *`
 <!--
