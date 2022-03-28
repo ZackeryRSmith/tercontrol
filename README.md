@@ -33,6 +33,7 @@ Start of features
 ## Features <a name="features" />
 
 - No dependencies (other then python's standard library) 
+- Terminfo support
 - Cursor
     - Move the cursor N times (up, down, left, right)
     - Set/get the cursor position
