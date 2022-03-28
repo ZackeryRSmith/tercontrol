@@ -17,6 +17,13 @@ import termios
 import re  # Could remove this dependency
 from terminfo import *
 
+# A very crappy way to check for terminal type
+term = Term(os.environ["TERM"])
+term.load()
+
+# Map terminfo db to a more human usable dict
+TC_TERMINFO_DB = clean_db(term)
+
 HEX = "\x1B"
 OCT = "\033"
 
@@ -217,10 +224,3 @@ def puts(*values, end=""):
         sys.stdout.write(val)
     sys.stdout.write(end)
     sys.stdout.flush()
-
-# A very crappy way to check for terminal type
-term = Term(os.environ["TERM"])
-term.load()
-
-# Map terminfo db to a more human usable dict
-tc_terminfo_db = clean_db(term)
