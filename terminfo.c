@@ -909,7 +909,7 @@ static const char *__pyx_f[] = {
 /*--- Type declarations ---*/
 struct __pyx_obj_8terminfo___pyx_scope_struct__genexpr;
 
-/* "terminfo.pyx":515
+/* "terminfo.pyx":516
  *         and the terminal name appropriately.
  *         """
  *         for basepath in (x for x in Term.SEARCH_PATHS if x is not None):             # <<<<<<<<<<<<<<
@@ -1309,6 +1309,55 @@ static CYTHON_INLINE PyObject *__Pyx_PyObject_GetItem(PyObject *obj, PyObject* k
 /* IncludeStringH.proto */
 #include <string.h>
 
+/* BytesEquals.proto */
+static CYTHON_INLINE int __Pyx_PyBytes_Equals(PyObject* s1, PyObject* s2, int equals);
+
+/* UnicodeEquals.proto */
+static CYTHON_INLINE int __Pyx_PyUnicode_Equals(PyObject* s1, PyObject* s2, int equals);
+
+/* StrEquals.proto */
+#if PY_MAJOR_VERSION >= 3
+#define __Pyx_PyString_Equals __Pyx_PyUnicode_Equals
+#else
+#define __Pyx_PyString_Equals __Pyx_PyBytes_Equals
+#endif
+
+/* PyIntBinop.proto */
+#if !CYTHON_COMPILING_IN_PYPY
+static PyObject* __Pyx_PyInt_AddObjC(PyObject *op1, PyObject *op2, long intval, int inplace, int zerodivision_check);
+#else
+#define __Pyx_PyInt_AddObjC(op1, op2, intval, inplace, zerodivision_check)\
+    (inplace ? PyNumber_InPlaceAdd(op1, op2) : PyNumber_Add(op1, op2))
+#endif
+
+/* PyIntCompare.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyInt_NeObjC(PyObject *op1, PyObject *op2, long intval, long inplace);
+
+/* PyIntBinop.proto */
+#if !CYTHON_COMPILING_IN_PYPY
+static PyObject* __Pyx_PyInt_SubtractObjC(PyObject *op1, PyObject *op2, long intval, int inplace, int zerodivision_check);
+#else
+#define __Pyx_PyInt_SubtractObjC(op1, op2, intval, inplace, zerodivision_check)\
+    (inplace ? PyNumber_InPlaceSubtract(op1, op2) : PyNumber_Subtract(op1, op2))
+#endif
+
+/* UnpackUnboundCMethod.proto */
+typedef struct {
+    PyObject *type;
+    PyObject **method_name;
+    PyCFunction func;
+    PyObject *method;
+    int flag;
+} __Pyx_CachedCFunction;
+
+/* CallUnboundCMethod1.proto */
+static PyObject* __Pyx__CallUnboundCMethod1(__Pyx_CachedCFunction* cfunc, PyObject* self, PyObject* arg);
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_CallUnboundCMethod1(__Pyx_CachedCFunction* cfunc, PyObject* self, PyObject* arg);
+#else
+#define __Pyx_CallUnboundCMethod1(cfunc, self, arg)  __Pyx__CallUnboundCMethod1(cfunc, self, arg)
+#endif
+
 /* PyObject_GenericGetAttrNoDict.proto */
 #if CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP && PY_VERSION_HEX < 0x03070000
 static CYTHON_INLINE PyObject* __Pyx_PyObject_GenericGetAttrNoDict(PyObject* obj, PyObject* attr_name);
@@ -1549,6 +1598,7 @@ int __pyx_module_is_main_terminfo = 0;
 static PyObject *__pyx_builtin_object;
 static PyObject *__pyx_builtin_open;
 static PyObject *__pyx_builtin_AttributeError;
+static PyObject *__pyx_builtin_enumerate;
 static const char __pyx_k_B[] = "B";
 static const char __pyx_k_H[] = "H";
 static const char __pyx_k_h[] = "h";
@@ -1562,6 +1612,7 @@ static const char __pyx_k_cap[] = "cap";
 static const char __pyx_k_doc[] = "__doc__";
 static const char __pyx_k_get[] = "get";
 static const char __pyx_k_h_2[] = "<h";
+static const char __pyx_k_idx[] = "idx";
 static const char __pyx_k_sys[] = "sys";
 static const char __pyx_k_tab[] = "tab";
 static const char __pyx_k_Term[] = "Term";
@@ -1582,6 +1633,7 @@ static const char __pyx_k_send[] = "send";
 static const char __pyx_k_term[] = "term";
 static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_tone[] = "tone";
+static const char __pyx_k_type[] = "_type";
 static const char __pyx_k_close[] = "close";
 static const char __pyx_k_enter[] = "__enter__";
 static const char __pyx_k_index[] = "index";
@@ -1599,6 +1651,7 @@ static const char __pyx_k_user6[] = "user6";
 static const char __pyx_k_user7[] = "user7";
 static const char __pyx_k_user8[] = "user8";
 static const char __pyx_k_user9[] = "user9";
+static const char __pyx_k_value[] = "value";
 static const char __pyx_k_HHHHHH[] = "HHHHHH";
 static const char __pyx_k_dbfile[] = "dbfile";
 static const char __pyx_k_format[] = "format";
@@ -1643,6 +1696,7 @@ static const char __pyx_k_object[] = "object";
 static const char __pyx_k_offset[] = "offset";
 static const char __pyx_k_raw_db[] = "raw_db";
 static const char __pyx_k_struct[] = "struct";
+static const char __pyx_k_update[] = "update";
 static const char __pyx_k_buttons[] = "buttons";
 static const char __pyx_k_clr_bol[] = "clr_bol";
 static const char __pyx_k_clr_eol[] = "clr_eol";
@@ -1766,6 +1820,7 @@ static const char __pyx_k_BASEPATHS[] = "BASEPATHS";
 static const char __pyx_k_Term_load[] = "Term.load";
 static const char __pyx_k_acs_chars[] = "acs_chars";
 static const char __pyx_k_cursor_up[] = "cursor_up";
+static const char __pyx_k_enumerate[] = "enumerate";
 static const char __pyx_k_form_feed[] = "form_feed";
 static const char __pyx_k_get_mouse[] = "get_mouse";
 static const char __pyx_k_hard_copy[] = "hard_copy";
@@ -1855,7 +1910,6 @@ static const char __pyx_k_orig_colors[] = "orig_colors";
 static const char __pyx_k_over_strike[] = "over_strike";
 static const char __pyx_k_parm_rindex[] = "parm_rindex";
 static const char __pyx_k_prtr_silent[] = "prtr_silent";
-static const char __pyx_k_repeat_char[] = "repeat_char";
 static const char __pyx_k_row_address[] = "row_address";
 static const char __pyx_k_save_cursor[] = "save_cursor";
 static const char __pyx_k_terminfo_db[] = "terminfo_db";
@@ -1919,7 +1973,6 @@ static const char __pyx_k_order_of_pins[] = "order_of_pins";
 static const char __pyx_k_parm_up_micro[] = "parm_up_micro";
 static const char __pyx_k_req_for_input[] = "req_for_input";
 static const char __pyx_k_req_mouse_pos[] = "req_mouse_pos";
-static const char __pyx_k_reset_1string[] = "reset_1string";
 static const char __pyx_k_reset_2string[] = "reset_2string";
 static const char __pyx_k_reset_3string[] = "reset_3string";
 static const char __pyx_k_set_lr_margin[] = "set_lr_margin";
@@ -2243,6 +2296,7 @@ static PyObject *__pyx_n_s_enter_underline_mode;
 static PyObject *__pyx_n_s_enter_upward_mode;
 static PyObject *__pyx_n_s_enter_vertical_hl_mode;
 static PyObject *__pyx_n_s_enter_xon_mode;
+static PyObject *__pyx_n_s_enumerate;
 static PyObject *__pyx_n_s_environ;
 static PyObject *__pyx_n_s_erase_chars;
 static PyObject *__pyx_n_s_erase_overstrike;
@@ -2288,6 +2342,7 @@ static PyObject *__pyx_n_s_has_meta_key;
 static PyObject *__pyx_n_s_has_print_wheel;
 static PyObject *__pyx_n_s_has_status_line;
 static PyObject *__pyx_n_s_hue_lightness_saturation;
+static PyObject *__pyx_n_s_idx;
 static PyObject *__pyx_n_s_import;
 static PyObject *__pyx_n_s_index;
 static PyObject *__pyx_n_s_index_string_offset;
@@ -2571,11 +2626,9 @@ static PyObject *__pyx_n_s_raw_db;
 static PyObject *__pyx_n_s_rb;
 static PyObject *__pyx_n_s_read;
 static PyObject *__pyx_n_s_remove_clock;
-static PyObject *__pyx_n_s_repeat_char;
 static PyObject *__pyx_n_s_repeat_charreset_1string;
 static PyObject *__pyx_n_s_req_for_input;
 static PyObject *__pyx_n_s_req_mouse_pos;
-static PyObject *__pyx_n_s_reset_1string;
 static PyObject *__pyx_n_s_reset_2string;
 static PyObject *__pyx_n_s_reset_3string;
 static PyObject *__pyx_n_s_reset_file;
@@ -2645,9 +2698,11 @@ static PyObject *__pyx_n_s_tilde_glitch;
 static PyObject *__pyx_n_s_to_status_line;
 static PyObject *__pyx_n_s_tone;
 static PyObject *__pyx_n_s_transparent_underline;
+static PyObject *__pyx_n_s_type;
 static PyObject *__pyx_n_s_underline_char;
 static PyObject *__pyx_n_s_unpack_from;
 static PyObject *__pyx_n_s_up_half_line;
+static PyObject *__pyx_n_s_update;
 static PyObject *__pyx_n_s_user0;
 static PyObject *__pyx_n_s_user1;
 static PyObject *__pyx_n_s_user2;
@@ -2659,6 +2714,7 @@ static PyObject *__pyx_n_s_user7;
 static PyObject *__pyx_n_s_user8;
 static PyObject *__pyx_n_s_user9;
 static PyObject *__pyx_kp_s_usr_share_terminfo;
+static PyObject *__pyx_n_s_value;
 static PyObject *__pyx_n_s_virtual_terminal;
 static PyObject *__pyx_n_s_wait_tone;
 static PyObject *__pyx_n_s_wide_char_size;
@@ -2675,7 +2731,9 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
 static PyObject *__pyx_pf_8terminfo_4Term_8__getattr__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_name); /* proto */
 static PyObject *__pyx_pf_8terminfo_clean_db(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_term); /* proto */
 static PyObject *__pyx_tp_new_8terminfo___pyx_scope_struct__genexpr(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_update = {0, &__pyx_n_s_update, 0, 0, 0};
 static PyObject *__pyx_int_0;
+static PyObject *__pyx_int_1;
 static PyObject *__pyx_int_2;
 static PyObject *__pyx_int_6;
 static PyObject *__pyx_int_12;
@@ -2696,7 +2754,7 @@ static PyObject *__pyx_codeobj__15;
 static PyObject *__pyx_codeobj__17;
 /* Late includes */
 
-/* "terminfo.pyx":500
+/* "terminfo.pyx":501
  *     ]
  * 
  *     def __init__(self, name):             # <<<<<<<<<<<<<<
@@ -2739,11 +2797,11 @@ static PyObject *__pyx_pw_8terminfo_4Term_1__init__(PyObject *__pyx_self, PyObje
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_name)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, 1); __PYX_ERR(0, 500, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, 1); __PYX_ERR(0, 501, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 500, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 501, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -2756,7 +2814,7 @@ static PyObject *__pyx_pw_8terminfo_4Term_1__init__(PyObject *__pyx_self, PyObje
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 500, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 501, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("terminfo.Term.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2777,34 +2835,34 @@ static PyObject *__pyx_pf_8terminfo_4Term___init__(CYTHON_UNUSED PyObject *__pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "terminfo.pyx":501
+  /* "terminfo.pyx":502
  * 
  *     def __init__(self, name):
  *         self.name = name             # <<<<<<<<<<<<<<
  *         self.raw_db = None
  *         self.db = None
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_name, __pyx_v_name) < 0) __PYX_ERR(0, 501, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_name, __pyx_v_name) < 0) __PYX_ERR(0, 502, __pyx_L1_error)
 
-  /* "terminfo.pyx":502
+  /* "terminfo.pyx":503
  *     def __init__(self, name):
  *         self.name = name
  *         self.raw_db = None             # <<<<<<<<<<<<<<
  *         self.db = None
  * 
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_raw_db, Py_None) < 0) __PYX_ERR(0, 502, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_raw_db, Py_None) < 0) __PYX_ERR(0, 503, __pyx_L1_error)
 
-  /* "terminfo.pyx":503
+  /* "terminfo.pyx":504
  *         self.name = name
  *         self.raw_db = None
  *         self.db = None             # <<<<<<<<<<<<<<
  * 
  *     def load(self):
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_db, Py_None) < 0) __PYX_ERR(0, 503, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_db, Py_None) < 0) __PYX_ERR(0, 504, __pyx_L1_error)
 
-  /* "terminfo.pyx":500
+  /* "terminfo.pyx":501
  *     ]
  * 
  *     def __init__(self, name):             # <<<<<<<<<<<<<<
@@ -2824,7 +2882,7 @@ static PyObject *__pyx_pf_8terminfo_4Term___init__(CYTHON_UNUSED PyObject *__pyx
   return __pyx_r;
 }
 
-/* "terminfo.pyx":505
+/* "terminfo.pyx":506
  *         self.db = None
  * 
  *     def load(self):             # <<<<<<<<<<<<<<
@@ -2857,40 +2915,14 @@ static PyObject *__pyx_pf_8terminfo_4Term_2load(CYTHON_UNUSED PyObject *__pyx_se
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("load", 0);
 
-  /* "terminfo.pyx":506
+  /* "terminfo.pyx":507
  * 
  *     def load(self):
  *         self.load_db()             # <<<<<<<<<<<<<<
  *         self.db = self.parse_db()
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_load_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 506, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_3)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_3);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
-    }
-  }
-  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 506, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "terminfo.pyx":507
- *     def load(self):
- *         self.load_db()
- *         self.db = self.parse_db()             # <<<<<<<<<<<<<<
- * 
- *     def load_db(self):
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_parse_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 507, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_load_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 507, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -2907,10 +2939,36 @@ static PyObject *__pyx_pf_8terminfo_4Term_2load(CYTHON_UNUSED PyObject *__pyx_se
   if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 507, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_db, __pyx_t_1) < 0) __PYX_ERR(0, 507, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "terminfo.pyx":505
+  /* "terminfo.pyx":508
+ *     def load(self):
+ *         self.load_db()
+ *         self.db = self.parse_db()             # <<<<<<<<<<<<<<
+ * 
+ *     def load_db(self):
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_parse_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 508, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 508, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_db, __pyx_t_1) < 0) __PYX_ERR(0, 508, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "terminfo.pyx":506
  *         self.db = None
  * 
  *     def load(self):             # <<<<<<<<<<<<<<
@@ -2933,7 +2991,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_2load(CYTHON_UNUSED PyObject *__pyx_se
   return __pyx_r;
 }
 
-/* "terminfo.pyx":509
+/* "terminfo.pyx":510
  *         self.db = self.parse_db()
  * 
  *     def load_db(self):             # <<<<<<<<<<<<<<
@@ -2957,7 +3015,7 @@ static PyObject *__pyx_pw_8terminfo_4Term_5load_db(PyObject *__pyx_self, PyObjec
 }
 static PyObject *__pyx_gb_8terminfo_4Term_7load_db_2generator(__pyx_CoroutineObject *__pyx_generator, CYTHON_UNUSED PyThreadState *__pyx_tstate, PyObject *__pyx_sent_value); /* proto */
 
-/* "terminfo.pyx":515
+/* "terminfo.pyx":516
  *         and the terminal name appropriately.
  *         """
  *         for basepath in (x for x in Term.SEARCH_PATHS if x is not None):             # <<<<<<<<<<<<<<
@@ -2977,12 +3035,12 @@ static PyObject *__pyx_pf_8terminfo_4Term_7load_db_genexpr(CYTHON_UNUSED PyObjec
   if (unlikely(!__pyx_cur_scope)) {
     __pyx_cur_scope = ((struct __pyx_obj_8terminfo___pyx_scope_struct__genexpr *)Py_None);
     __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 515, __pyx_L1_error)
+    __PYX_ERR(0, 516, __pyx_L1_error)
   } else {
     __Pyx_GOTREF(__pyx_cur_scope);
   }
   {
-    __pyx_CoroutineObject *gen = __Pyx_Generator_New((__pyx_coroutine_body_t) __pyx_gb_8terminfo_4Term_7load_db_2generator, NULL, (PyObject *) __pyx_cur_scope, __pyx_n_s_genexpr, __pyx_n_s_Term_load_db_locals_genexpr, __pyx_n_s_terminfo); if (unlikely(!gen)) __PYX_ERR(0, 515, __pyx_L1_error)
+    __pyx_CoroutineObject *gen = __Pyx_Generator_New((__pyx_coroutine_body_t) __pyx_gb_8terminfo_4Term_7load_db_2generator, NULL, (PyObject *) __pyx_cur_scope, __pyx_n_s_genexpr, __pyx_n_s_Term_load_db_locals_genexpr, __pyx_n_s_terminfo); if (unlikely(!gen)) __PYX_ERR(0, 516, __pyx_L1_error)
     __Pyx_DECREF(__pyx_cur_scope);
     __Pyx_RefNannyFinishContext();
     return (PyObject *) gen;
@@ -3021,19 +3079,19 @@ static PyObject *__pyx_gb_8terminfo_4Term_7load_db_2generator(__pyx_CoroutineObj
     return NULL;
   }
   __pyx_L3_first_run:;
-  if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 515, __pyx_L1_error)
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Term); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 515, __pyx_L1_error)
+  if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 516, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Term); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 516, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_SEARCH_PATHS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 515, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_SEARCH_PATHS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 516, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (likely(PyList_CheckExact(__pyx_t_2)) || PyTuple_CheckExact(__pyx_t_2)) {
     __pyx_t_1 = __pyx_t_2; __Pyx_INCREF(__pyx_t_1); __pyx_t_3 = 0;
     __pyx_t_4 = NULL;
   } else {
-    __pyx_t_3 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 515, __pyx_L1_error)
+    __pyx_t_3 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 516, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 515, __pyx_L1_error)
+    __pyx_t_4 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 516, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   for (;;) {
@@ -3041,17 +3099,17 @@ static PyObject *__pyx_gb_8terminfo_4Term_7load_db_2generator(__pyx_CoroutineObj
       if (likely(PyList_CheckExact(__pyx_t_1))) {
         if (__pyx_t_3 >= PyList_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_3); __Pyx_INCREF(__pyx_t_2); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 515, __pyx_L1_error)
+        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_3); __Pyx_INCREF(__pyx_t_2); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 516, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 515, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 516, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       } else {
         if (__pyx_t_3 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_3); __Pyx_INCREF(__pyx_t_2); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 515, __pyx_L1_error)
+        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_3); __Pyx_INCREF(__pyx_t_2); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 516, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 515, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 516, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       }
@@ -3061,7 +3119,7 @@ static PyObject *__pyx_gb_8terminfo_4Term_7load_db_2generator(__pyx_CoroutineObj
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 515, __pyx_L1_error)
+          else __PYX_ERR(0, 516, __pyx_L1_error)
         }
         break;
       }
@@ -3092,7 +3150,7 @@ static PyObject *__pyx_gb_8terminfo_4Term_7load_db_2generator(__pyx_CoroutineObj
       __Pyx_XGOTREF(__pyx_t_1);
       __pyx_t_3 = __pyx_cur_scope->__pyx_t_1;
       __pyx_t_4 = __pyx_cur_scope->__pyx_t_2;
-      if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 515, __pyx_L1_error)
+      if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 516, __pyx_L1_error)
     }
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -3116,7 +3174,7 @@ static PyObject *__pyx_gb_8terminfo_4Term_7load_db_2generator(__pyx_CoroutineObj
   return __pyx_r;
 }
 
-/* "terminfo.pyx":509
+/* "terminfo.pyx":510
  *         self.db = self.parse_db()
  * 
  *     def load_db(self):             # <<<<<<<<<<<<<<
@@ -3156,22 +3214,22 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("load_db", 0);
 
-  /* "terminfo.pyx":515
+  /* "terminfo.pyx":516
  *         and the terminal name appropriately.
  *         """
  *         for basepath in (x for x in Term.SEARCH_PATHS if x is not None):             # <<<<<<<<<<<<<<
  *             path = os.path.join(basepath, self.name[0], self.name)
  *             try:
  */
-  __pyx_t_1 = __pyx_pf_8terminfo_4Term_7load_db_genexpr(NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 515, __pyx_L1_error)
+  __pyx_t_1 = __pyx_pf_8terminfo_4Term_7load_db_genexpr(NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 516, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
     __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_3 = 0;
     __pyx_t_4 = NULL;
   } else {
-    __pyx_t_3 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 515, __pyx_L1_error)
+    __pyx_t_3 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 516, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 515, __pyx_L1_error)
+    __pyx_t_4 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 516, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
@@ -3179,17 +3237,17 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
       if (likely(PyList_CheckExact(__pyx_t_2))) {
         if (__pyx_t_3 >= PyList_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 515, __pyx_L1_error)
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 516, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 515, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 516, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       } else {
         if (__pyx_t_3 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 515, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 516, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 515, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 516, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       }
@@ -3199,7 +3257,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 515, __pyx_L1_error)
+          else __PYX_ERR(0, 516, __pyx_L1_error)
         }
         break;
       }
@@ -3208,27 +3266,27 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
     __Pyx_XDECREF_SET(__pyx_v_basepath, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "terminfo.pyx":516
+    /* "terminfo.pyx":517
  *         """
  *         for basepath in (x for x in Term.SEARCH_PATHS if x is not None):
  *             path = os.path.join(basepath, self.name[0], self.name)             # <<<<<<<<<<<<<<
  *             try:
  *                 with open(path, "rb") as dbfile:
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_os); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 516, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_os); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 517, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_path); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 516, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_path); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 517, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_join); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 516, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_join); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 517, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_name); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 516, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_name); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 517, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_6, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 516, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_6, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 517, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_name); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 516, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_name); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 517, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_8 = NULL;
     __pyx_t_9 = 0;
@@ -3245,7 +3303,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_5)) {
       PyObject *__pyx_temp[4] = {__pyx_t_8, __pyx_v_basepath, __pyx_t_7, __pyx_t_6};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_9, 3+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 516, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_9, 3+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 517, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -3255,7 +3313,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
       PyObject *__pyx_temp[4] = {__pyx_t_8, __pyx_v_basepath, __pyx_t_7, __pyx_t_6};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_9, 3+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 516, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_9, 3+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 517, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -3263,7 +3321,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
     } else
     #endif
     {
-      __pyx_t_10 = PyTuple_New(3+__pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 516, __pyx_L1_error)
+      __pyx_t_10 = PyTuple_New(3+__pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 517, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       if (__pyx_t_8) {
         __Pyx_GIVEREF(__pyx_t_8); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_8); __pyx_t_8 = NULL;
@@ -3277,7 +3335,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
       PyTuple_SET_ITEM(__pyx_t_10, 2+__pyx_t_9, __pyx_t_6);
       __pyx_t_7 = 0;
       __pyx_t_6 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 516, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 517, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     }
@@ -3285,7 +3343,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
     __Pyx_XDECREF_SET(__pyx_v_path, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "terminfo.pyx":517
+    /* "terminfo.pyx":518
  *         for basepath in (x for x in Term.SEARCH_PATHS if x is not None):
  *             path = os.path.join(basepath, self.name[0], self.name)
  *             try:             # <<<<<<<<<<<<<<
@@ -3301,7 +3359,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
       __Pyx_XGOTREF(__pyx_t_13);
       /*try:*/ {
 
-        /* "terminfo.pyx":518
+        /* "terminfo.pyx":519
  *             path = os.path.join(basepath, self.name[0], self.name)
  *             try:
  *                 with open(path, "rb") as dbfile:             # <<<<<<<<<<<<<<
@@ -3309,7 +3367,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
  *                     return
  */
         /*with:*/ {
-          __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 518, __pyx_L5_error)
+          __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 519, __pyx_L5_error)
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_INCREF(__pyx_v_path);
           __Pyx_GIVEREF(__pyx_v_path);
@@ -3317,12 +3375,12 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
           __Pyx_INCREF(__pyx_n_s_rb);
           __Pyx_GIVEREF(__pyx_n_s_rb);
           PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_n_s_rb);
-          __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_t_1, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 518, __pyx_L5_error)
+          __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_t_1, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 519, __pyx_L5_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-          __pyx_t_14 = __Pyx_PyObject_LookupSpecial(__pyx_t_5, __pyx_n_s_exit); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 518, __pyx_L5_error)
+          __pyx_t_14 = __Pyx_PyObject_LookupSpecial(__pyx_t_5, __pyx_n_s_exit); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 519, __pyx_L5_error)
           __Pyx_GOTREF(__pyx_t_14);
-          __pyx_t_10 = __Pyx_PyObject_LookupSpecial(__pyx_t_5, __pyx_n_s_enter); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 518, __pyx_L13_error)
+          __pyx_t_10 = __Pyx_PyObject_LookupSpecial(__pyx_t_5, __pyx_n_s_enter); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 519, __pyx_L13_error)
           __Pyx_GOTREF(__pyx_t_10);
           __pyx_t_6 = NULL;
           if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_10))) {
@@ -3336,7 +3394,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
           }
           __pyx_t_1 = (__pyx_t_6) ? __Pyx_PyObject_CallOneArg(__pyx_t_10, __pyx_t_6) : __Pyx_PyObject_CallNoArg(__pyx_t_10);
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-          if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 518, __pyx_L13_error)
+          if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 519, __pyx_L13_error)
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
           __pyx_t_10 = __pyx_t_1;
@@ -3354,14 +3412,14 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
                 __Pyx_XDECREF_SET(__pyx_v_dbfile, __pyx_t_10);
                 __pyx_t_10 = 0;
 
-                /* "terminfo.pyx":519
+                /* "terminfo.pyx":520
  *             try:
  *                 with open(path, "rb") as dbfile:
  *                     self.raw_db = dbfile.read()             # <<<<<<<<<<<<<<
  *                     return
  *             except FileNotFoundError:
  */
-                __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_dbfile, __pyx_n_s_read); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 519, __pyx_L19_error)
+                __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_dbfile, __pyx_n_s_read); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 520, __pyx_L19_error)
                 __Pyx_GOTREF(__pyx_t_5);
                 __pyx_t_1 = NULL;
                 if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
@@ -3375,13 +3433,13 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
                 }
                 __pyx_t_10 = (__pyx_t_1) ? __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_1) : __Pyx_PyObject_CallNoArg(__pyx_t_5);
                 __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-                if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 519, __pyx_L19_error)
+                if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 520, __pyx_L19_error)
                 __Pyx_GOTREF(__pyx_t_10);
                 __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-                if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_raw_db, __pyx_t_10) < 0) __PYX_ERR(0, 519, __pyx_L19_error)
+                if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_raw_db, __pyx_t_10) < 0) __PYX_ERR(0, 520, __pyx_L19_error)
                 __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-                /* "terminfo.pyx":520
+                /* "terminfo.pyx":521
  *                 with open(path, "rb") as dbfile:
  *                     self.raw_db = dbfile.read()
  *                     return             # <<<<<<<<<<<<<<
@@ -3393,7 +3451,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
                 __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
                 goto __pyx_L23_try_return;
 
-                /* "terminfo.pyx":518
+                /* "terminfo.pyx":519
  *             path = os.path.join(basepath, self.name[0], self.name)
  *             try:
  *                 with open(path, "rb") as dbfile:             # <<<<<<<<<<<<<<
@@ -3410,20 +3468,20 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
               __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
               /*except:*/ {
                 __Pyx_AddTraceback("terminfo.Term.load_db", __pyx_clineno, __pyx_lineno, __pyx_filename);
-                if (__Pyx_GetException(&__pyx_t_10, &__pyx_t_5, &__pyx_t_1) < 0) __PYX_ERR(0, 518, __pyx_L21_except_error)
+                if (__Pyx_GetException(&__pyx_t_10, &__pyx_t_5, &__pyx_t_1) < 0) __PYX_ERR(0, 519, __pyx_L21_except_error)
                 __Pyx_GOTREF(__pyx_t_10);
                 __Pyx_GOTREF(__pyx_t_5);
                 __Pyx_GOTREF(__pyx_t_1);
-                __pyx_t_6 = PyTuple_Pack(3, __pyx_t_10, __pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 518, __pyx_L21_except_error)
+                __pyx_t_6 = PyTuple_Pack(3, __pyx_t_10, __pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 519, __pyx_L21_except_error)
                 __Pyx_GOTREF(__pyx_t_6);
                 __pyx_t_18 = __Pyx_PyObject_Call(__pyx_t_14, __pyx_t_6, NULL);
                 __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
                 __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-                if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 518, __pyx_L21_except_error)
+                if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 519, __pyx_L21_except_error)
                 __Pyx_GOTREF(__pyx_t_18);
                 __pyx_t_19 = __Pyx_PyObject_IsTrue(__pyx_t_18);
                 __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
-                if (__pyx_t_19 < 0) __PYX_ERR(0, 518, __pyx_L21_except_error)
+                if (__pyx_t_19 < 0) __PYX_ERR(0, 519, __pyx_L21_except_error)
                 __pyx_t_20 = ((!(__pyx_t_19 != 0)) != 0);
                 if (__pyx_t_20) {
                   __Pyx_GIVEREF(__pyx_t_10);
@@ -3431,7 +3489,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
                   __Pyx_XGIVEREF(__pyx_t_1);
                   __Pyx_ErrRestoreWithState(__pyx_t_10, __pyx_t_5, __pyx_t_1);
                   __pyx_t_10 = 0; __pyx_t_5 = 0; __pyx_t_1 = 0; 
-                  __PYX_ERR(0, 518, __pyx_L21_except_error)
+                  __PYX_ERR(0, 519, __pyx_L21_except_error)
                 }
                 __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
                 __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -3462,7 +3520,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
               if (__pyx_t_14) {
                 __pyx_t_17 = __Pyx_PyObject_Call(__pyx_t_14, __pyx_tuple_, NULL);
                 __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-                if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 518, __pyx_L5_error)
+                if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 519, __pyx_L5_error)
                 __Pyx_GOTREF(__pyx_t_17);
                 __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
               }
@@ -3474,7 +3532,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
               if (__pyx_t_14) {
                 __pyx_t_16 = __Pyx_PyObject_Call(__pyx_t_14, __pyx_tuple_, NULL);
                 __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-                if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 518, __pyx_L5_error)
+                if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 519, __pyx_L5_error)
                 __Pyx_GOTREF(__pyx_t_16);
                 __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
               }
@@ -3491,7 +3549,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
           __pyx_L30:;
         }
 
-        /* "terminfo.pyx":517
+        /* "terminfo.pyx":518
  *         for basepath in (x for x in Term.SEARCH_PATHS if x is not None):
  *             path = os.path.join(basepath, self.name[0], self.name)
  *             try:             # <<<<<<<<<<<<<<
@@ -3511,7 +3569,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
       __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-      /* "terminfo.pyx":521
+      /* "terminfo.pyx":522
  *                     self.raw_db = dbfile.read()
  *                     return
  *             except FileNotFoundError:             # <<<<<<<<<<<<<<
@@ -3519,7 +3577,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
  *         raise FileNotFoundError('terminfo file for "{0}" not found'.format(
  */
       __Pyx_ErrFetch(&__pyx_t_1, &__pyx_t_5, &__pyx_t_10);
-      __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_FileNotFoundError); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 521, __pyx_L7_except_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_FileNotFoundError); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 522, __pyx_L7_except_error)
       __Pyx_GOTREF(__pyx_t_6);
       __pyx_t_9 = __Pyx_PyErr_GivenExceptionMatches(__pyx_t_1, __pyx_t_6);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -3532,7 +3590,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
       goto __pyx_L7_except_error;
       __pyx_L7_except_error:;
 
-      /* "terminfo.pyx":517
+      /* "terminfo.pyx":518
  *         for basepath in (x for x in Term.SEARCH_PATHS if x is not None):
  *             path = os.path.join(basepath, self.name[0], self.name)
  *             try:             # <<<<<<<<<<<<<<
@@ -3558,7 +3616,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
       __pyx_L12_try_end:;
     }
 
-    /* "terminfo.pyx":515
+    /* "terminfo.pyx":516
  *         and the terminal name appropriately.
  *         """
  *         for basepath in (x for x in Term.SEARCH_PATHS if x is not None):             # <<<<<<<<<<<<<<
@@ -3568,26 +3626,26 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "terminfo.pyx":523
+  /* "terminfo.pyx":524
  *             except FileNotFoundError:
  *                 pass
  *         raise FileNotFoundError('terminfo file for "{0}" not found'.format(             # <<<<<<<<<<<<<<
  *             self.name))
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_FileNotFoundError); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 523, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_FileNotFoundError); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 524, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_terminfo_file_for_0_not_found, __pyx_n_s_format); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 523, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_terminfo_file_for_0_not_found, __pyx_n_s_format); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 524, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
 
-  /* "terminfo.pyx":524
+  /* "terminfo.pyx":525
  *                 pass
  *         raise FileNotFoundError('terminfo file for "{0}" not found'.format(
  *             self.name))             # <<<<<<<<<<<<<<
  * 
  *     def parse_db(self):
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_name); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 524, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_name); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 525, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_6 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
@@ -3602,26 +3660,26 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
   __pyx_t_10 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_6, __pyx_t_1) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_1);
   __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 523, __pyx_L1_error)
+  if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 524, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "terminfo.pyx":523
+  /* "terminfo.pyx":524
  *             except FileNotFoundError:
  *                 pass
  *         raise FileNotFoundError('terminfo file for "{0}" not found'.format(             # <<<<<<<<<<<<<<
  *             self.name))
  * 
  */
-  __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_10); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 523, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_10); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 524, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
   __Pyx_Raise(__pyx_t_5, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __PYX_ERR(0, 523, __pyx_L1_error)
+  __PYX_ERR(0, 524, __pyx_L1_error)
 
-  /* "terminfo.pyx":509
+  /* "terminfo.pyx":510
  *         self.db = self.parse_db()
  * 
  *     def load_db(self):             # <<<<<<<<<<<<<<
@@ -3650,7 +3708,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_4load_db(CYTHON_UNUSED PyObject *__pyx
   return __pyx_r;
 }
 
-/* "terminfo.pyx":526
+/* "terminfo.pyx":527
  *             self.name))
  * 
  *     def parse_db(self):             # <<<<<<<<<<<<<<
@@ -3703,7 +3761,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("parse_db", 0);
 
-  /* "terminfo.pyx":530
+  /* "terminfo.pyx":531
  *         Parse the given terminfo DB content
  *         """
  *         offset = 0             # <<<<<<<<<<<<<<
@@ -3713,19 +3771,19 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   __Pyx_INCREF(__pyx_int_0);
   __pyx_v_offset = __pyx_int_0;
 
-  /* "terminfo.pyx":531
+  /* "terminfo.pyx":532
  *         """
  *         offset = 0
  *         magic_number, names_section_size, bool_sec_size, number_sec_size, string_sec_size, string_table_size = struct.unpack_from("HHHHHH", self.raw_db, offset)             # <<<<<<<<<<<<<<
  * 
  *         offset = struct.calcsize("H") * 6
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_struct); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 531, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_struct); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 532, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_unpack_from); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 531, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_unpack_from); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 532, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_raw_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 531, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_raw_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 532, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -3742,7 +3800,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_4, __pyx_n_s_HHHHHH, __pyx_t_2, __pyx_v_offset};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 531, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 532, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -3751,14 +3809,14 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_4, __pyx_n_s_HHHHHH, __pyx_t_2, __pyx_v_offset};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 531, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 532, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   } else
   #endif
   {
-    __pyx_t_6 = PyTuple_New(3+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 531, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(3+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 532, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_4) {
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -3772,7 +3830,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
     __Pyx_GIVEREF(__pyx_v_offset);
     PyTuple_SET_ITEM(__pyx_t_6, 2+__pyx_t_5, __pyx_v_offset);
     __pyx_t_2 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 531, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 532, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
@@ -3783,7 +3841,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
     if (unlikely(size != 6)) {
       if (size > 6) __Pyx_RaiseTooManyValuesError(6);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 531, __pyx_L1_error)
+      __PYX_ERR(0, 532, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -3812,7 +3870,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
       Py_ssize_t i;
       PyObject** temps[6] = {&__pyx_t_3,&__pyx_t_6,&__pyx_t_2,&__pyx_t_4,&__pyx_t_7,&__pyx_t_8};
       for (i=0; i < 6; i++) {
-        PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 531, __pyx_L1_error)
+        PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 532, __pyx_L1_error)
         __Pyx_GOTREF(item);
         *(temps[i]) = item;
       }
@@ -3822,7 +3880,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   } else {
     Py_ssize_t index = -1;
     PyObject** temps[6] = {&__pyx_t_3,&__pyx_t_6,&__pyx_t_2,&__pyx_t_4,&__pyx_t_7,&__pyx_t_8};
-    __pyx_t_9 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 531, __pyx_L1_error)
+    __pyx_t_9 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 532, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_10 = Py_TYPE(__pyx_t_9)->tp_iternext;
@@ -3831,7 +3889,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
       __Pyx_GOTREF(item);
       *(temps[index]) = item;
     }
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_9), 6) < 0) __PYX_ERR(0, 531, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_9), 6) < 0) __PYX_ERR(0, 532, __pyx_L1_error)
     __pyx_t_10 = NULL;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     goto __pyx_L4_unpacking_done;
@@ -3839,7 +3897,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __pyx_t_10 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 531, __pyx_L1_error)
+    __PYX_ERR(0, 532, __pyx_L1_error)
     __pyx_L4_unpacking_done:;
   }
   __pyx_v_magic_number = __pyx_t_3;
@@ -3855,16 +3913,16 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   __pyx_v_string_table_size = __pyx_t_8;
   __pyx_t_8 = 0;
 
-  /* "terminfo.pyx":533
+  /* "terminfo.pyx":534
  *         magic_number, names_section_size, bool_sec_size, number_sec_size, string_sec_size, string_table_size = struct.unpack_from("HHHHHH", self.raw_db, offset)
  * 
  *         offset = struct.calcsize("H") * 6             # <<<<<<<<<<<<<<
  * 
  *         # read termial names
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_struct); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 533, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_struct); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 534, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_calcsize); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 533, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_calcsize); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 534, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __pyx_t_8 = NULL;
@@ -3879,28 +3937,28 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   }
   __pyx_t_1 = (__pyx_t_8) ? __Pyx_PyObject_Call2Args(__pyx_t_7, __pyx_t_8, __pyx_n_s_H) : __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_n_s_H);
   __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 533, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 534, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = PyNumber_Multiply(__pyx_t_1, __pyx_int_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 533, __pyx_L1_error)
+  __pyx_t_7 = PyNumber_Multiply(__pyx_t_1, __pyx_int_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 534, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_7);
   __pyx_t_7 = 0;
 
-  /* "terminfo.pyx":536
+  /* "terminfo.pyx":537
  * 
  *         # read termial names
  *         names = struct.unpack_from("{0}s".format(names_section_size), self.raw_db, offset)[0]             # <<<<<<<<<<<<<<
  * 
  *         offset += names_section_size
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_struct); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 536, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_struct); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 537, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_unpack_from); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 536, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_unpack_from); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 537, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_0_s, __pyx_n_s_format); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 536, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_0_s, __pyx_n_s_format); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 537, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_2 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -3914,10 +3972,10 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   }
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_2, __pyx_v_names_section_size) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_names_section_size);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 536, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 537, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_raw_db); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 536, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_raw_db); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 537, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_2 = NULL;
   __pyx_t_5 = 0;
@@ -3934,7 +3992,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_8)) {
     PyObject *__pyx_temp[4] = {__pyx_t_2, __pyx_t_1, __pyx_t_4, __pyx_v_offset};
-    __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_8, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 536, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_8, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 537, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -3944,7 +4002,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_8)) {
     PyObject *__pyx_temp[4] = {__pyx_t_2, __pyx_t_1, __pyx_t_4, __pyx_v_offset};
-    __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_8, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 536, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_8, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 537, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -3952,7 +4010,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   } else
   #endif
   {
-    __pyx_t_6 = PyTuple_New(3+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 536, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(3+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 537, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_2) {
       __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_2); __pyx_t_2 = NULL;
@@ -3966,44 +4024,44 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
     PyTuple_SET_ITEM(__pyx_t_6, 2+__pyx_t_5, __pyx_v_offset);
     __pyx_t_1 = 0;
     __pyx_t_4 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_6, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 536, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_6, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 537, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_GetItemInt(__pyx_t_7, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 536, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_GetItemInt(__pyx_t_7, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 537, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_names = __pyx_t_8;
   __pyx_t_8 = 0;
 
-  /* "terminfo.pyx":538
+  /* "terminfo.pyx":539
  *         names = struct.unpack_from("{0}s".format(names_section_size), self.raw_db, offset)[0]
  * 
  *         offset += names_section_size             # <<<<<<<<<<<<<<
  * 
  *         # read boolean flags
  */
-  __pyx_t_8 = PyNumber_InPlaceAdd(__pyx_v_offset, __pyx_v_names_section_size); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 538, __pyx_L1_error)
+  __pyx_t_8 = PyNumber_InPlaceAdd(__pyx_v_offset, __pyx_v_names_section_size); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 539, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_8);
   __pyx_t_8 = 0;
 
-  /* "terminfo.pyx":541
+  /* "terminfo.pyx":542
  * 
  *         # read boolean flags
  *         bool_flags = struct.unpack_from("B" * bool_sec_size, self.raw_db, offset)             # <<<<<<<<<<<<<<
  * 
  *         offset += bool_sec_size
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_struct); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 541, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_struct); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 542, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_unpack_from); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 541, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_unpack_from); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 542, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = PyNumber_Multiply(__pyx_n_s_B, __pyx_v_bool_sec_size); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 541, __pyx_L1_error)
+  __pyx_t_7 = PyNumber_Multiply(__pyx_n_s_B, __pyx_v_bool_sec_size); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 542, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_raw_db); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 541, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_raw_db); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 542, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_1 = NULL;
   __pyx_t_5 = 0;
@@ -4020,7 +4078,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_6)) {
     PyObject *__pyx_temp[4] = {__pyx_t_1, __pyx_t_7, __pyx_t_4, __pyx_v_offset};
-    __pyx_t_8 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 541, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 542, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -4030,7 +4088,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
     PyObject *__pyx_temp[4] = {__pyx_t_1, __pyx_t_7, __pyx_t_4, __pyx_v_offset};
-    __pyx_t_8 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 541, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 542, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -4038,7 +4096,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   } else
   #endif
   {
-    __pyx_t_2 = PyTuple_New(3+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 541, __pyx_L1_error)
+    __pyx_t_2 = PyTuple_New(3+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 542, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     if (__pyx_t_1) {
       __Pyx_GIVEREF(__pyx_t_1); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1); __pyx_t_1 = NULL;
@@ -4052,7 +4110,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
     PyTuple_SET_ITEM(__pyx_t_2, 2+__pyx_t_5, __pyx_v_offset);
     __pyx_t_7 = 0;
     __pyx_t_4 = 0;
-    __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_2, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 541, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_2, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 542, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
@@ -4060,57 +4118,57 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   __pyx_v_bool_flags = __pyx_t_8;
   __pyx_t_8 = 0;
 
-  /* "terminfo.pyx":543
+  /* "terminfo.pyx":544
  *         bool_flags = struct.unpack_from("B" * bool_sec_size, self.raw_db, offset)
  * 
  *         offset += bool_sec_size             # <<<<<<<<<<<<<<
  * 
  *         # add byte if offset is odd
  */
-  __pyx_t_8 = PyNumber_InPlaceAdd(__pyx_v_offset, __pyx_v_bool_sec_size); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 543, __pyx_L1_error)
+  __pyx_t_8 = PyNumber_InPlaceAdd(__pyx_v_offset, __pyx_v_bool_sec_size); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 544, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_8);
   __pyx_t_8 = 0;
 
-  /* "terminfo.pyx":546
+  /* "terminfo.pyx":547
  * 
  *         # add byte if offset is odd
  *         offset += (12 + names_section_size + bool_sec_size) % 2             # <<<<<<<<<<<<<<
  * 
  *         # parse numbers
  */
-  __pyx_t_8 = __Pyx_PyInt_AddCObj(__pyx_int_12, __pyx_v_names_section_size, 12, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 546, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyInt_AddCObj(__pyx_int_12, __pyx_v_names_section_size, 12, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 547, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_6 = PyNumber_Add(__pyx_t_8, __pyx_v_bool_sec_size); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 546, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Add(__pyx_t_8, __pyx_v_bool_sec_size); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 547, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyInt_RemainderObjC(__pyx_t_6, __pyx_int_2, 2, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 546, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyInt_RemainderObjC(__pyx_t_6, __pyx_int_2, 2, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 547, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = PyNumber_InPlaceAdd(__pyx_v_offset, __pyx_t_8); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 546, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_InPlaceAdd(__pyx_v_offset, __pyx_t_8); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 547, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_6);
   __pyx_t_6 = 0;
 
-  /* "terminfo.pyx":549
+  /* "terminfo.pyx":550
  * 
  *         # parse numbers
  *         numbers = struct.unpack_from("<" + "h" * number_sec_size, self.raw_db, offset)             # <<<<<<<<<<<<<<
  * 
  *         offset += struct.calcsize("<h") * number_sec_size
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_struct); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 549, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_struct); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 550, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_unpack_from); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 549, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_unpack_from); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 550, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = PyNumber_Multiply(__pyx_n_s_h, __pyx_v_number_sec_size); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 549, __pyx_L1_error)
+  __pyx_t_8 = PyNumber_Multiply(__pyx_n_s_h, __pyx_v_number_sec_size); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 550, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_4 = PyNumber_Add(__pyx_kp_s__2, __pyx_t_8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 549, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Add(__pyx_kp_s__2, __pyx_t_8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 550, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_raw_db); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 549, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_raw_db); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 550, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __pyx_t_7 = NULL;
   __pyx_t_5 = 0;
@@ -4127,7 +4185,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[4] = {__pyx_t_7, __pyx_t_4, __pyx_t_8, __pyx_v_offset};
-    __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 549, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 550, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -4137,7 +4195,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[4] = {__pyx_t_7, __pyx_t_4, __pyx_t_8, __pyx_v_offset};
-    __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 549, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 550, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -4145,7 +4203,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   } else
   #endif
   {
-    __pyx_t_1 = PyTuple_New(3+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 549, __pyx_L1_error)
+    __pyx_t_1 = PyTuple_New(3+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 550, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (__pyx_t_7) {
       __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -4159,7 +4217,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
     PyTuple_SET_ITEM(__pyx_t_1, 2+__pyx_t_5, __pyx_v_offset);
     __pyx_t_4 = 0;
     __pyx_t_8 = 0;
-    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 549, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 550, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
@@ -4167,16 +4225,16 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   __pyx_v_numbers = __pyx_t_6;
   __pyx_t_6 = 0;
 
-  /* "terminfo.pyx":551
+  /* "terminfo.pyx":552
  *         numbers = struct.unpack_from("<" + "h" * number_sec_size, self.raw_db, offset)
  * 
  *         offset += struct.calcsize("<h") * number_sec_size             # <<<<<<<<<<<<<<
  * 
  *         # parse string table offsets
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_struct); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 551, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_struct); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 552, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_calcsize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 551, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_calcsize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 552, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -4191,33 +4249,33 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   }
   __pyx_t_6 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_2, __pyx_kp_s_h_2) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_kp_s_h_2);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 551, __pyx_L1_error)
+  if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 552, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Multiply(__pyx_t_6, __pyx_v_number_sec_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 551, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Multiply(__pyx_t_6, __pyx_v_number_sec_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 552, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = PyNumber_InPlaceAdd(__pyx_v_offset, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 551, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_InPlaceAdd(__pyx_v_offset, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 552, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_6);
   __pyx_t_6 = 0;
 
-  /* "terminfo.pyx":554
+  /* "terminfo.pyx":555
  * 
  *         # parse string table offsets
  *         string_offsets = struct.unpack_from("h" * string_sec_size, self.raw_db, offset)             # <<<<<<<<<<<<<<
  * 
  *         offset += struct.calcsize("h") * string_sec_size
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_struct); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 554, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_struct); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 555, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_unpack_from); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 554, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_unpack_from); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 555, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Multiply(__pyx_n_s_h, __pyx_v_string_sec_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 554, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Multiply(__pyx_n_s_h, __pyx_v_string_sec_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 555, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_raw_db); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 554, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_raw_db); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 555, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -4234,7 +4292,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[4] = {__pyx_t_4, __pyx_t_1, __pyx_t_8, __pyx_v_offset};
-    __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 554, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 555, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -4244,7 +4302,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[4] = {__pyx_t_4, __pyx_t_1, __pyx_t_8, __pyx_v_offset};
-    __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 554, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 555, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -4252,7 +4310,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   } else
   #endif
   {
-    __pyx_t_7 = PyTuple_New(3+__pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 554, __pyx_L1_error)
+    __pyx_t_7 = PyTuple_New(3+__pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 555, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     if (__pyx_t_4) {
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -4266,7 +4324,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
     PyTuple_SET_ITEM(__pyx_t_7, 2+__pyx_t_5, __pyx_v_offset);
     __pyx_t_1 = 0;
     __pyx_t_8 = 0;
-    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_7, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 554, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_7, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 555, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
@@ -4274,16 +4332,16 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   __pyx_v_string_offsets = __pyx_t_6;
   __pyx_t_6 = 0;
 
-  /* "terminfo.pyx":556
+  /* "terminfo.pyx":557
  *         string_offsets = struct.unpack_from("h" * string_sec_size, self.raw_db, offset)
  * 
  *         offset += struct.calcsize("h") * string_sec_size             # <<<<<<<<<<<<<<
  * 
  *         # parse string table
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_struct); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 556, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_struct); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 557, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_calcsize); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 556, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_calcsize); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 557, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -4298,34 +4356,34 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   }
   __pyx_t_6 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_7, __pyx_t_2, __pyx_n_s_h) : __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_n_s_h);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 556, __pyx_L1_error)
+  if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 557, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = PyNumber_Multiply(__pyx_t_6, __pyx_v_string_sec_size); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 556, __pyx_L1_error)
+  __pyx_t_7 = PyNumber_Multiply(__pyx_t_6, __pyx_v_string_sec_size); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 557, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = PyNumber_InPlaceAdd(__pyx_v_offset, __pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 556, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_InPlaceAdd(__pyx_v_offset, __pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 557, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_6);
   __pyx_t_6 = 0;
 
-  /* "terminfo.pyx":560
+  /* "terminfo.pyx":561
  *         # parse string table
  *         # raw_strings = self.raw_db[offset:]
  *         strings = self.raw_db[offset:]             # <<<<<<<<<<<<<<
  *         # strings = raw_strings.split(b"\0")
  *         # print("string table:", strings)
  */
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_raw_db); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 560, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_raw_db); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 561, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = __Pyx_PyObject_GetSlice(__pyx_t_6, 0, 0, &__pyx_v_offset, NULL, NULL, 0, 0, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 560, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetSlice(__pyx_t_6, 0, 0, &__pyx_v_offset, NULL, NULL, 0, 0, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 561, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_v_strings = __pyx_t_7;
   __pyx_t_7 = 0;
 
-  /* "terminfo.pyx":564
+  /* "terminfo.pyx":565
  *         # print("string table:", strings)
  * 
  *         return {             # <<<<<<<<<<<<<<
@@ -4334,57 +4392,57 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "terminfo.pyx":565
+  /* "terminfo.pyx":566
  * 
  *         return {
  *             "terminal_names": names,             # <<<<<<<<<<<<<<
  *             "booleans": bool_flags,
  *             "numbers": numbers,
  */
-  __pyx_t_7 = __Pyx_PyDict_NewPresized(5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 565, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyDict_NewPresized(5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 566, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_terminal_names, __pyx_v_names) < 0) __PYX_ERR(0, 565, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_terminal_names, __pyx_v_names) < 0) __PYX_ERR(0, 566, __pyx_L1_error)
 
-  /* "terminfo.pyx":566
+  /* "terminfo.pyx":567
  *         return {
  *             "terminal_names": names,
  *             "booleans": bool_flags,             # <<<<<<<<<<<<<<
  *             "numbers": numbers,
  *             "string_offsets": string_offsets,
  */
-  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_booleans, __pyx_v_bool_flags) < 0) __PYX_ERR(0, 565, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_booleans, __pyx_v_bool_flags) < 0) __PYX_ERR(0, 566, __pyx_L1_error)
 
-  /* "terminfo.pyx":567
+  /* "terminfo.pyx":568
  *             "terminal_names": names,
  *             "booleans": bool_flags,
  *             "numbers": numbers,             # <<<<<<<<<<<<<<
  *             "string_offsets": string_offsets,
  *             "strings": strings
  */
-  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_numbers, __pyx_v_numbers) < 0) __PYX_ERR(0, 565, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_numbers, __pyx_v_numbers) < 0) __PYX_ERR(0, 566, __pyx_L1_error)
 
-  /* "terminfo.pyx":568
+  /* "terminfo.pyx":569
  *             "booleans": bool_flags,
  *             "numbers": numbers,
  *             "string_offsets": string_offsets,             # <<<<<<<<<<<<<<
  *             "strings": strings
  *         }
  */
-  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_string_offsets, __pyx_v_string_offsets) < 0) __PYX_ERR(0, 565, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_string_offsets, __pyx_v_string_offsets) < 0) __PYX_ERR(0, 566, __pyx_L1_error)
 
-  /* "terminfo.pyx":569
+  /* "terminfo.pyx":570
  *             "numbers": numbers,
  *             "string_offsets": string_offsets,
  *             "strings": strings             # <<<<<<<<<<<<<<
  *         }
  * 
  */
-  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_strings, __pyx_v_strings) < 0) __PYX_ERR(0, 565, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_strings, __pyx_v_strings) < 0) __PYX_ERR(0, 566, __pyx_L1_error)
   __pyx_r = __pyx_t_7;
   __pyx_t_7 = 0;
   goto __pyx_L0;
 
-  /* "terminfo.pyx":526
+  /* "terminfo.pyx":527
  *             self.name))
  * 
  *     def parse_db(self):             # <<<<<<<<<<<<<<
@@ -4422,7 +4480,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_6parse_db(CYTHON_UNUSED PyObject *__py
   return __pyx_r;
 }
 
-/* "terminfo.pyx":573
+/* "terminfo.pyx":574
  * 
  * 
  *     def __getattr__(self, name):             # <<<<<<<<<<<<<<
@@ -4465,11 +4523,11 @@ static PyObject *__pyx_pw_8terminfo_4Term_9__getattr__(PyObject *__pyx_self, PyO
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_name)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__getattr__", 1, 2, 2, 1); __PYX_ERR(0, 573, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__getattr__", 1, 2, 2, 1); __PYX_ERR(0, 574, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__getattr__") < 0)) __PYX_ERR(0, 573, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__getattr__") < 0)) __PYX_ERR(0, 574, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -4482,7 +4540,7 @@ static PyObject *__pyx_pw_8terminfo_4Term_9__getattr__(PyObject *__pyx_self, PyO
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__getattr__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 573, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__getattr__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 574, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("terminfo.Term.__getattr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -4515,7 +4573,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_8__getattr__(CYTHON_UNUSED PyObject *_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__getattr__", 0);
 
-  /* "terminfo.pyx":574
+  /* "terminfo.pyx":575
  * 
  *     def __getattr__(self, name):
  *         section = None             # <<<<<<<<<<<<<<
@@ -4525,21 +4583,21 @@ static PyObject *__pyx_pf_8terminfo_4Term_8__getattr__(CYTHON_UNUSED PyObject *_
   __Pyx_INCREF(Py_None);
   __pyx_v_section = Py_None;
 
-  /* "terminfo.pyx":575
+  /* "terminfo.pyx":576
  *     def __getattr__(self, name):
  *         section = None
  *         if name in BOOLEAN_NAMES:             # <<<<<<<<<<<<<<
  *             section = "booleans"
  *             index = BOOLEAN_NAMES.index(name)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_BOOLEAN_NAMES); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 575, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_BOOLEAN_NAMES); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 576, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_v_name, __pyx_t_1, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 575, __pyx_L1_error)
+  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_v_name, __pyx_t_1, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 576, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_3 = (__pyx_t_2 != 0);
   if (__pyx_t_3) {
 
-    /* "terminfo.pyx":576
+    /* "terminfo.pyx":577
  *         section = None
  *         if name in BOOLEAN_NAMES:
  *             section = "booleans"             # <<<<<<<<<<<<<<
@@ -4549,16 +4607,16 @@ static PyObject *__pyx_pf_8terminfo_4Term_8__getattr__(CYTHON_UNUSED PyObject *_
     __Pyx_INCREF(__pyx_n_s_booleans);
     __Pyx_DECREF_SET(__pyx_v_section, __pyx_n_s_booleans);
 
-    /* "terminfo.pyx":577
+    /* "terminfo.pyx":578
  *         if name in BOOLEAN_NAMES:
  *             section = "booleans"
  *             index = BOOLEAN_NAMES.index(name)             # <<<<<<<<<<<<<<
  *         elif name in NUMBER_NAMES:
  *             section = "numbers"
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_BOOLEAN_NAMES); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 577, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_BOOLEAN_NAMES); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 578, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_index); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 577, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_index); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 578, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_4 = NULL;
@@ -4573,13 +4631,13 @@ static PyObject *__pyx_pf_8terminfo_4Term_8__getattr__(CYTHON_UNUSED PyObject *_
     }
     __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_4, __pyx_v_name) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_name);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 577, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 578, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_v_index = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "terminfo.pyx":575
+    /* "terminfo.pyx":576
  *     def __getattr__(self, name):
  *         section = None
  *         if name in BOOLEAN_NAMES:             # <<<<<<<<<<<<<<
@@ -4589,21 +4647,21 @@ static PyObject *__pyx_pf_8terminfo_4Term_8__getattr__(CYTHON_UNUSED PyObject *_
     goto __pyx_L3;
   }
 
-  /* "terminfo.pyx":578
+  /* "terminfo.pyx":579
  *             section = "booleans"
  *             index = BOOLEAN_NAMES.index(name)
  *         elif name in NUMBER_NAMES:             # <<<<<<<<<<<<<<
  *             section = "numbers"
  *             index = NUMBER_NAMES.index(name)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_NUMBER_NAMES); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 578, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_NUMBER_NAMES); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 579, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = (__Pyx_PySequence_ContainsTF(__pyx_v_name, __pyx_t_1, Py_EQ)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 578, __pyx_L1_error)
+  __pyx_t_3 = (__Pyx_PySequence_ContainsTF(__pyx_v_name, __pyx_t_1, Py_EQ)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 579, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_2 = (__pyx_t_3 != 0);
   if (__pyx_t_2) {
 
-    /* "terminfo.pyx":579
+    /* "terminfo.pyx":580
  *             index = BOOLEAN_NAMES.index(name)
  *         elif name in NUMBER_NAMES:
  *             section = "numbers"             # <<<<<<<<<<<<<<
@@ -4613,16 +4671,16 @@ static PyObject *__pyx_pf_8terminfo_4Term_8__getattr__(CYTHON_UNUSED PyObject *_
     __Pyx_INCREF(__pyx_n_s_numbers);
     __Pyx_DECREF_SET(__pyx_v_section, __pyx_n_s_numbers);
 
-    /* "terminfo.pyx":580
+    /* "terminfo.pyx":581
  *         elif name in NUMBER_NAMES:
  *             section = "numbers"
  *             index = NUMBER_NAMES.index(name)             # <<<<<<<<<<<<<<
  *         elif name in STRING_NAMES:
  *             section = "strings"
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_NUMBER_NAMES); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 580, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_NUMBER_NAMES); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 581, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_index); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 580, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_index); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 581, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_5 = NULL;
@@ -4637,13 +4695,13 @@ static PyObject *__pyx_pf_8terminfo_4Term_8__getattr__(CYTHON_UNUSED PyObject *_
     }
     __pyx_t_1 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_v_name) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_name);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 580, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 581, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_v_index = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "terminfo.pyx":578
+    /* "terminfo.pyx":579
  *             section = "booleans"
  *             index = BOOLEAN_NAMES.index(name)
  *         elif name in NUMBER_NAMES:             # <<<<<<<<<<<<<<
@@ -4653,21 +4711,21 @@ static PyObject *__pyx_pf_8terminfo_4Term_8__getattr__(CYTHON_UNUSED PyObject *_
     goto __pyx_L3;
   }
 
-  /* "terminfo.pyx":581
+  /* "terminfo.pyx":582
  *             section = "numbers"
  *             index = NUMBER_NAMES.index(name)
  *         elif name in STRING_NAMES:             # <<<<<<<<<<<<<<
  *             section = "strings"
  *             index_string_offset = STRING_NAMES.index(name)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_STRING_NAMES); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 581, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_STRING_NAMES); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 582, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_v_name, __pyx_t_1, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 581, __pyx_L1_error)
+  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_v_name, __pyx_t_1, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 582, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_3 = (__pyx_t_2 != 0);
   if (likely(__pyx_t_3)) {
 
-    /* "terminfo.pyx":582
+    /* "terminfo.pyx":583
  *             index = NUMBER_NAMES.index(name)
  *         elif name in STRING_NAMES:
  *             section = "strings"             # <<<<<<<<<<<<<<
@@ -4677,16 +4735,16 @@ static PyObject *__pyx_pf_8terminfo_4Term_8__getattr__(CYTHON_UNUSED PyObject *_
     __Pyx_INCREF(__pyx_n_s_strings);
     __Pyx_DECREF_SET(__pyx_v_section, __pyx_n_s_strings);
 
-    /* "terminfo.pyx":583
+    /* "terminfo.pyx":584
  *         elif name in STRING_NAMES:
  *             section = "strings"
  *             index_string_offset = STRING_NAMES.index(name)             # <<<<<<<<<<<<<<
  *             index = self.db["string_offsets"][index_string_offset]
  *             cap = self.db[section][index:].partition(b"\0")[0]
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_STRING_NAMES); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 583, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_STRING_NAMES); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 584, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_index); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 583, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_index); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 584, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_4 = NULL;
@@ -4701,46 +4759,46 @@ static PyObject *__pyx_pf_8terminfo_4Term_8__getattr__(CYTHON_UNUSED PyObject *_
     }
     __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_4, __pyx_v_name) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_name);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 583, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 584, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_v_index_string_offset = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "terminfo.pyx":584
+    /* "terminfo.pyx":585
  *             section = "strings"
  *             index_string_offset = STRING_NAMES.index(name)
  *             index = self.db["string_offsets"][index_string_offset]             # <<<<<<<<<<<<<<
  *             cap = self.db[section][index:].partition(b"\0")[0]
  *             return cap
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_db); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 584, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_db); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 585, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = __Pyx_PyObject_Dict_GetItem(__pyx_t_1, __pyx_n_s_string_offsets); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 584, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Dict_GetItem(__pyx_t_1, __pyx_n_s_string_offsets); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 585, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_t_5, __pyx_v_index_string_offset); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 584, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_t_5, __pyx_v_index_string_offset); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 585, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_v_index = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "terminfo.pyx":585
+    /* "terminfo.pyx":586
  *             index_string_offset = STRING_NAMES.index(name)
  *             index = self.db["string_offsets"][index_string_offset]
  *             cap = self.db[section][index:].partition(b"\0")[0]             # <<<<<<<<<<<<<<
  *             return cap
  *         else:
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_db); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 585, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_db); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 586, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_t_5, __pyx_v_section); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 585, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_t_5, __pyx_v_section); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 586, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyObject_GetSlice(__pyx_t_4, 0, 0, &__pyx_v_index, NULL, NULL, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 585, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetSlice(__pyx_t_4, 0, 0, &__pyx_v_index, NULL, NULL, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 586, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_partition); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 585, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_partition); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 586, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_5 = NULL;
@@ -4755,16 +4813,16 @@ static PyObject *__pyx_pf_8terminfo_4Term_8__getattr__(CYTHON_UNUSED PyObject *_
     }
     __pyx_t_1 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_kp_b__3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_kp_b__3);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 585, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 586, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 585, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 586, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_v_cap = __pyx_t_4;
     __pyx_t_4 = 0;
 
-    /* "terminfo.pyx":586
+    /* "terminfo.pyx":587
  *             index = self.db["string_offsets"][index_string_offset]
  *             cap = self.db[section][index:].partition(b"\0")[0]
  *             return cap             # <<<<<<<<<<<<<<
@@ -4776,7 +4834,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_8__getattr__(CYTHON_UNUSED PyObject *_
     __pyx_r = __pyx_v_cap;
     goto __pyx_L0;
 
-    /* "terminfo.pyx":581
+    /* "terminfo.pyx":582
  *             section = "numbers"
  *             index = NUMBER_NAMES.index(name)
  *         elif name in STRING_NAMES:             # <<<<<<<<<<<<<<
@@ -4785,7 +4843,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_8__getattr__(CYTHON_UNUSED PyObject *_
  */
   }
 
-  /* "terminfo.pyx":588
+  /* "terminfo.pyx":589
  *             return cap
  *         else:
  *             raise AttributeError('No capability "{0}" in term "{1}"'.format(             # <<<<<<<<<<<<<<
@@ -4793,17 +4851,17 @@ static PyObject *__pyx_pf_8terminfo_4Term_8__getattr__(CYTHON_UNUSED PyObject *_
  * 
  */
   /*else*/ {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_No_capability_0_in_term_1, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 588, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_No_capability_0_in_term_1, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 589, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
 
-    /* "terminfo.pyx":589
+    /* "terminfo.pyx":590
  *         else:
  *             raise AttributeError('No capability "{0}" in term "{1}"'.format(
  *                 name, self.name))             # <<<<<<<<<<<<<<
  * 
  *         return self.db[section][index]
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_name); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 589, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_name); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 590, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_6 = NULL;
     __pyx_t_7 = 0;
@@ -4820,7 +4878,7 @@ static PyObject *__pyx_pf_8terminfo_4Term_8__getattr__(CYTHON_UNUSED PyObject *_
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_1)) {
       PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_v_name, __pyx_t_5};
-      __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 588, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 589, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -4829,14 +4887,14 @@ static PyObject *__pyx_pf_8terminfo_4Term_8__getattr__(CYTHON_UNUSED PyObject *_
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
       PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_v_name, __pyx_t_5};
-      __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 588, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 589, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     } else
     #endif
     {
-      __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 588, __pyx_L1_error)
+      __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 589, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       if (__pyx_t_6) {
         __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -4847,29 +4905,29 @@ static PyObject *__pyx_pf_8terminfo_4Term_8__getattr__(CYTHON_UNUSED PyObject *_
       __Pyx_GIVEREF(__pyx_t_5);
       PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_5);
       __pyx_t_5 = 0;
-      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_8, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 588, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_8, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 589, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "terminfo.pyx":588
+    /* "terminfo.pyx":589
  *             return cap
  *         else:
  *             raise AttributeError('No capability "{0}" in term "{1}"'.format(             # <<<<<<<<<<<<<<
  *                 name, self.name))
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_AttributeError, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 588, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_AttributeError, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 589, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 588, __pyx_L1_error)
+    __PYX_ERR(0, 589, __pyx_L1_error)
   }
   __pyx_L3:;
 
-  /* "terminfo.pyx":591
+  /* "terminfo.pyx":592
  *                 name, self.name))
  * 
  *         return self.db[section][index]             # <<<<<<<<<<<<<<
@@ -4877,19 +4935,19 @@ static PyObject *__pyx_pf_8terminfo_4Term_8__getattr__(CYTHON_UNUSED PyObject *_
  * # This code is really skuf, I need to clean it up so
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_db); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 591, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_db); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 592, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_section); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 591, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_section); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 592, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_t_4, __pyx_v_index); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 591, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_t_4, __pyx_v_index); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 592, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "terminfo.pyx":573
+  /* "terminfo.pyx":574
  * 
  * 
  *     def __getattr__(self, name):             # <<<<<<<<<<<<<<
@@ -4916,12 +4974,12 @@ static PyObject *__pyx_pf_8terminfo_4Term_8__getattr__(CYTHON_UNUSED PyObject *_
   return __pyx_r;
 }
 
-/* "terminfo.pyx":595
+/* "terminfo.pyx":596
  * # This code is really skuf, I need to clean it up so
  * # the code is maintainable at least.
  * def clean_db(term):             # <<<<<<<<<<<<<<
- *     terminfo_db = {
- *         # Boolean names
+ *     terminfo_db = {}
+ *     for _type in term.db:
  */
 
 /* Python wrapper */
@@ -4940,8375 +4998,520 @@ static PyObject *__pyx_pw_8terminfo_1clean_db(PyObject *__pyx_self, PyObject *__
 
 static PyObject *__pyx_pf_8terminfo_clean_db(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_term) {
   PyObject *__pyx_v_terminfo_db = NULL;
+  PyObject *__pyx_v__type = NULL;
+  PyObject *__pyx_v_idx = NULL;
+  PyObject *__pyx_v_value = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
+  Py_ssize_t __pyx_t_3;
+  PyObject *(*__pyx_t_4)(PyObject *);
+  int __pyx_t_5;
+  PyObject *__pyx_t_6 = NULL;
+  PyObject *__pyx_t_7 = NULL;
+  Py_ssize_t __pyx_t_8;
+  PyObject *(*__pyx_t_9)(PyObject *);
+  PyObject *__pyx_t_10 = NULL;
+  PyObject *__pyx_t_11 = NULL;
+  PyObject *__pyx_t_12 = NULL;
+  PyObject *__pyx_t_13 = NULL;
+  PyObject *__pyx_t_14 = NULL;
+  PyObject *__pyx_t_15 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("clean_db", 0);
 
-  /* "terminfo.pyx":598
- *     terminfo_db = {
- *         # Boolean names
- *         "auto_left_margin":term.db["booleans"][0],             # <<<<<<<<<<<<<<
- *         "auto_right_margin":term.db["booleans"][1],
- *         "no_esc_ctlc":term.db["booleans"][2],
+  /* "terminfo.pyx":597
+ * # the code is maintainable at least.
+ * def clean_db(term):
+ *     terminfo_db = {}             # <<<<<<<<<<<<<<
+ *     for _type in term.db:
+ *         if _type == "terminal_names":
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(464); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 598, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 597, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_auto_left_margin, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":599
- *         # Boolean names
- *         "auto_left_margin":term.db["booleans"][0],
- *         "auto_right_margin":term.db["booleans"][1],             # <<<<<<<<<<<<<<
- *         "no_esc_ctlc":term.db["booleans"][2],
- *         "ceol_standout_glitch":term.db["booleans"][3],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 599, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 599, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 599, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_auto_right_margin, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":600
- *         "auto_left_margin":term.db["booleans"][0],
- *         "auto_right_margin":term.db["booleans"][1],
- *         "no_esc_ctlc":term.db["booleans"][2],             # <<<<<<<<<<<<<<
- *         "ceol_standout_glitch":term.db["booleans"][3],
- *         "eat_newline_glitch":term.db["booleans"][4],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 600, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 600, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 600, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_no_esc_ctlc, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":601
- *         "auto_right_margin":term.db["booleans"][1],
- *         "no_esc_ctlc":term.db["booleans"][2],
- *         "ceol_standout_glitch":term.db["booleans"][3],             # <<<<<<<<<<<<<<
- *         "eat_newline_glitch":term.db["booleans"][4],
- *         "erase_overstrike":term.db["booleans"][5],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 601, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 601, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 601, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_ceol_standout_glitch, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":602
- *         "no_esc_ctlc":term.db["booleans"][2],
- *         "ceol_standout_glitch":term.db["booleans"][3],
- *         "eat_newline_glitch":term.db["booleans"][4],             # <<<<<<<<<<<<<<
- *         "erase_overstrike":term.db["booleans"][5],
- *         "generic_type":term.db["booleans"][6],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 602, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 602, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 602, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_eat_newline_glitch, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":603
- *         "ceol_standout_glitch":term.db["booleans"][3],
- *         "eat_newline_glitch":term.db["booleans"][4],
- *         "erase_overstrike":term.db["booleans"][5],             # <<<<<<<<<<<<<<
- *         "generic_type":term.db["booleans"][6],
- *         "hard_copy":term.db["booleans"][7],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 603, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 603, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 5, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 603, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_erase_overstrike, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":604
- *         "eat_newline_glitch":term.db["booleans"][4],
- *         "erase_overstrike":term.db["booleans"][5],
- *         "generic_type":term.db["booleans"][6],             # <<<<<<<<<<<<<<
- *         "hard_copy":term.db["booleans"][7],
- *         "has_meta_key":term.db["booleans"][8],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 604, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 604, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 6, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 604, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_generic_type, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":605
- *         "erase_overstrike":term.db["booleans"][5],
- *         "generic_type":term.db["booleans"][6],
- *         "hard_copy":term.db["booleans"][7],             # <<<<<<<<<<<<<<
- *         "has_meta_key":term.db["booleans"][8],
- *         "has_status_line":term.db["booleans"][9],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 605, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 605, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 7, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 605, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_hard_copy, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":606
- *         "generic_type":term.db["booleans"][6],
- *         "hard_copy":term.db["booleans"][7],
- *         "has_meta_key":term.db["booleans"][8],             # <<<<<<<<<<<<<<
- *         "has_status_line":term.db["booleans"][9],
- *         "insert_null_glitch":term.db["booleans"][10],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 606, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 606, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 8, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 606, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_has_meta_key, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":607
- *         "hard_copy":term.db["booleans"][7],
- *         "has_meta_key":term.db["booleans"][8],
- *         "has_status_line":term.db["booleans"][9],             # <<<<<<<<<<<<<<
- *         "insert_null_glitch":term.db["booleans"][10],
- *         "memory_above":term.db["booleans"][11],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 607, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 607, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 9, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 607, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_has_status_line, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":608
- *         "has_meta_key":term.db["booleans"][8],
- *         "has_status_line":term.db["booleans"][9],
- *         "insert_null_glitch":term.db["booleans"][10],             # <<<<<<<<<<<<<<
- *         "memory_above":term.db["booleans"][11],
- *         "memory_below":term.db["booleans"][12],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 608, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 608, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 10, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 608, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_insert_null_glitch, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":609
- *         "has_status_line":term.db["booleans"][9],
- *         "insert_null_glitch":term.db["booleans"][10],
- *         "memory_above":term.db["booleans"][11],             # <<<<<<<<<<<<<<
- *         "memory_below":term.db["booleans"][12],
- *         "move_insert_mode":term.db["booleans"][13],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 609, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 609, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 11, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 609, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_memory_above, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":610
- *         "insert_null_glitch":term.db["booleans"][10],
- *         "memory_above":term.db["booleans"][11],
- *         "memory_below":term.db["booleans"][12],             # <<<<<<<<<<<<<<
- *         "move_insert_mode":term.db["booleans"][13],
- *         "move_standout_mode":term.db["booleans"][14],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 610, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 610, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 12, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 610, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_memory_below, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":611
- *         "memory_above":term.db["booleans"][11],
- *         "memory_below":term.db["booleans"][12],
- *         "move_insert_mode":term.db["booleans"][13],             # <<<<<<<<<<<<<<
- *         "move_standout_mode":term.db["booleans"][14],
- *         "over_strike":term.db["booleans"][15],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 611, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 611, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 13, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 611, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_move_insert_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":612
- *         "memory_below":term.db["booleans"][12],
- *         "move_insert_mode":term.db["booleans"][13],
- *         "move_standout_mode":term.db["booleans"][14],             # <<<<<<<<<<<<<<
- *         "over_strike":term.db["booleans"][15],
- *         "status_line_esc_ok":term.db["booleans"][16],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 612, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 612, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 14, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 612, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_move_standout_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":613
- *         "move_insert_mode":term.db["booleans"][13],
- *         "move_standout_mode":term.db["booleans"][14],
- *         "over_strike":term.db["booleans"][15],             # <<<<<<<<<<<<<<
- *         "status_line_esc_ok":term.db["booleans"][16],
- *         "dest_tabs_magic_smso":term.db["booleans"][17],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 613, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 613, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 15, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 613, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_over_strike, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":614
- *         "move_standout_mode":term.db["booleans"][14],
- *         "over_strike":term.db["booleans"][15],
- *         "status_line_esc_ok":term.db["booleans"][16],             # <<<<<<<<<<<<<<
- *         "dest_tabs_magic_smso":term.db["booleans"][17],
- *         "tilde_glitch":term.db["booleans"][18],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 614, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 614, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 16, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 614, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_status_line_esc_ok, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":615
- *         "over_strike":term.db["booleans"][15],
- *         "status_line_esc_ok":term.db["booleans"][16],
- *         "dest_tabs_magic_smso":term.db["booleans"][17],             # <<<<<<<<<<<<<<
- *         "tilde_glitch":term.db["booleans"][18],
- *         "transparent_underline":term.db["booleans"][19],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 615, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 615, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 17, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 615, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dest_tabs_magic_smso, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":616
- *         "status_line_esc_ok":term.db["booleans"][16],
- *         "dest_tabs_magic_smso":term.db["booleans"][17],
- *         "tilde_glitch":term.db["booleans"][18],             # <<<<<<<<<<<<<<
- *         "transparent_underline":term.db["booleans"][19],
- *         "xon_xoff":term.db["booleans"][20],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 616, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 616, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 18, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 616, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_tilde_glitch, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":617
- *         "dest_tabs_magic_smso":term.db["booleans"][17],
- *         "tilde_glitch":term.db["booleans"][18],
- *         "transparent_underline":term.db["booleans"][19],             # <<<<<<<<<<<<<<
- *         "xon_xoff":term.db["booleans"][20],
- *         "needs_xon_xoff":term.db["booleans"][21],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 617, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 617, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 19, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 617, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_transparent_underline, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":618
- *         "tilde_glitch":term.db["booleans"][18],
- *         "transparent_underline":term.db["booleans"][19],
- *         "xon_xoff":term.db["booleans"][20],             # <<<<<<<<<<<<<<
- *         "needs_xon_xoff":term.db["booleans"][21],
- *         "prtr_silent":term.db["booleans"][22],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 618, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 618, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 20, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 618, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_xon_xoff, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":619
- *         "transparent_underline":term.db["booleans"][19],
- *         "xon_xoff":term.db["booleans"][20],
- *         "needs_xon_xoff":term.db["booleans"][21],             # <<<<<<<<<<<<<<
- *         "prtr_silent":term.db["booleans"][22],
- *         "hard_cursor":term.db["booleans"][23],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 619, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 619, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 21, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 619, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_needs_xon_xoff, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":620
- *         "xon_xoff":term.db["booleans"][20],
- *         "needs_xon_xoff":term.db["booleans"][21],
- *         "prtr_silent":term.db["booleans"][22],             # <<<<<<<<<<<<<<
- *         "hard_cursor":term.db["booleans"][23],
- *         "non_rev_rmcup":term.db["booleans"][24],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 620, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 620, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 22, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 620, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_prtr_silent, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":621
- *         "needs_xon_xoff":term.db["booleans"][21],
- *         "prtr_silent":term.db["booleans"][22],
- *         "hard_cursor":term.db["booleans"][23],             # <<<<<<<<<<<<<<
- *         "non_rev_rmcup":term.db["booleans"][24],
- *         "no_pad_char":term.db["booleans"][25],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 621, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 621, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 23, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 621, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_hard_cursor, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":622
- *         "prtr_silent":term.db["booleans"][22],
- *         "hard_cursor":term.db["booleans"][23],
- *         "non_rev_rmcup":term.db["booleans"][24],             # <<<<<<<<<<<<<<
- *         "no_pad_char":term.db["booleans"][25],
- *         "non_dest_scroll_region":term.db["booleans"][26],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 622, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 622, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 24, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 622, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_non_rev_rmcup, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":623
- *         "hard_cursor":term.db["booleans"][23],
- *         "non_rev_rmcup":term.db["booleans"][24],
- *         "no_pad_char":term.db["booleans"][25],             # <<<<<<<<<<<<<<
- *         "non_dest_scroll_region":term.db["booleans"][26],
- *         "can_change":term.db["booleans"][27],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 623, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 623, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 25, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 623, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_no_pad_char, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":624
- *         "non_rev_rmcup":term.db["booleans"][24],
- *         "no_pad_char":term.db["booleans"][25],
- *         "non_dest_scroll_region":term.db["booleans"][26],             # <<<<<<<<<<<<<<
- *         "can_change":term.db["booleans"][27],
- *         "back_color_erase":term.db["booleans"][28],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 624, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 624, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 26, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 624, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_non_dest_scroll_region, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":625
- *         "no_pad_char":term.db["booleans"][25],
- *         "non_dest_scroll_region":term.db["booleans"][26],
- *         "can_change":term.db["booleans"][27],             # <<<<<<<<<<<<<<
- *         "back_color_erase":term.db["booleans"][28],
- *         "hue_lightness_saturation":term.db["booleans"][29],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 625, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 625, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 27, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 625, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_can_change, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":626
- *         "non_dest_scroll_region":term.db["booleans"][26],
- *         "can_change":term.db["booleans"][27],
- *         "back_color_erase":term.db["booleans"][28],             # <<<<<<<<<<<<<<
- *         "hue_lightness_saturation":term.db["booleans"][29],
- *         "col_addr_glitch":term.db["booleans"][30],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 626, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 626, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 28, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 626, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_back_color_erase, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":627
- *         "can_change":term.db["booleans"][27],
- *         "back_color_erase":term.db["booleans"][28],
- *         "hue_lightness_saturation":term.db["booleans"][29],             # <<<<<<<<<<<<<<
- *         "col_addr_glitch":term.db["booleans"][30],
- *         "cr_cancels_micro_mode":term.db["booleans"][31],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 627, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 627, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 29, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 627, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_hue_lightness_saturation, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":628
- *         "back_color_erase":term.db["booleans"][28],
- *         "hue_lightness_saturation":term.db["booleans"][29],
- *         "col_addr_glitch":term.db["booleans"][30],             # <<<<<<<<<<<<<<
- *         "cr_cancels_micro_mode":term.db["booleans"][31],
- *         "has_print_wheel":term.db["booleans"][32],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 628, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 628, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 30, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 628, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_col_addr_glitch, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":629
- *         "hue_lightness_saturation":term.db["booleans"][29],
- *         "col_addr_glitch":term.db["booleans"][30],
- *         "cr_cancels_micro_mode":term.db["booleans"][31],             # <<<<<<<<<<<<<<
- *         "has_print_wheel":term.db["booleans"][32],
- *         "row_addr_glitch":term.db["booleans"][33],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 629, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 629, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 31, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 629, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_cr_cancels_micro_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":630
- *         "col_addr_glitch":term.db["booleans"][30],
- *         "cr_cancels_micro_mode":term.db["booleans"][31],
- *         "has_print_wheel":term.db["booleans"][32],             # <<<<<<<<<<<<<<
- *         "row_addr_glitch":term.db["booleans"][33],
- *         "semi_auto_right_margin":term.db["booleans"][34],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 630, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 630, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 32, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 630, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_has_print_wheel, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":631
- *         "cr_cancels_micro_mode":term.db["booleans"][31],
- *         "has_print_wheel":term.db["booleans"][32],
- *         "row_addr_glitch":term.db["booleans"][33],             # <<<<<<<<<<<<<<
- *         "semi_auto_right_margin":term.db["booleans"][34],
- *         "cpi_changes_res":term.db["booleans"][35],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 631, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 631, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 33, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 631, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_row_addr_glitch, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":632
- *         "has_print_wheel":term.db["booleans"][32],
- *         "row_addr_glitch":term.db["booleans"][33],
- *         "semi_auto_right_margin":term.db["booleans"][34],             # <<<<<<<<<<<<<<
- *         "cpi_changes_res":term.db["booleans"][35],
- *         "lpi_changes_res":term.db["booleans"][26],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 632, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 632, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 34, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 632, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_semi_auto_right_margin, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":633
- *         "row_addr_glitch":term.db["booleans"][33],
- *         "semi_auto_right_margin":term.db["booleans"][34],
- *         "cpi_changes_res":term.db["booleans"][35],             # <<<<<<<<<<<<<<
- *         "lpi_changes_res":term.db["booleans"][26],
- * 
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 633, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 633, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 35, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 633, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_cpi_changes_res, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":634
- *         "semi_auto_right_margin":term.db["booleans"][34],
- *         "cpi_changes_res":term.db["booleans"][35],
- *         "lpi_changes_res":term.db["booleans"][26],             # <<<<<<<<<<<<<<
- * 
- *         # Number names
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 634, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_booleans); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 634, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 26, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 634, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_lpi_changes_res, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":637
- * 
- *         # Number names
- *         "columns":term.db["numbers"][0],             # <<<<<<<<<<<<<<
- *         "init_tabs":term.db["numbers"][1],
- *         "lines":term.db["numbers"][2],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 637, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_numbers); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 637, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 637, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_columns, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":638
- *         # Number names
- *         "columns":term.db["numbers"][0],
- *         "init_tabs":term.db["numbers"][1],             # <<<<<<<<<<<<<<
- *         "lines":term.db["numbers"][2],
- *         "lines_of_memory":term.db["numbers"][3],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 638, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_numbers); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 638, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 638, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_init_tabs, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":639
- *         "columns":term.db["numbers"][0],
- *         "init_tabs":term.db["numbers"][1],
- *         "lines":term.db["numbers"][2],             # <<<<<<<<<<<<<<
- *         "lines_of_memory":term.db["numbers"][3],
- *         "magic_cookie_glitch":term.db["numbers"][4],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 639, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_numbers); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 639, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 639, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_lines, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":640
- *         "init_tabs":term.db["numbers"][1],
- *         "lines":term.db["numbers"][2],
- *         "lines_of_memory":term.db["numbers"][3],             # <<<<<<<<<<<<<<
- *         "magic_cookie_glitch":term.db["numbers"][4],
- *         "padding_baud_rate":term.db["numbers"][5],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 640, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_numbers); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 640, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 640, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_lines_of_memory, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":641
- *         "lines":term.db["numbers"][2],
- *         "lines_of_memory":term.db["numbers"][3],
- *         "magic_cookie_glitch":term.db["numbers"][4],             # <<<<<<<<<<<<<<
- *         "padding_baud_rate":term.db["numbers"][5],
- *         "virtual_terminal":term.db["numbers"][6],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 641, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_numbers); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 641, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 641, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_magic_cookie_glitch, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":642
- *         "lines_of_memory":term.db["numbers"][3],
- *         "magic_cookie_glitch":term.db["numbers"][4],
- *         "padding_baud_rate":term.db["numbers"][5],             # <<<<<<<<<<<<<<
- *         "virtual_terminal":term.db["numbers"][6],
- *         "width_status_line":term.db["numbers"][7],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 642, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_numbers); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 642, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 5, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 642, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_padding_baud_rate, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":643
- *         "magic_cookie_glitch":term.db["numbers"][4],
- *         "padding_baud_rate":term.db["numbers"][5],
- *         "virtual_terminal":term.db["numbers"][6],             # <<<<<<<<<<<<<<
- *         "width_status_line":term.db["numbers"][7],
- *         "num_labels":term.db["numbers"][8],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 643, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_numbers); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 643, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 6, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 643, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_virtual_terminal, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":644
- *         "padding_baud_rate":term.db["numbers"][5],
- *         "virtual_terminal":term.db["numbers"][6],
- *         "width_status_line":term.db["numbers"][7],             # <<<<<<<<<<<<<<
- *         "num_labels":term.db["numbers"][8],
- *         "label_height":term.db["numbers"][9],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 644, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_numbers); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 644, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 7, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 644, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_width_status_line, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":645
- *         "virtual_terminal":term.db["numbers"][6],
- *         "width_status_line":term.db["numbers"][7],
- *         "num_labels":term.db["numbers"][8],             # <<<<<<<<<<<<<<
- *         "label_height":term.db["numbers"][9],
- *         "label_width":term.db["numbers"][10],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 645, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_numbers); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 645, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 8, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 645, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_num_labels, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":646
- *         "width_status_line":term.db["numbers"][7],
- *         "num_labels":term.db["numbers"][8],
- *         "label_height":term.db["numbers"][9],             # <<<<<<<<<<<<<<
- *         "label_width":term.db["numbers"][10],
- *         "max_attributes":term.db["numbers"][11],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 646, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_numbers); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 646, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 9, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 646, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_label_height, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":647
- *         "num_labels":term.db["numbers"][8],
- *         "label_height":term.db["numbers"][9],
- *         "label_width":term.db["numbers"][10],             # <<<<<<<<<<<<<<
- *         "max_attributes":term.db["numbers"][11],
- *         "maximum_windows":term.db["numbers"][12],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 647, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_numbers); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 647, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 10, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 647, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_label_width, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":648
- *         "label_height":term.db["numbers"][9],
- *         "label_width":term.db["numbers"][10],
- *         "max_attributes":term.db["numbers"][11],             # <<<<<<<<<<<<<<
- *         "maximum_windows":term.db["numbers"][12],
- *         "max_colors":term.db["numbers"][13],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 648, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_numbers); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 648, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 11, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 648, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_max_attributes, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":649
- *         "label_width":term.db["numbers"][10],
- *         "max_attributes":term.db["numbers"][11],
- *         "maximum_windows":term.db["numbers"][12],             # <<<<<<<<<<<<<<
- *         "max_colors":term.db["numbers"][13],
- *         "max_pairs":term.db["numbers"][14],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 649, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_numbers); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 649, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 12, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 649, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_maximum_windows, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":650
- *         "max_attributes":term.db["numbers"][11],
- *         "maximum_windows":term.db["numbers"][12],
- *         "max_colors":term.db["numbers"][13],             # <<<<<<<<<<<<<<
- *         "max_pairs":term.db["numbers"][14],
- * 
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 650, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_numbers); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 650, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 13, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 650, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_max_colors, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":651
- *         "maximum_windows":term.db["numbers"][12],
- *         "max_colors":term.db["numbers"][13],
- *         "max_pairs":term.db["numbers"][14],             # <<<<<<<<<<<<<<
- * 
- *         "no_color_video":term.db["string_offsets"][0],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 651, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_numbers); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 651, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 14, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 651, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_max_pairs, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":653
- *         "max_pairs":term.db["numbers"][14],
- * 
- *         "no_color_video":term.db["string_offsets"][0],             # <<<<<<<<<<<<<<
- *         "buffer_capacity":term.db["string_offsets"][1],
- *         "dot_vert_spacing":term.db["string_offsets"][2],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 653, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_string_offsets); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 653, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 653, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_no_color_video, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":654
- * 
- *         "no_color_video":term.db["string_offsets"][0],
- *         "buffer_capacity":term.db["string_offsets"][1],             # <<<<<<<<<<<<<<
- *         "dot_vert_spacing":term.db["string_offsets"][2],
- *         "dot_horz_spacing":term.db["string_offsets"][3],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 654, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_string_offsets); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 654, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 654, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_buffer_capacity, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":655
- *         "no_color_video":term.db["string_offsets"][0],
- *         "buffer_capacity":term.db["string_offsets"][1],
- *         "dot_vert_spacing":term.db["string_offsets"][2],             # <<<<<<<<<<<<<<
- *         "dot_horz_spacing":term.db["string_offsets"][3],
- *         "max_micro_address":term.db["string_offsets"][4],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 655, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_string_offsets); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 655, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 655, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dot_vert_spacing, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":656
- *         "buffer_capacity":term.db["string_offsets"][1],
- *         "dot_vert_spacing":term.db["string_offsets"][2],
- *         "dot_horz_spacing":term.db["string_offsets"][3],             # <<<<<<<<<<<<<<
- *         "max_micro_address":term.db["string_offsets"][4],
- *         "max_micro_jump":term.db["string_offsets"][5],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 656, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_string_offsets); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 656, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 656, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dot_horz_spacing, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":657
- *         "dot_vert_spacing":term.db["string_offsets"][2],
- *         "dot_horz_spacing":term.db["string_offsets"][3],
- *         "max_micro_address":term.db["string_offsets"][4],             # <<<<<<<<<<<<<<
- *         "max_micro_jump":term.db["string_offsets"][5],
- *         "micro_col_size":term.db["string_offsets"][6],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 657, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_string_offsets); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 657, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 657, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_max_micro_address, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":658
- *         "dot_horz_spacing":term.db["string_offsets"][3],
- *         "max_micro_address":term.db["string_offsets"][4],
- *         "max_micro_jump":term.db["string_offsets"][5],             # <<<<<<<<<<<<<<
- *         "micro_col_size":term.db["string_offsets"][6],
- *         "micro_line_size":term.db["string_offsets"][7],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 658, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_string_offsets); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 658, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 5, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 658, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_max_micro_jump, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":659
- *         "max_micro_address":term.db["string_offsets"][4],
- *         "max_micro_jump":term.db["string_offsets"][5],
- *         "micro_col_size":term.db["string_offsets"][6],             # <<<<<<<<<<<<<<
- *         "micro_line_size":term.db["string_offsets"][7],
- *         "number_of_pins":term.db["string_offsets"][8],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 659, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_string_offsets); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 659, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 6, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 659, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_micro_col_size, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":660
- *         "max_micro_jump":term.db["string_offsets"][5],
- *         "micro_col_size":term.db["string_offsets"][6],
- *         "micro_line_size":term.db["string_offsets"][7],             # <<<<<<<<<<<<<<
- *         "number_of_pins":term.db["string_offsets"][8],
- *         "output_res_char":term.db["string_offsets"][9],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 660, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_string_offsets); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 660, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 7, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 660, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_micro_line_size, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":661
- *         "micro_col_size":term.db["string_offsets"][6],
- *         "micro_line_size":term.db["string_offsets"][7],
- *         "number_of_pins":term.db["string_offsets"][8],             # <<<<<<<<<<<<<<
- *         "output_res_char":term.db["string_offsets"][9],
- *         "output_res_line":term.db["string_offsets"][10],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 661, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_string_offsets); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 661, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 8, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 661, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_number_of_pins, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":662
- *         "micro_line_size":term.db["string_offsets"][7],
- *         "number_of_pins":term.db["string_offsets"][8],
- *         "output_res_char":term.db["string_offsets"][9],             # <<<<<<<<<<<<<<
- *         "output_res_line":term.db["string_offsets"][10],
- *         "output_res_horz_inch":term.db["string_offsets"][11],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 662, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_string_offsets); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 662, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 9, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 662, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_output_res_char, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":663
- *         "number_of_pins":term.db["string_offsets"][8],
- *         "output_res_char":term.db["string_offsets"][9],
- *         "output_res_line":term.db["string_offsets"][10],             # <<<<<<<<<<<<<<
- *         "output_res_horz_inch":term.db["string_offsets"][11],
- *         "output_res_vert_inch":term.db["string_offsets"][12],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 663, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_string_offsets); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 663, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 10, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 663, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_output_res_line, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":664
- *         "output_res_char":term.db["string_offsets"][9],
- *         "output_res_line":term.db["string_offsets"][10],
- *         "output_res_horz_inch":term.db["string_offsets"][11],             # <<<<<<<<<<<<<<
- *         "output_res_vert_inch":term.db["string_offsets"][12],
- *         "print_rate":term.db["string_offsets"][13],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 664, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_string_offsets); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 664, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 11, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 664, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_output_res_horz_inch, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":665
- *         "output_res_line":term.db["string_offsets"][10],
- *         "output_res_horz_inch":term.db["string_offsets"][11],
- *         "output_res_vert_inch":term.db["string_offsets"][12],             # <<<<<<<<<<<<<<
- *         "print_rate":term.db["string_offsets"][13],
- *         "wide_char_size":term.db["string_offsets"][14],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 665, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_string_offsets); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 665, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 12, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 665, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_output_res_vert_inch, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":666
- *         "output_res_horz_inch":term.db["string_offsets"][11],
- *         "output_res_vert_inch":term.db["string_offsets"][12],
- *         "print_rate":term.db["string_offsets"][13],             # <<<<<<<<<<<<<<
- *         "wide_char_size":term.db["string_offsets"][14],
- *         "buttons":term.db["string_offsets"][15],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 666, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_string_offsets); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 666, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 13, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 666, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_print_rate, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":667
- *         "output_res_vert_inch":term.db["string_offsets"][12],
- *         "print_rate":term.db["string_offsets"][13],
- *         "wide_char_size":term.db["string_offsets"][14],             # <<<<<<<<<<<<<<
- *         "buttons":term.db["string_offsets"][15],
- *         "bit_image_entwining":term.db["string_offsets"][16],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 667, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_string_offsets); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 667, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 14, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 667, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_wide_char_size, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":668
- *         "print_rate":term.db["string_offsets"][13],
- *         "wide_char_size":term.db["string_offsets"][14],
- *         "buttons":term.db["string_offsets"][15],             # <<<<<<<<<<<<<<
- *         "bit_image_entwining":term.db["string_offsets"][16],
- *         "bit_image_type":term.db["string_offsets"][17],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 668, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_string_offsets); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 668, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 15, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 668, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_buttons, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":669
- *         "wide_char_size":term.db["string_offsets"][14],
- *         "buttons":term.db["string_offsets"][15],
- *         "bit_image_entwining":term.db["string_offsets"][16],             # <<<<<<<<<<<<<<
- *         "bit_image_type":term.db["string_offsets"][17],
- * 
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 669, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_string_offsets); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 669, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 16, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 669, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_bit_image_entwining, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":670
- *         "buttons":term.db["string_offsets"][15],
- *         "bit_image_entwining":term.db["string_offsets"][16],
- *         "bit_image_type":term.db["string_offsets"][17],             # <<<<<<<<<<<<<<
- * 
- *         # String names
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 670, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_string_offsets); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 670, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 17, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 670, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_bit_image_type, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":673
- * 
- *         # String names
- *         "back_tab":term.db["strings"][0],             # <<<<<<<<<<<<<<
- *         "bell":term.db["strings"][1],
- *         "carriage_return":term.db["strings"][2],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 673, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 673, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 673, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_back_tab, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":674
- *         # String names
- *         "back_tab":term.db["strings"][0],
- *         "bell":term.db["strings"][1],             # <<<<<<<<<<<<<<
- *         "carriage_return":term.db["strings"][2],
- *         "change_scroll_region":term.db["strings"][3],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 674, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 674, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 674, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_bell, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":675
- *         "back_tab":term.db["strings"][0],
- *         "bell":term.db["strings"][1],
- *         "carriage_return":term.db["strings"][2],             # <<<<<<<<<<<<<<
- *         "change_scroll_region":term.db["strings"][3],
- *         "clear_all_tabs":term.db["strings"][4],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 675, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 675, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 675, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_carriage_return, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":676
- *         "bell":term.db["strings"][1],
- *         "carriage_return":term.db["strings"][2],
- *         "change_scroll_region":term.db["strings"][3],             # <<<<<<<<<<<<<<
- *         "clear_all_tabs":term.db["strings"][4],
- *         "clear_screen":term.db["strings"][5],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 676, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 676, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 676, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_change_scroll_region, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":677
- *         "carriage_return":term.db["strings"][2],
- *         "change_scroll_region":term.db["strings"][3],
- *         "clear_all_tabs":term.db["strings"][4],             # <<<<<<<<<<<<<<
- *         "clear_screen":term.db["strings"][5],
- *         "clr_eol":term.db["strings"][6],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 677, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 677, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 677, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_clear_all_tabs, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":678
- *         "change_scroll_region":term.db["strings"][3],
- *         "clear_all_tabs":term.db["strings"][4],
- *         "clear_screen":term.db["strings"][5],             # <<<<<<<<<<<<<<
- *         "clr_eol":term.db["strings"][6],
- *         "clr_eos":term.db["strings"][7],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 678, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 678, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 5, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 678, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_clear_screen, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":679
- *         "clear_all_tabs":term.db["strings"][4],
- *         "clear_screen":term.db["strings"][5],
- *         "clr_eol":term.db["strings"][6],             # <<<<<<<<<<<<<<
- *         "clr_eos":term.db["strings"][7],
- *         "column_address":term.db["strings"][8],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 679, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 679, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 6, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 679, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_clr_eol, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":680
- *         "clear_screen":term.db["strings"][5],
- *         "clr_eol":term.db["strings"][6],
- *         "clr_eos":term.db["strings"][7],             # <<<<<<<<<<<<<<
- *         "column_address":term.db["strings"][8],
- *         "command_character":term.db["strings"][9],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 680, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 680, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 7, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 680, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_clr_eos, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":681
- *         "clr_eol":term.db["strings"][6],
- *         "clr_eos":term.db["strings"][7],
- *         "column_address":term.db["strings"][8],             # <<<<<<<<<<<<<<
- *         "command_character":term.db["strings"][9],
- *         "cursor_address":term.db["strings"][10],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 681, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 681, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 8, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 681, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_column_address, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":682
- *         "clr_eos":term.db["strings"][7],
- *         "column_address":term.db["strings"][8],
- *         "command_character":term.db["strings"][9],             # <<<<<<<<<<<<<<
- *         "cursor_address":term.db["strings"][10],
- *         "cursor_down":term.db["strings"][11],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 682, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 682, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 9, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 682, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_command_character, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":683
- *         "column_address":term.db["strings"][8],
- *         "command_character":term.db["strings"][9],
- *         "cursor_address":term.db["strings"][10],             # <<<<<<<<<<<<<<
- *         "cursor_down":term.db["strings"][11],
- *         "cursor_home":term.db["strings"][12],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 683, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 683, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 10, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 683, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_cursor_address, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":684
- *         "command_character":term.db["strings"][9],
- *         "cursor_address":term.db["strings"][10],
- *         "cursor_down":term.db["strings"][11],             # <<<<<<<<<<<<<<
- *         "cursor_home":term.db["strings"][12],
- *         "cursor_invisible":term.db["strings"][13],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 684, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 684, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 11, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 684, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_cursor_down, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":685
- *         "cursor_address":term.db["strings"][10],
- *         "cursor_down":term.db["strings"][11],
- *         "cursor_home":term.db["strings"][12],             # <<<<<<<<<<<<<<
- *         "cursor_invisible":term.db["strings"][13],
- *         "cursor_left":term.db["strings"][14],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 685, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 685, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 12, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 685, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_cursor_home, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":686
- *         "cursor_down":term.db["strings"][11],
- *         "cursor_home":term.db["strings"][12],
- *         "cursor_invisible":term.db["strings"][13],             # <<<<<<<<<<<<<<
- *         "cursor_left":term.db["strings"][14],
- *         "cursor_mem_address":term.db["strings"][15],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 686, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 686, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 13, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 686, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_cursor_invisible, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":687
- *         "cursor_home":term.db["strings"][12],
- *         "cursor_invisible":term.db["strings"][13],
- *         "cursor_left":term.db["strings"][14],             # <<<<<<<<<<<<<<
- *         "cursor_mem_address":term.db["strings"][15],
- *         "cursor_normal":term.db["strings"][16],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 687, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 687, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 14, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 687, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_cursor_left, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":688
- *         "cursor_invisible":term.db["strings"][13],
- *         "cursor_left":term.db["strings"][14],
- *         "cursor_mem_address":term.db["strings"][15],             # <<<<<<<<<<<<<<
- *         "cursor_normal":term.db["strings"][16],
- *         "cursor_right":term.db["strings"][17],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 688, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 688, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 15, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 688, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_cursor_mem_address, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":689
- *         "cursor_left":term.db["strings"][14],
- *         "cursor_mem_address":term.db["strings"][15],
- *         "cursor_normal":term.db["strings"][16],             # <<<<<<<<<<<<<<
- *         "cursor_right":term.db["strings"][17],
- *         "cursor_to_ll":term.db["strings"][18],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 689, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 689, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 16, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 689, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_cursor_normal, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":690
- *         "cursor_mem_address":term.db["strings"][15],
- *         "cursor_normal":term.db["strings"][16],
- *         "cursor_right":term.db["strings"][17],             # <<<<<<<<<<<<<<
- *         "cursor_to_ll":term.db["strings"][18],
- *         "cursor_up":term.db["strings"][19],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 690, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 690, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 17, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 690, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_cursor_right, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":691
- *         "cursor_normal":term.db["strings"][16],
- *         "cursor_right":term.db["strings"][17],
- *         "cursor_to_ll":term.db["strings"][18],             # <<<<<<<<<<<<<<
- *         "cursor_up":term.db["strings"][19],
- *         "cursor_visible":term.db["strings"][20],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 691, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 691, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 18, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 691, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_cursor_to_ll, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":692
- *         "cursor_right":term.db["strings"][17],
- *         "cursor_to_ll":term.db["strings"][18],
- *         "cursor_up":term.db["strings"][19],             # <<<<<<<<<<<<<<
- *         "cursor_visible":term.db["strings"][20],
- *         "delete_character":term.db["strings"][21],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 692, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 692, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 19, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 692, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_cursor_up, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":693
- *         "cursor_to_ll":term.db["strings"][18],
- *         "cursor_up":term.db["strings"][19],
- *         "cursor_visible":term.db["strings"][20],             # <<<<<<<<<<<<<<
- *         "delete_character":term.db["strings"][21],
- *         "delete_line":term.db["strings"][22],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 693, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 693, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 20, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 693, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_cursor_visible, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":694
- *         "cursor_up":term.db["strings"][19],
- *         "cursor_visible":term.db["strings"][20],
- *         "delete_character":term.db["strings"][21],             # <<<<<<<<<<<<<<
- *         "delete_line":term.db["strings"][22],
- *         "dis_status_line":term.db["strings"][23],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 694, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 694, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 21, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 694, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_delete_character, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":695
- *         "cursor_visible":term.db["strings"][20],
- *         "delete_character":term.db["strings"][21],
- *         "delete_line":term.db["strings"][22],             # <<<<<<<<<<<<<<
- *         "dis_status_line":term.db["strings"][23],
- *         "down_half_line":term.db["strings"][24],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 695, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 695, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 22, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 695, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_delete_line, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":696
- *         "delete_character":term.db["strings"][21],
- *         "delete_line":term.db["strings"][22],
- *         "dis_status_line":term.db["strings"][23],             # <<<<<<<<<<<<<<
- *         "down_half_line":term.db["strings"][24],
- *         "enter_alt_charset_mode":term.db["strings"][25],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 696, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 696, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 23, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 696, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dis_status_line, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":697
- *         "delete_line":term.db["strings"][22],
- *         "dis_status_line":term.db["strings"][23],
- *         "down_half_line":term.db["strings"][24],             # <<<<<<<<<<<<<<
- *         "enter_alt_charset_mode":term.db["strings"][25],
- *         "enter_blink_mode":term.db["strings"][26],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 697, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 697, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 24, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 697, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_down_half_line, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":698
- *         "dis_status_line":term.db["strings"][23],
- *         "down_half_line":term.db["strings"][24],
- *         "enter_alt_charset_mode":term.db["strings"][25],             # <<<<<<<<<<<<<<
- *         "enter_blink_mode":term.db["strings"][26],
- *         "enter_bold_mode":term.db["strings"][27],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 698, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 698, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 25, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 698, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_alt_charset_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":699
- *         "down_half_line":term.db["strings"][24],
- *         "enter_alt_charset_mode":term.db["strings"][25],
- *         "enter_blink_mode":term.db["strings"][26],             # <<<<<<<<<<<<<<
- *         "enter_bold_mode":term.db["strings"][27],
- *         "enter_ca_mode":term.db["strings"][28],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 699, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 699, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 26, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 699, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_blink_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":700
- *         "enter_alt_charset_mode":term.db["strings"][25],
- *         "enter_blink_mode":term.db["strings"][26],
- *         "enter_bold_mode":term.db["strings"][27],             # <<<<<<<<<<<<<<
- *         "enter_ca_mode":term.db["strings"][28],
- *         "enter_delete_mode":term.db["strings"][29],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 700, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 700, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 27, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 700, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_bold_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":701
- *         "enter_blink_mode":term.db["strings"][26],
- *         "enter_bold_mode":term.db["strings"][27],
- *         "enter_ca_mode":term.db["strings"][28],             # <<<<<<<<<<<<<<
- *         "enter_delete_mode":term.db["strings"][29],
- *         "enter_dim_mode":term.db["strings"][30],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 701, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 701, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 28, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 701, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_ca_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":702
- *         "enter_bold_mode":term.db["strings"][27],
- *         "enter_ca_mode":term.db["strings"][28],
- *         "enter_delete_mode":term.db["strings"][29],             # <<<<<<<<<<<<<<
- *         "enter_dim_mode":term.db["strings"][30],
- *         "enter_insert_mode":term.db["strings"][31],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 702, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 702, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 29, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 702, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_delete_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":703
- *         "enter_ca_mode":term.db["strings"][28],
- *         "enter_delete_mode":term.db["strings"][29],
- *         "enter_dim_mode":term.db["strings"][30],             # <<<<<<<<<<<<<<
- *         "enter_insert_mode":term.db["strings"][31],
- *         "enter_secure_mode":term.db["strings"][32],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 703, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 703, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 30, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 703, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_dim_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":704
- *         "enter_delete_mode":term.db["strings"][29],
- *         "enter_dim_mode":term.db["strings"][30],
- *         "enter_insert_mode":term.db["strings"][31],             # <<<<<<<<<<<<<<
- *         "enter_secure_mode":term.db["strings"][32],
- *         "enter_protected_mode":term.db["strings"][33],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 704, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 704, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 31, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 704, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_insert_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":705
- *         "enter_dim_mode":term.db["strings"][30],
- *         "enter_insert_mode":term.db["strings"][31],
- *         "enter_secure_mode":term.db["strings"][32],             # <<<<<<<<<<<<<<
- *         "enter_protected_mode":term.db["strings"][33],
- *         "enter_reverse_mode":term.db["strings"][34],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 705, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 705, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 32, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 705, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_secure_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":706
- *         "enter_insert_mode":term.db["strings"][31],
- *         "enter_secure_mode":term.db["strings"][32],
- *         "enter_protected_mode":term.db["strings"][33],             # <<<<<<<<<<<<<<
- *         "enter_reverse_mode":term.db["strings"][34],
- *         "enter_standout_mode":term.db["strings"][35],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 706, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 706, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 33, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 706, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_protected_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":707
- *         "enter_secure_mode":term.db["strings"][32],
- *         "enter_protected_mode":term.db["strings"][33],
- *         "enter_reverse_mode":term.db["strings"][34],             # <<<<<<<<<<<<<<
- *         "enter_standout_mode":term.db["strings"][35],
- *         "enter_underline_mode":term.db["strings"][36],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 707, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 707, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 34, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 707, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_reverse_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":708
- *         "enter_protected_mode":term.db["strings"][33],
- *         "enter_reverse_mode":term.db["strings"][34],
- *         "enter_standout_mode":term.db["strings"][35],             # <<<<<<<<<<<<<<
- *         "enter_underline_mode":term.db["strings"][36],
- *         "erase_chars":term.db["strings"][37],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 708, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 708, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 35, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 708, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_standout_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":709
- *         "enter_reverse_mode":term.db["strings"][34],
- *         "enter_standout_mode":term.db["strings"][35],
- *         "enter_underline_mode":term.db["strings"][36],             # <<<<<<<<<<<<<<
- *         "erase_chars":term.db["strings"][37],
- *         "exit_alt_charset_mode":term.db["strings"][38],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 709, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 709, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 36, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 709, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_underline_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":710
- *         "enter_standout_mode":term.db["strings"][35],
- *         "enter_underline_mode":term.db["strings"][36],
- *         "erase_chars":term.db["strings"][37],             # <<<<<<<<<<<<<<
- *         "exit_alt_charset_mode":term.db["strings"][38],
- *         "exit_attribute_mode":term.db["strings"][39],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 710, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 710, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 37, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 710, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_erase_chars, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":711
- *         "enter_underline_mode":term.db["strings"][36],
- *         "erase_chars":term.db["strings"][37],
- *         "exit_alt_charset_mode":term.db["strings"][38],             # <<<<<<<<<<<<<<
- *         "exit_attribute_mode":term.db["strings"][39],
- *         "exit_ca_mode":term.db["strings"][40],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 711, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 711, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 38, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 711, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_exit_alt_charset_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":712
- *         "erase_chars":term.db["strings"][37],
- *         "exit_alt_charset_mode":term.db["strings"][38],
- *         "exit_attribute_mode":term.db["strings"][39],             # <<<<<<<<<<<<<<
- *         "exit_ca_mode":term.db["strings"][40],
- *         "exit_delete_mode":term.db["strings"][41],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 712, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 712, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 39, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 712, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_exit_attribute_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":713
- *         "exit_alt_charset_mode":term.db["strings"][38],
- *         "exit_attribute_mode":term.db["strings"][39],
- *         "exit_ca_mode":term.db["strings"][40],             # <<<<<<<<<<<<<<
- *         "exit_delete_mode":term.db["strings"][41],
- *         "exit_insert_mode":term.db["strings"][42],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 713, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 713, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 40, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 713, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_exit_ca_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":714
- *         "exit_attribute_mode":term.db["strings"][39],
- *         "exit_ca_mode":term.db["strings"][40],
- *         "exit_delete_mode":term.db["strings"][41],             # <<<<<<<<<<<<<<
- *         "exit_insert_mode":term.db["strings"][42],
- *         "exit_standout_mode":term.db["strings"][43],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 714, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 714, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 41, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 714, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_exit_delete_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":715
- *         "exit_ca_mode":term.db["strings"][40],
- *         "exit_delete_mode":term.db["strings"][41],
- *         "exit_insert_mode":term.db["strings"][42],             # <<<<<<<<<<<<<<
- *         "exit_standout_mode":term.db["strings"][43],
- *         "exit_underline_mode":term.db["strings"][44],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 715, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 715, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 42, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 715, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_exit_insert_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":716
- *         "exit_delete_mode":term.db["strings"][41],
- *         "exit_insert_mode":term.db["strings"][42],
- *         "exit_standout_mode":term.db["strings"][43],             # <<<<<<<<<<<<<<
- *         "exit_underline_mode":term.db["strings"][44],
- *         "flash_screen":term.db["strings"][45],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 716, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 716, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 43, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 716, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_exit_standout_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":717
- *         "exit_insert_mode":term.db["strings"][42],
- *         "exit_standout_mode":term.db["strings"][43],
- *         "exit_underline_mode":term.db["strings"][44],             # <<<<<<<<<<<<<<
- *         "flash_screen":term.db["strings"][45],
- *         "form_feed":term.db["strings"][46],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 717, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 717, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 44, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 717, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_exit_underline_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":718
- *         "exit_standout_mode":term.db["strings"][43],
- *         "exit_underline_mode":term.db["strings"][44],
- *         "flash_screen":term.db["strings"][45],             # <<<<<<<<<<<<<<
- *         "form_feed":term.db["strings"][46],
- *         "from_status_line":term.db["strings"][47],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 718, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 718, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 45, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 718, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_flash_screen, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":719
- *         "exit_underline_mode":term.db["strings"][44],
- *         "flash_screen":term.db["strings"][45],
- *         "form_feed":term.db["strings"][46],             # <<<<<<<<<<<<<<
- *         "from_status_line":term.db["strings"][47],
- *         "init_1string":term.db["strings"][48],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 719, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 719, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 46, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 719, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_form_feed, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":720
- *         "flash_screen":term.db["strings"][45],
- *         "form_feed":term.db["strings"][46],
- *         "from_status_line":term.db["strings"][47],             # <<<<<<<<<<<<<<
- *         "init_1string":term.db["strings"][48],
- *         "init_2string":term.db["strings"][49],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 720, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 720, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 47, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 720, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_from_status_line, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":721
- *         "form_feed":term.db["strings"][46],
- *         "from_status_line":term.db["strings"][47],
- *         "init_1string":term.db["strings"][48],             # <<<<<<<<<<<<<<
- *         "init_2string":term.db["strings"][49],
- *         "init_3string":term.db["strings"][50],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 721, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 721, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 48, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 721, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_init_1string, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":722
- *         "from_status_line":term.db["strings"][47],
- *         "init_1string":term.db["strings"][48],
- *         "init_2string":term.db["strings"][49],             # <<<<<<<<<<<<<<
- *         "init_3string":term.db["strings"][50],
- *         "init_file":term.db["strings"][51],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 722, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 722, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 49, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 722, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_init_2string, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":723
- *         "init_1string":term.db["strings"][48],
- *         "init_2string":term.db["strings"][49],
- *         "init_3string":term.db["strings"][50],             # <<<<<<<<<<<<<<
- *         "init_file":term.db["strings"][51],
- *         "insert_character":term.db["strings"][52],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 723, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 723, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 50, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 723, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_init_3string, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":724
- *         "init_2string":term.db["strings"][49],
- *         "init_3string":term.db["strings"][50],
- *         "init_file":term.db["strings"][51],             # <<<<<<<<<<<<<<
- *         "insert_character":term.db["strings"][52],
- *         "insert_line":term.db["strings"][53],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 724, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 724, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 51, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 724, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_init_file, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":725
- *         "init_3string":term.db["strings"][50],
- *         "init_file":term.db["strings"][51],
- *         "insert_character":term.db["strings"][52],             # <<<<<<<<<<<<<<
- *         "insert_line":term.db["strings"][53],
- *         "insert_padding":term.db["strings"][54],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 725, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 725, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 52, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 725, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_insert_character, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":726
- *         "init_file":term.db["strings"][51],
- *         "insert_character":term.db["strings"][52],
- *         "insert_line":term.db["strings"][53],             # <<<<<<<<<<<<<<
- *         "insert_padding":term.db["strings"][54],
- *         "key_backspace":term.db["strings"][55],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 726, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 726, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 53, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 726, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_insert_line, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":727
- *         "insert_character":term.db["strings"][52],
- *         "insert_line":term.db["strings"][53],
- *         "insert_padding":term.db["strings"][54],             # <<<<<<<<<<<<<<
- *         "key_backspace":term.db["strings"][55],
- *         "key_catab":term.db["strings"][56],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 727, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 727, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 54, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 727, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_insert_padding, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":728
- *         "insert_line":term.db["strings"][53],
- *         "insert_padding":term.db["strings"][54],
- *         "key_backspace":term.db["strings"][55],             # <<<<<<<<<<<<<<
- *         "key_catab":term.db["strings"][56],
- *         "key_clear":term.db["strings"][57],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 728, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 728, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 55, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 728, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_backspace, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":729
- *         "insert_padding":term.db["strings"][54],
- *         "key_backspace":term.db["strings"][55],
- *         "key_catab":term.db["strings"][56],             # <<<<<<<<<<<<<<
- *         "key_clear":term.db["strings"][57],
- *         "key_ctab":term.db["strings"][58],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 729, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 729, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 56, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 729, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_catab, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":730
- *         "key_backspace":term.db["strings"][55],
- *         "key_catab":term.db["strings"][56],
- *         "key_clear":term.db["strings"][57],             # <<<<<<<<<<<<<<
- *         "key_ctab":term.db["strings"][58],
- *         "key_dc":term.db["strings"][59],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 730, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 730, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 57, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 730, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_clear, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":731
- *         "key_catab":term.db["strings"][56],
- *         "key_clear":term.db["strings"][57],
- *         "key_ctab":term.db["strings"][58],             # <<<<<<<<<<<<<<
- *         "key_dc":term.db["strings"][59],
- *         "key_dl":term.db["strings"][60],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 731, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 731, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 58, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 731, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_ctab, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":732
- *         "key_clear":term.db["strings"][57],
- *         "key_ctab":term.db["strings"][58],
- *         "key_dc":term.db["strings"][59],             # <<<<<<<<<<<<<<
- *         "key_dl":term.db["strings"][60],
- *         "key_down":term.db["strings"][61],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 732, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 732, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 59, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 732, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_dc, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":733
- *         "key_ctab":term.db["strings"][58],
- *         "key_dc":term.db["strings"][59],
- *         "key_dl":term.db["strings"][60],             # <<<<<<<<<<<<<<
- *         "key_down":term.db["strings"][61],
- *         "key_eic":term.db["strings"][62],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 733, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 733, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 60, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 733, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_dl, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":734
- *         "key_dc":term.db["strings"][59],
- *         "key_dl":term.db["strings"][60],
- *         "key_down":term.db["strings"][61],             # <<<<<<<<<<<<<<
- *         "key_eic":term.db["strings"][62],
- *         "key_eol":term.db["strings"][63],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 734, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 734, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 61, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 734, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_down, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":735
- *         "key_dl":term.db["strings"][60],
- *         "key_down":term.db["strings"][61],
- *         "key_eic":term.db["strings"][62],             # <<<<<<<<<<<<<<
- *         "key_eol":term.db["strings"][63],
- *         "key_eos":term.db["strings"][64],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 735, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 735, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 62, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 735, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_eic, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":736
- *         "key_down":term.db["strings"][61],
- *         "key_eic":term.db["strings"][62],
- *         "key_eol":term.db["strings"][63],             # <<<<<<<<<<<<<<
- *         "key_eos":term.db["strings"][64],
- *         "key_f0":term.db["strings"][65],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 736, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 736, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 63, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 736, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_eol, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":737
- *         "key_eic":term.db["strings"][62],
- *         "key_eol":term.db["strings"][63],
- *         "key_eos":term.db["strings"][64],             # <<<<<<<<<<<<<<
- *         "key_f0":term.db["strings"][65],
- *         "key_f1":term.db["strings"][66],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 737, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 737, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 64, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 737, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_eos, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":738
- *         "key_eol":term.db["strings"][63],
- *         "key_eos":term.db["strings"][64],
- *         "key_f0":term.db["strings"][65],             # <<<<<<<<<<<<<<
- *         "key_f1":term.db["strings"][66],
- *         "key_f10":term.db["strings"][67],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 738, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 738, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 65, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 738, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f0, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":739
- *         "key_eos":term.db["strings"][64],
- *         "key_f0":term.db["strings"][65],
- *         "key_f1":term.db["strings"][66],             # <<<<<<<<<<<<<<
- *         "key_f10":term.db["strings"][67],
- *         "key_f2":term.db["strings"][68],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 739, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 739, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 66, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 739, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f1, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":740
- *         "key_f0":term.db["strings"][65],
- *         "key_f1":term.db["strings"][66],
- *         "key_f10":term.db["strings"][67],             # <<<<<<<<<<<<<<
- *         "key_f2":term.db["strings"][68],
- *         "key_f3":term.db["strings"][69],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 740, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 740, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 67, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 740, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f10, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":741
- *         "key_f1":term.db["strings"][66],
- *         "key_f10":term.db["strings"][67],
- *         "key_f2":term.db["strings"][68],             # <<<<<<<<<<<<<<
- *         "key_f3":term.db["strings"][69],
- *         "key_f4":term.db["strings"][70],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 741, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 741, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 68, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 741, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f2, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":742
- *         "key_f10":term.db["strings"][67],
- *         "key_f2":term.db["strings"][68],
- *         "key_f3":term.db["strings"][69],             # <<<<<<<<<<<<<<
- *         "key_f4":term.db["strings"][70],
- *         "key_f5":term.db["strings"][71],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 742, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 742, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 69, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 742, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f3, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":743
- *         "key_f2":term.db["strings"][68],
- *         "key_f3":term.db["strings"][69],
- *         "key_f4":term.db["strings"][70],             # <<<<<<<<<<<<<<
- *         "key_f5":term.db["strings"][71],
- *         "key_f6":term.db["strings"][72],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 743, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 743, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 70, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 743, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f4, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":744
- *         "key_f3":term.db["strings"][69],
- *         "key_f4":term.db["strings"][70],
- *         "key_f5":term.db["strings"][71],             # <<<<<<<<<<<<<<
- *         "key_f6":term.db["strings"][72],
- *         "key_f7":term.db["strings"][73],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 744, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 744, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 71, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 744, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f5, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":745
- *         "key_f4":term.db["strings"][70],
- *         "key_f5":term.db["strings"][71],
- *         "key_f6":term.db["strings"][72],             # <<<<<<<<<<<<<<
- *         "key_f7":term.db["strings"][73],
- *         "key_f8":term.db["strings"][74],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 745, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 745, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 72, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 745, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f6, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":746
- *         "key_f5":term.db["strings"][71],
- *         "key_f6":term.db["strings"][72],
- *         "key_f7":term.db["strings"][73],             # <<<<<<<<<<<<<<
- *         "key_f8":term.db["strings"][74],
- *         "key_f9":term.db["strings"][75],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 746, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 746, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 73, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 746, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f7, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":747
- *         "key_f6":term.db["strings"][72],
- *         "key_f7":term.db["strings"][73],
- *         "key_f8":term.db["strings"][74],             # <<<<<<<<<<<<<<
- *         "key_f9":term.db["strings"][75],
- *         "key_home":term.db["strings"][76],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 747, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 747, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 74, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 747, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f8, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":748
- *         "key_f7":term.db["strings"][73],
- *         "key_f8":term.db["strings"][74],
- *         "key_f9":term.db["strings"][75],             # <<<<<<<<<<<<<<
- *         "key_home":term.db["strings"][76],
- *         "key_ic":term.db["strings"][77],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 748, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 748, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 75, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 748, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f9, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":749
- *         "key_f8":term.db["strings"][74],
- *         "key_f9":term.db["strings"][75],
- *         "key_home":term.db["strings"][76],             # <<<<<<<<<<<<<<
- *         "key_ic":term.db["strings"][77],
- *         "key_il":term.db["strings"][78],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 749, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 749, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 76, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 749, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_home, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":750
- *         "key_f9":term.db["strings"][75],
- *         "key_home":term.db["strings"][76],
- *         "key_ic":term.db["strings"][77],             # <<<<<<<<<<<<<<
- *         "key_il":term.db["strings"][78],
- *         "key_left":term.db["strings"][79],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 750, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 750, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 77, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 750, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_ic, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":751
- *         "key_home":term.db["strings"][76],
- *         "key_ic":term.db["strings"][77],
- *         "key_il":term.db["strings"][78],             # <<<<<<<<<<<<<<
- *         "key_left":term.db["strings"][79],
- *         "key_ll":term.db["strings"][80],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 751, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 751, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 78, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 751, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_il, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":752
- *         "key_ic":term.db["strings"][77],
- *         "key_il":term.db["strings"][78],
- *         "key_left":term.db["strings"][79],             # <<<<<<<<<<<<<<
- *         "key_ll":term.db["strings"][80],
- *         "key_npage":term.db["strings"][81],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 752, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 752, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 79, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 752, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_left, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":753
- *         "key_il":term.db["strings"][78],
- *         "key_left":term.db["strings"][79],
- *         "key_ll":term.db["strings"][80],             # <<<<<<<<<<<<<<
- *         "key_npage":term.db["strings"][81],
- *         "key_ppage":term.db["strings"][82],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 753, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 753, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 80, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 753, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_ll, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":754
- *         "key_left":term.db["strings"][79],
- *         "key_ll":term.db["strings"][80],
- *         "key_npage":term.db["strings"][81],             # <<<<<<<<<<<<<<
- *         "key_ppage":term.db["strings"][82],
- *         "key_right":term.db["strings"][83],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 754, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 754, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 81, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 754, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_npage, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":755
- *         "key_ll":term.db["strings"][80],
- *         "key_npage":term.db["strings"][81],
- *         "key_ppage":term.db["strings"][82],             # <<<<<<<<<<<<<<
- *         "key_right":term.db["strings"][83],
- *         "key_sf":term.db["strings"][84],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 755, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 755, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 82, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 755, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_ppage, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":756
- *         "key_npage":term.db["strings"][81],
- *         "key_ppage":term.db["strings"][82],
- *         "key_right":term.db["strings"][83],             # <<<<<<<<<<<<<<
- *         "key_sf":term.db["strings"][84],
- *         "key_sr":term.db["strings"][85],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 756, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 756, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 83, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 756, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_right, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":757
- *         "key_ppage":term.db["strings"][82],
- *         "key_right":term.db["strings"][83],
- *         "key_sf":term.db["strings"][84],             # <<<<<<<<<<<<<<
- *         "key_sr":term.db["strings"][85],
- *         "key_stab":term.db["strings"][86],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 757, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 757, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 84, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 757, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_sf, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":758
- *         "key_right":term.db["strings"][83],
- *         "key_sf":term.db["strings"][84],
- *         "key_sr":term.db["strings"][85],             # <<<<<<<<<<<<<<
- *         "key_stab":term.db["strings"][86],
- *         "key_up":term.db["strings"][87],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 758, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 758, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 85, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 758, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_sr, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":759
- *         "key_sf":term.db["strings"][84],
- *         "key_sr":term.db["strings"][85],
- *         "key_stab":term.db["strings"][86],             # <<<<<<<<<<<<<<
- *         "key_up":term.db["strings"][87],
- *         "keypad_local":term.db["strings"][88],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 759, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 759, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 86, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 759, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_stab, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":760
- *         "key_sr":term.db["strings"][85],
- *         "key_stab":term.db["strings"][86],
- *         "key_up":term.db["strings"][87],             # <<<<<<<<<<<<<<
- *         "keypad_local":term.db["strings"][88],
- *         "keypad_xmit":term.db["strings"][89],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 760, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 760, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 87, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 760, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_up, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":761
- *         "key_stab":term.db["strings"][86],
- *         "key_up":term.db["strings"][87],
- *         "keypad_local":term.db["strings"][88],             # <<<<<<<<<<<<<<
- *         "keypad_xmit":term.db["strings"][89],
- *         "lab_f0":term.db["strings"][90],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 761, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 761, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 88, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 761, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_keypad_local, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":762
- *         "key_up":term.db["strings"][87],
- *         "keypad_local":term.db["strings"][88],
- *         "keypad_xmit":term.db["strings"][89],             # <<<<<<<<<<<<<<
- *         "lab_f0":term.db["strings"][90],
- *         "lab_f1":term.db["strings"][91],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 762, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 762, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 89, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 762, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_keypad_xmit, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":763
- *         "keypad_local":term.db["strings"][88],
- *         "keypad_xmit":term.db["strings"][89],
- *         "lab_f0":term.db["strings"][90],             # <<<<<<<<<<<<<<
- *         "lab_f1":term.db["strings"][91],
- *         "lab_f10":term.db["strings"][92],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 763, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 763, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 90, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 763, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_lab_f0, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":764
- *         "keypad_xmit":term.db["strings"][89],
- *         "lab_f0":term.db["strings"][90],
- *         "lab_f1":term.db["strings"][91],             # <<<<<<<<<<<<<<
- *         "lab_f10":term.db["strings"][92],
- *         "lab_f2":term.db["strings"][93],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 764, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 764, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 91, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 764, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_lab_f1, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":765
- *         "lab_f0":term.db["strings"][90],
- *         "lab_f1":term.db["strings"][91],
- *         "lab_f10":term.db["strings"][92],             # <<<<<<<<<<<<<<
- *         "lab_f2":term.db["strings"][93],
- *         "lab_f3":term.db["strings"][94],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 765, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 765, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 92, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 765, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_lab_f10, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":766
- *         "lab_f1":term.db["strings"][91],
- *         "lab_f10":term.db["strings"][92],
- *         "lab_f2":term.db["strings"][93],             # <<<<<<<<<<<<<<
- *         "lab_f3":term.db["strings"][94],
- *         "lab_f4":term.db["strings"][95],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 766, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 766, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 93, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 766, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_lab_f2, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":767
- *         "lab_f10":term.db["strings"][92],
- *         "lab_f2":term.db["strings"][93],
- *         "lab_f3":term.db["strings"][94],             # <<<<<<<<<<<<<<
- *         "lab_f4":term.db["strings"][95],
- *         "lab_f5":term.db["strings"][96],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 767, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 767, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 94, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 767, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_lab_f3, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":768
- *         "lab_f2":term.db["strings"][93],
- *         "lab_f3":term.db["strings"][94],
- *         "lab_f4":term.db["strings"][95],             # <<<<<<<<<<<<<<
- *         "lab_f5":term.db["strings"][96],
- *         "lab_f6":term.db["strings"][97],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 768, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 768, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 95, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 768, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_lab_f4, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":769
- *         "lab_f3":term.db["strings"][94],
- *         "lab_f4":term.db["strings"][95],
- *         "lab_f5":term.db["strings"][96],             # <<<<<<<<<<<<<<
- *         "lab_f6":term.db["strings"][97],
- *         "lab_f7":term.db["strings"][98],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 769, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 769, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 96, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 769, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_lab_f5, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":770
- *         "lab_f4":term.db["strings"][95],
- *         "lab_f5":term.db["strings"][96],
- *         "lab_f6":term.db["strings"][97],             # <<<<<<<<<<<<<<
- *         "lab_f7":term.db["strings"][98],
- *         "lab_f8":term.db["strings"][99],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 770, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 770, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 97, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 770, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_lab_f6, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":771
- *         "lab_f5":term.db["strings"][96],
- *         "lab_f6":term.db["strings"][97],
- *         "lab_f7":term.db["strings"][98],             # <<<<<<<<<<<<<<
- *         "lab_f8":term.db["strings"][99],
- *         "lab_f9":term.db["strings"][100],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 771, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 771, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 98, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 771, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_lab_f7, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":772
- *         "lab_f6":term.db["strings"][97],
- *         "lab_f7":term.db["strings"][98],
- *         "lab_f8":term.db["strings"][99],             # <<<<<<<<<<<<<<
- *         "lab_f9":term.db["strings"][100],
- *         "meta_off":term.db["strings"][101],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 772, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 772, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 99, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 772, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_lab_f8, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":773
- *         "lab_f7":term.db["strings"][98],
- *         "lab_f8":term.db["strings"][99],
- *         "lab_f9":term.db["strings"][100],             # <<<<<<<<<<<<<<
- *         "meta_off":term.db["strings"][101],
- *         "meta_on":term.db["strings"][102],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 773, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 773, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x64, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 773, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_lab_f9, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":774
- *         "lab_f8":term.db["strings"][99],
- *         "lab_f9":term.db["strings"][100],
- *         "meta_off":term.db["strings"][101],             # <<<<<<<<<<<<<<
- *         "meta_on":term.db["strings"][102],
- *         "newline":term.db["strings"][103],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 774, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 774, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x65, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 774, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_meta_off, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":775
- *         "lab_f9":term.db["strings"][100],
- *         "meta_off":term.db["strings"][101],
- *         "meta_on":term.db["strings"][102],             # <<<<<<<<<<<<<<
- *         "newline":term.db["strings"][103],
- *         "pad_char":term.db["strings"][104],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 775, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 775, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x66, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 775, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_meta_on, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":776
- *         "meta_off":term.db["strings"][101],
- *         "meta_on":term.db["strings"][102],
- *         "newline":term.db["strings"][103],             # <<<<<<<<<<<<<<
- *         "pad_char":term.db["strings"][104],
- *         "parm_dch":term.db["strings"][105],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 776, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 776, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x67, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 776, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_newline, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":777
- *         "meta_on":term.db["strings"][102],
- *         "newline":term.db["strings"][103],
- *         "pad_char":term.db["strings"][104],             # <<<<<<<<<<<<<<
- *         "parm_dch":term.db["strings"][105],
- *         "parm_delete_line":term.db["strings"][106],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 777, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 777, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x68, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 777, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_pad_char, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":778
- *         "newline":term.db["strings"][103],
- *         "pad_char":term.db["strings"][104],
- *         "parm_dch":term.db["strings"][105],             # <<<<<<<<<<<<<<
- *         "parm_delete_line":term.db["strings"][106],
- *         "parm_down_cursor":term.db["strings"][107],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 778, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 778, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x69, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 778, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_parm_dch, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":779
- *         "pad_char":term.db["strings"][104],
- *         "parm_dch":term.db["strings"][105],
- *         "parm_delete_line":term.db["strings"][106],             # <<<<<<<<<<<<<<
- *         "parm_down_cursor":term.db["strings"][107],
- *         "parm_ich":term.db["strings"][108],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 779, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 779, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x6A, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 779, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_parm_delete_line, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":780
- *         "parm_dch":term.db["strings"][105],
- *         "parm_delete_line":term.db["strings"][106],
- *         "parm_down_cursor":term.db["strings"][107],             # <<<<<<<<<<<<<<
- *         "parm_ich":term.db["strings"][108],
- *         "parm_index":term.db["strings"][109],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 780, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 780, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x6B, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 780, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_parm_down_cursor, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":781
- *         "parm_delete_line":term.db["strings"][106],
- *         "parm_down_cursor":term.db["strings"][107],
- *         "parm_ich":term.db["strings"][108],             # <<<<<<<<<<<<<<
- *         "parm_index":term.db["strings"][109],
- *         "parm_insert_line":term.db["strings"][110],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 781, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 781, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x6C, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 781, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_parm_ich, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":782
- *         "parm_down_cursor":term.db["strings"][107],
- *         "parm_ich":term.db["strings"][108],
- *         "parm_index":term.db["strings"][109],             # <<<<<<<<<<<<<<
- *         "parm_insert_line":term.db["strings"][110],
- *         "parm_left_cursor":term.db["strings"][111],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 782, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 782, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x6D, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 782, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_parm_index, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":783
- *         "parm_ich":term.db["strings"][108],
- *         "parm_index":term.db["strings"][109],
- *         "parm_insert_line":term.db["strings"][110],             # <<<<<<<<<<<<<<
- *         "parm_left_cursor":term.db["strings"][111],
- *         "parm_right_cursor":term.db["strings"][112],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 783, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 783, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x6E, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 783, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_parm_insert_line, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":784
- *         "parm_index":term.db["strings"][109],
- *         "parm_insert_line":term.db["strings"][110],
- *         "parm_left_cursor":term.db["strings"][111],             # <<<<<<<<<<<<<<
- *         "parm_right_cursor":term.db["strings"][112],
- *         "parm_rindex":term.db["strings"][113],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 784, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 784, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x6F, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 784, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_parm_left_cursor, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":785
- *         "parm_insert_line":term.db["strings"][110],
- *         "parm_left_cursor":term.db["strings"][111],
- *         "parm_right_cursor":term.db["strings"][112],             # <<<<<<<<<<<<<<
- *         "parm_rindex":term.db["strings"][113],
- *         "parm_up_cursor":term.db["strings"][114],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 785, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 785, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x70, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 785, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_parm_right_cursor, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":786
- *         "parm_left_cursor":term.db["strings"][111],
- *         "parm_right_cursor":term.db["strings"][112],
- *         "parm_rindex":term.db["strings"][113],             # <<<<<<<<<<<<<<
- *         "parm_up_cursor":term.db["strings"][114],
- *         "pkey_key":term.db["strings"][115],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 786, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 786, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x71, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 786, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_parm_rindex, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":787
- *         "parm_right_cursor":term.db["strings"][112],
- *         "parm_rindex":term.db["strings"][113],
- *         "parm_up_cursor":term.db["strings"][114],             # <<<<<<<<<<<<<<
- *         "pkey_key":term.db["strings"][115],
- *         "pkey_local":term.db["strings"][116],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 787, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 787, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x72, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 787, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_parm_up_cursor, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":788
- *         "parm_rindex":term.db["strings"][113],
- *         "parm_up_cursor":term.db["strings"][114],
- *         "pkey_key":term.db["strings"][115],             # <<<<<<<<<<<<<<
- *         "pkey_local":term.db["strings"][116],
- *         "pkey_xmit":term.db["strings"][117],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 788, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 788, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x73, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 788, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_pkey_key, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":789
- *         "parm_up_cursor":term.db["strings"][114],
- *         "pkey_key":term.db["strings"][115],
- *         "pkey_local":term.db["strings"][116],             # <<<<<<<<<<<<<<
- *         "pkey_xmit":term.db["strings"][117],
- *         "print_screen":term.db["strings"][118],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 789, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 789, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x74, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 789, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_pkey_local, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":790
- *         "pkey_key":term.db["strings"][115],
- *         "pkey_local":term.db["strings"][116],
- *         "pkey_xmit":term.db["strings"][117],             # <<<<<<<<<<<<<<
- *         "print_screen":term.db["strings"][118],
- *         "prtr_off":term.db["strings"][119],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 790, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 790, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x75, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 790, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_pkey_xmit, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":791
- *         "pkey_local":term.db["strings"][116],
- *         "pkey_xmit":term.db["strings"][117],
- *         "print_screen":term.db["strings"][118],             # <<<<<<<<<<<<<<
- *         "prtr_off":term.db["strings"][119],
- *         "prtr_on":term.db["strings"][120],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 791, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 791, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x76, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 791, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_print_screen, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":792
- *         "pkey_xmit":term.db["strings"][117],
- *         "print_screen":term.db["strings"][118],
- *         "prtr_off":term.db["strings"][119],             # <<<<<<<<<<<<<<
- *         "prtr_on":term.db["strings"][120],
- *         "repeat_char":term.db["strings"][121],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 792, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 792, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x77, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 792, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_prtr_off, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":793
- *         "print_screen":term.db["strings"][118],
- *         "prtr_off":term.db["strings"][119],
- *         "prtr_on":term.db["strings"][120],             # <<<<<<<<<<<<<<
- *         "repeat_char":term.db["strings"][121],
- *         "reset_1string":term.db["strings"][122],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 793, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 793, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x78, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 793, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_prtr_on, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":794
- *         "prtr_off":term.db["strings"][119],
- *         "prtr_on":term.db["strings"][120],
- *         "repeat_char":term.db["strings"][121],             # <<<<<<<<<<<<<<
- *         "reset_1string":term.db["strings"][122],
- *         "reset_2string":term.db["strings"][123],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 794, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 794, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x79, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 794, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_repeat_char, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":795
- *         "prtr_on":term.db["strings"][120],
- *         "repeat_char":term.db["strings"][121],
- *         "reset_1string":term.db["strings"][122],             # <<<<<<<<<<<<<<
- *         "reset_2string":term.db["strings"][123],
- *         "reset_3string":term.db["strings"][124],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 795, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 795, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x7A, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 795, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_reset_1string, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":796
- *         "repeat_char":term.db["strings"][121],
- *         "reset_1string":term.db["strings"][122],
- *         "reset_2string":term.db["strings"][123],             # <<<<<<<<<<<<<<
- *         "reset_3string":term.db["strings"][124],
- *         "reset_file":term.db["strings"][125],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 796, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 796, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x7B, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 796, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_reset_2string, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":797
- *         "reset_1string":term.db["strings"][122],
- *         "reset_2string":term.db["strings"][123],
- *         "reset_3string":term.db["strings"][124],             # <<<<<<<<<<<<<<
- *         "reset_file":term.db["strings"][125],
- *         "restore_cursor":term.db["strings"][126],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 797, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 797, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x7C, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 797, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_reset_3string, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":798
- *         "reset_2string":term.db["strings"][123],
- *         "reset_3string":term.db["strings"][124],
- *         "reset_file":term.db["strings"][125],             # <<<<<<<<<<<<<<
- *         "restore_cursor":term.db["strings"][126],
- *         "row_address":term.db["strings"][127],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 798, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 798, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x7D, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 798, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_reset_file, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":799
- *         "reset_3string":term.db["strings"][124],
- *         "reset_file":term.db["strings"][125],
- *         "restore_cursor":term.db["strings"][126],             # <<<<<<<<<<<<<<
- *         "row_address":term.db["strings"][127],
- *         "save_cursor":term.db["strings"][128],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 799, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 799, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x7E, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 799, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_restore_cursor, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":800
- *         "reset_file":term.db["strings"][125],
- *         "restore_cursor":term.db["strings"][126],
- *         "row_address":term.db["strings"][127],             # <<<<<<<<<<<<<<
- *         "save_cursor":term.db["strings"][128],
- *         "scroll_forward":term.db["strings"][129],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 800, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 800, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x7F, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 800, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_row_address, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":801
- *         "restore_cursor":term.db["strings"][126],
- *         "row_address":term.db["strings"][127],
- *         "save_cursor":term.db["strings"][128],             # <<<<<<<<<<<<<<
- *         "scroll_forward":term.db["strings"][129],
- *         "scroll_reverse":term.db["strings"][130],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 801, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 801, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x80, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 801, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_save_cursor, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":802
- *         "row_address":term.db["strings"][127],
- *         "save_cursor":term.db["strings"][128],
- *         "scroll_forward":term.db["strings"][129],             # <<<<<<<<<<<<<<
- *         "scroll_reverse":term.db["strings"][130],
- *         "set_attributes":term.db["strings"][131],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 802, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 802, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x81, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 802, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_scroll_forward, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":803
- *         "save_cursor":term.db["strings"][128],
- *         "scroll_forward":term.db["strings"][129],
- *         "scroll_reverse":term.db["strings"][130],             # <<<<<<<<<<<<<<
- *         "set_attributes":term.db["strings"][131],
- *         "set_tab":term.db["strings"][132],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 803, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 803, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x82, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 803, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_scroll_reverse, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":804
- *         "scroll_forward":term.db["strings"][129],
- *         "scroll_reverse":term.db["strings"][130],
- *         "set_attributes":term.db["strings"][131],             # <<<<<<<<<<<<<<
- *         "set_tab":term.db["strings"][132],
- *         "set_window":term.db["strings"][133],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 804, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 804, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x83, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 804, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set_attributes, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":805
- *         "scroll_reverse":term.db["strings"][130],
- *         "set_attributes":term.db["strings"][131],
- *         "set_tab":term.db["strings"][132],             # <<<<<<<<<<<<<<
- *         "set_window":term.db["strings"][133],
- *         "tab":term.db["strings"][134],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 805, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 805, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x84, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 805, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set_tab, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":806
- *         "set_attributes":term.db["strings"][131],
- *         "set_tab":term.db["strings"][132],
- *         "set_window":term.db["strings"][133],             # <<<<<<<<<<<<<<
- *         "tab":term.db["strings"][134],
- *         "to_status_line":term.db["strings"][135],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 806, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 806, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x85, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 806, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set_window, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":807
- *         "set_tab":term.db["strings"][132],
- *         "set_window":term.db["strings"][133],
- *         "tab":term.db["strings"][134],             # <<<<<<<<<<<<<<
- *         "to_status_line":term.db["strings"][135],
- *         "underline_char":term.db["strings"][136],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 807, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 807, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x86, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 807, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_tab, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":808
- *         "set_window":term.db["strings"][133],
- *         "tab":term.db["strings"][134],
- *         "to_status_line":term.db["strings"][135],             # <<<<<<<<<<<<<<
- *         "underline_char":term.db["strings"][136],
- *         "up_half_line":term.db["strings"][137],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 808, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 808, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x87, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 808, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_to_status_line, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":809
- *         "tab":term.db["strings"][134],
- *         "to_status_line":term.db["strings"][135],
- *         "underline_char":term.db["strings"][136],             # <<<<<<<<<<<<<<
- *         "up_half_line":term.db["strings"][137],
- *         "init_prog":term.db["strings"][138],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 809, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 809, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x88, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 809, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_underline_char, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":810
- *         "to_status_line":term.db["strings"][135],
- *         "underline_char":term.db["strings"][136],
- *         "up_half_line":term.db["strings"][137],             # <<<<<<<<<<<<<<
- *         "init_prog":term.db["strings"][138],
- *         "key_a1":term.db["strings"][139],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 810, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 810, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x89, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 810, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_up_half_line, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":811
- *         "underline_char":term.db["strings"][136],
- *         "up_half_line":term.db["strings"][137],
- *         "init_prog":term.db["strings"][138],             # <<<<<<<<<<<<<<
- *         "key_a1":term.db["strings"][139],
- *         "key_a3":term.db["strings"][140],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 811, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 811, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x8A, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 811, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_init_prog, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":812
- *         "up_half_line":term.db["strings"][137],
- *         "init_prog":term.db["strings"][138],
- *         "key_a1":term.db["strings"][139],             # <<<<<<<<<<<<<<
- *         "key_a3":term.db["strings"][140],
- *         "key_b2":term.db["strings"][141],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 812, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 812, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x8B, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 812, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_a1, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":813
- *         "init_prog":term.db["strings"][138],
- *         "key_a1":term.db["strings"][139],
- *         "key_a3":term.db["strings"][140],             # <<<<<<<<<<<<<<
- *         "key_b2":term.db["strings"][141],
- *         "key_c1":term.db["strings"][142],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 813, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 813, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x8C, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 813, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_a3, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":814
- *         "key_a1":term.db["strings"][139],
- *         "key_a3":term.db["strings"][140],
- *         "key_b2":term.db["strings"][141],             # <<<<<<<<<<<<<<
- *         "key_c1":term.db["strings"][142],
- *         "key_c3":term.db["strings"][143],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 814, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 814, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x8D, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 814, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_b2, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":815
- *         "key_a3":term.db["strings"][140],
- *         "key_b2":term.db["strings"][141],
- *         "key_c1":term.db["strings"][142],             # <<<<<<<<<<<<<<
- *         "key_c3":term.db["strings"][143],
- *         "prtr_non":term.db["strings"][144],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 815, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 815, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x8E, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 815, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_c1, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":816
- *         "key_b2":term.db["strings"][141],
- *         "key_c1":term.db["strings"][142],
- *         "key_c3":term.db["strings"][143],             # <<<<<<<<<<<<<<
- *         "prtr_non":term.db["strings"][144],
- *         "char_padding":term.db["strings"][145],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 816, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 816, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x8F, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 816, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_c3, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":817
- *         "key_c1":term.db["strings"][142],
- *         "key_c3":term.db["strings"][143],
- *         "prtr_non":term.db["strings"][144],             # <<<<<<<<<<<<<<
- *         "char_padding":term.db["strings"][145],
- *         "acs_chars":term.db["strings"][146],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 817, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 817, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x90, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 817, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_prtr_non, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":818
- *         "key_c3":term.db["strings"][143],
- *         "prtr_non":term.db["strings"][144],
- *         "char_padding":term.db["strings"][145],             # <<<<<<<<<<<<<<
- *         "acs_chars":term.db["strings"][146],
- *         "plab_norm":term.db["strings"][147],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 818, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 818, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x91, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 818, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_char_padding, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":819
- *         "prtr_non":term.db["strings"][144],
- *         "char_padding":term.db["strings"][145],
- *         "acs_chars":term.db["strings"][146],             # <<<<<<<<<<<<<<
- *         "plab_norm":term.db["strings"][147],
- *         "key_btab":term.db["strings"][148],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 819, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 819, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x92, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 819, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_acs_chars, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":820
- *         "char_padding":term.db["strings"][145],
- *         "acs_chars":term.db["strings"][146],
- *         "plab_norm":term.db["strings"][147],             # <<<<<<<<<<<<<<
- *         "key_btab":term.db["strings"][148],
- *         "enter_xon_mode":term.db["strings"][149],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 820, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 820, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x93, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 820, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_plab_norm, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":821
- *         "acs_chars":term.db["strings"][146],
- *         "plab_norm":term.db["strings"][147],
- *         "key_btab":term.db["strings"][148],             # <<<<<<<<<<<<<<
- *         "enter_xon_mode":term.db["strings"][149],
- *         "exit_xon_mode":term.db["strings"][150],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 821, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 821, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x94, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 821, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_btab, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":822
- *         "plab_norm":term.db["strings"][147],
- *         "key_btab":term.db["strings"][148],
- *         "enter_xon_mode":term.db["strings"][149],             # <<<<<<<<<<<<<<
- *         "exit_xon_mode":term.db["strings"][150],
- *         "enter_am_mode":term.db["strings"][151],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 822, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 822, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x95, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 822, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_xon_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":823
- *         "key_btab":term.db["strings"][148],
- *         "enter_xon_mode":term.db["strings"][149],
- *         "exit_xon_mode":term.db["strings"][150],             # <<<<<<<<<<<<<<
- *         "enter_am_mode":term.db["strings"][151],
- *         "exit_am_mode":term.db["strings"][152],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 823, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 823, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x96, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 823, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_exit_xon_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":824
- *         "enter_xon_mode":term.db["strings"][149],
- *         "exit_xon_mode":term.db["strings"][150],
- *         "enter_am_mode":term.db["strings"][151],             # <<<<<<<<<<<<<<
- *         "exit_am_mode":term.db["strings"][152],
- *         "xon_character":term.db["strings"][153],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 824, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 824, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x97, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 824, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_am_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":825
- *         "exit_xon_mode":term.db["strings"][150],
- *         "enter_am_mode":term.db["strings"][151],
- *         "exit_am_mode":term.db["strings"][152],             # <<<<<<<<<<<<<<
- *         "xon_character":term.db["strings"][153],
- *         "xoff_character":term.db["strings"][154],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 825, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 825, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x98, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 825, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_exit_am_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":826
- *         "enter_am_mode":term.db["strings"][151],
- *         "exit_am_mode":term.db["strings"][152],
- *         "xon_character":term.db["strings"][153],             # <<<<<<<<<<<<<<
- *         "xoff_character":term.db["strings"][154],
- *         "ena_acs":term.db["strings"][155],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 826, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 826, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x99, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 826, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_xon_character, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":827
- *         "exit_am_mode":term.db["strings"][152],
- *         "xon_character":term.db["strings"][153],
- *         "xoff_character":term.db["strings"][154],             # <<<<<<<<<<<<<<
- *         "ena_acs":term.db["strings"][155],
- *         "label_on":term.db["strings"][156],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 827, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 827, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x9A, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 827, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_xoff_character, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":828
- *         "xon_character":term.db["strings"][153],
- *         "xoff_character":term.db["strings"][154],
- *         "ena_acs":term.db["strings"][155],             # <<<<<<<<<<<<<<
- *         "label_on":term.db["strings"][156],
- *         "label_off":term.db["strings"][157],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 828, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 828, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x9B, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 828, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_ena_acs, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":829
- *         "xoff_character":term.db["strings"][154],
- *         "ena_acs":term.db["strings"][155],
- *         "label_on":term.db["strings"][156],             # <<<<<<<<<<<<<<
- *         "label_off":term.db["strings"][157],
- *         "key_beg":term.db["strings"][158],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 829, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 829, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x9C, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 829, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_label_on, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":830
- *         "ena_acs":term.db["strings"][155],
- *         "label_on":term.db["strings"][156],
- *         "label_off":term.db["strings"][157],             # <<<<<<<<<<<<<<
- *         "key_beg":term.db["strings"][158],
- *         "key_cancel":term.db["strings"][159],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 830, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 830, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x9D, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 830, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_label_off, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":831
- *         "label_on":term.db["strings"][156],
- *         "label_off":term.db["strings"][157],
- *         "key_beg":term.db["strings"][158],             # <<<<<<<<<<<<<<
- *         "key_cancel":term.db["strings"][159],
- *         "key_close":term.db["strings"][160],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 831, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 831, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x9E, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 831, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_beg, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":832
- *         "label_off":term.db["strings"][157],
- *         "key_beg":term.db["strings"][158],
- *         "key_cancel":term.db["strings"][159],             # <<<<<<<<<<<<<<
- *         "key_close":term.db["strings"][160],
- *         "key_command":term.db["strings"][161],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 832, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 832, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x9F, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 832, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_cancel, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":833
- *         "key_beg":term.db["strings"][158],
- *         "key_cancel":term.db["strings"][159],
- *         "key_close":term.db["strings"][160],             # <<<<<<<<<<<<<<
- *         "key_command":term.db["strings"][161],
- *         "key_copy":term.db["strings"][162],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 833, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 833, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xA0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 833, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_close, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":834
- *         "key_cancel":term.db["strings"][159],
- *         "key_close":term.db["strings"][160],
- *         "key_command":term.db["strings"][161],             # <<<<<<<<<<<<<<
- *         "key_copy":term.db["strings"][162],
- *         "key_create":term.db["strings"][163],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 834, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 834, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xA1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 834, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_command, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":835
- *         "key_close":term.db["strings"][160],
- *         "key_command":term.db["strings"][161],
- *         "key_copy":term.db["strings"][162],             # <<<<<<<<<<<<<<
- *         "key_create":term.db["strings"][163],
- *         "key_end":term.db["strings"][164],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 835, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 835, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xA2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 835, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_copy, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":836
- *         "key_command":term.db["strings"][161],
- *         "key_copy":term.db["strings"][162],
- *         "key_create":term.db["strings"][163],             # <<<<<<<<<<<<<<
- *         "key_end":term.db["strings"][164],
- *         "key_enter":term.db["strings"][165],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 836, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 836, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xA3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 836, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_create, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":837
- *         "key_copy":term.db["strings"][162],
- *         "key_create":term.db["strings"][163],
- *         "key_end":term.db["strings"][164],             # <<<<<<<<<<<<<<
- *         "key_enter":term.db["strings"][165],
- *         "key_exit":term.db["strings"][166],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 837, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 837, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xA4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 837, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_end, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":838
- *         "key_create":term.db["strings"][163],
- *         "key_end":term.db["strings"][164],
- *         "key_enter":term.db["strings"][165],             # <<<<<<<<<<<<<<
- *         "key_exit":term.db["strings"][166],
- *         "key_find":term.db["strings"][167],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 838, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 838, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xA5, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 838, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_enter, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":839
- *         "key_end":term.db["strings"][164],
- *         "key_enter":term.db["strings"][165],
- *         "key_exit":term.db["strings"][166],             # <<<<<<<<<<<<<<
- *         "key_find":term.db["strings"][167],
- *         "key_help":term.db["strings"][168],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 839, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 839, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xA6, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 839, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_exit, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":840
- *         "key_enter":term.db["strings"][165],
- *         "key_exit":term.db["strings"][166],
- *         "key_find":term.db["strings"][167],             # <<<<<<<<<<<<<<
- *         "key_help":term.db["strings"][168],
- *         "key_mark":term.db["strings"][169],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 840, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 840, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xA7, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 840, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_find, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":841
- *         "key_exit":term.db["strings"][166],
- *         "key_find":term.db["strings"][167],
- *         "key_help":term.db["strings"][168],             # <<<<<<<<<<<<<<
- *         "key_mark":term.db["strings"][169],
- *         "key_message":term.db["strings"][170],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 841, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 841, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xA8, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 841, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_help, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":842
- *         "key_find":term.db["strings"][167],
- *         "key_help":term.db["strings"][168],
- *         "key_mark":term.db["strings"][169],             # <<<<<<<<<<<<<<
- *         "key_message":term.db["strings"][170],
- *         "key_move":term.db["strings"][171],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 842, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 842, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xA9, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 842, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_mark, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":843
- *         "key_help":term.db["strings"][168],
- *         "key_mark":term.db["strings"][169],
- *         "key_message":term.db["strings"][170],             # <<<<<<<<<<<<<<
- *         "key_move":term.db["strings"][171],
- *         "key_next":term.db["strings"][172],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 843, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 843, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xAA, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 843, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_message, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":844
- *         "key_mark":term.db["strings"][169],
- *         "key_message":term.db["strings"][170],
- *         "key_move":term.db["strings"][171],             # <<<<<<<<<<<<<<
- *         "key_next":term.db["strings"][172],
- *         "key_open":term.db["strings"][173],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 844, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 844, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xAB, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 844, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_move, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":845
- *         "key_message":term.db["strings"][170],
- *         "key_move":term.db["strings"][171],
- *         "key_next":term.db["strings"][172],             # <<<<<<<<<<<<<<
- *         "key_open":term.db["strings"][173],
- *         "key_options":term.db["strings"][174],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 845, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 845, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xAC, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 845, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_next, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":846
- *         "key_move":term.db["strings"][171],
- *         "key_next":term.db["strings"][172],
- *         "key_open":term.db["strings"][173],             # <<<<<<<<<<<<<<
- *         "key_options":term.db["strings"][174],
- *         "key_previous":term.db["strings"][175],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 846, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 846, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xAD, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 846, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_open, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":847
- *         "key_next":term.db["strings"][172],
- *         "key_open":term.db["strings"][173],
- *         "key_options":term.db["strings"][174],             # <<<<<<<<<<<<<<
- *         "key_previous":term.db["strings"][175],
- *         "key_print":term.db["strings"][176],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 847, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 847, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xAE, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 847, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_options, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":848
- *         "key_open":term.db["strings"][173],
- *         "key_options":term.db["strings"][174],
- *         "key_previous":term.db["strings"][175],             # <<<<<<<<<<<<<<
- *         "key_print":term.db["strings"][176],
- *         "key_redo":term.db["strings"][178],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 848, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 848, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xAF, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 848, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_previous, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":849
- *         "key_options":term.db["strings"][174],
- *         "key_previous":term.db["strings"][175],
- *         "key_print":term.db["strings"][176],             # <<<<<<<<<<<<<<
- *         "key_redo":term.db["strings"][178],
- *         "key_reference":term.db["strings"][179],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 849, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 849, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xB0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 849, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_print, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":850
- *         "key_previous":term.db["strings"][175],
- *         "key_print":term.db["strings"][176],
- *         "key_redo":term.db["strings"][178],             # <<<<<<<<<<<<<<
- *         "key_reference":term.db["strings"][179],
- *         "key_refresh":term.db["strings"][180],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 850, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 850, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xB2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 850, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_redo, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":851
- *         "key_print":term.db["strings"][176],
- *         "key_redo":term.db["strings"][178],
- *         "key_reference":term.db["strings"][179],             # <<<<<<<<<<<<<<
- *         "key_refresh":term.db["strings"][180],
- *         "key_replace":term.db["strings"][181],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 851, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 851, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xB3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 851, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_reference, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":852
- *         "key_redo":term.db["strings"][178],
- *         "key_reference":term.db["strings"][179],
- *         "key_refresh":term.db["strings"][180],             # <<<<<<<<<<<<<<
- *         "key_replace":term.db["strings"][181],
- *         "key_restart":term.db["strings"][182],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 852, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 852, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xB4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 852, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_refresh, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":853
- *         "key_reference":term.db["strings"][179],
- *         "key_refresh":term.db["strings"][180],
- *         "key_replace":term.db["strings"][181],             # <<<<<<<<<<<<<<
- *         "key_restart":term.db["strings"][182],
- *         "key_resume":term.db["strings"][183],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 853, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 853, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xB5, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 853, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_replace, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":854
- *         "key_refresh":term.db["strings"][180],
- *         "key_replace":term.db["strings"][181],
- *         "key_restart":term.db["strings"][182],             # <<<<<<<<<<<<<<
- *         "key_resume":term.db["strings"][183],
- *         "key_save":term.db["strings"][184],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 854, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 854, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xB6, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 854, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_restart, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":855
- *         "key_replace":term.db["strings"][181],
- *         "key_restart":term.db["strings"][182],
- *         "key_resume":term.db["strings"][183],             # <<<<<<<<<<<<<<
- *         "key_save":term.db["strings"][184],
- *         "key_suspend":term.db["strings"][185],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 855, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 855, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xB7, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 855, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_resume, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":856
- *         "key_restart":term.db["strings"][182],
- *         "key_resume":term.db["strings"][183],
- *         "key_save":term.db["strings"][184],             # <<<<<<<<<<<<<<
- *         "key_suspend":term.db["strings"][185],
- *         "key_undo":term.db["strings"][186],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 856, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 856, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xB8, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 856, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_save, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":857
- *         "key_resume":term.db["strings"][183],
- *         "key_save":term.db["strings"][184],
- *         "key_suspend":term.db["strings"][185],             # <<<<<<<<<<<<<<
- *         "key_undo":term.db["strings"][186],
- *         "key_sbeg":term.db["strings"][187],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 857, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 857, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xB9, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 857, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_suspend, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":858
- *         "key_save":term.db["strings"][184],
- *         "key_suspend":term.db["strings"][185],
- *         "key_undo":term.db["strings"][186],             # <<<<<<<<<<<<<<
- *         "key_sbeg":term.db["strings"][187],
- *         "key_scancel":term.db["strings"][188],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 858, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 858, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xBA, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 858, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_undo, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":859
- *         "key_suspend":term.db["strings"][185],
- *         "key_undo":term.db["strings"][186],
- *         "key_sbeg":term.db["strings"][187],             # <<<<<<<<<<<<<<
- *         "key_scancel":term.db["strings"][188],
- *         "key_scommand":term.db["strings"][189],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 859, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 859, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xBB, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 859, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_sbeg, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":860
- *         "key_undo":term.db["strings"][186],
- *         "key_sbeg":term.db["strings"][187],
- *         "key_scancel":term.db["strings"][188],             # <<<<<<<<<<<<<<
- *         "key_scommand":term.db["strings"][189],
- *         "key_scopy":term.db["strings"][190],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 860, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 860, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xBC, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 860, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_scancel, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":861
- *         "key_sbeg":term.db["strings"][187],
- *         "key_scancel":term.db["strings"][188],
- *         "key_scommand":term.db["strings"][189],             # <<<<<<<<<<<<<<
- *         "key_scopy":term.db["strings"][190],
- *         "key_screate":term.db["strings"][191],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 861, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 861, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xBD, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 861, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_scommand, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":862
- *         "key_scancel":term.db["strings"][188],
- *         "key_scommand":term.db["strings"][189],
- *         "key_scopy":term.db["strings"][190],             # <<<<<<<<<<<<<<
- *         "key_screate":term.db["strings"][191],
- *         "key_sdc":term.db["strings"][192],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 862, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 862, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xBE, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 862, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_scopy, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":863
- *         "key_scommand":term.db["strings"][189],
- *         "key_scopy":term.db["strings"][190],
- *         "key_screate":term.db["strings"][191],             # <<<<<<<<<<<<<<
- *         "key_sdc":term.db["strings"][192],
- *         "key_sdl":term.db["strings"][193],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 863, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 863, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xBF, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 863, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_screate, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":864
- *         "key_scopy":term.db["strings"][190],
- *         "key_screate":term.db["strings"][191],
- *         "key_sdc":term.db["strings"][192],             # <<<<<<<<<<<<<<
- *         "key_sdl":term.db["strings"][193],
- *         "key_select":term.db["strings"][194],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 864, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 864, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xC0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 864, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_sdc, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":865
- *         "key_screate":term.db["strings"][191],
- *         "key_sdc":term.db["strings"][192],
- *         "key_sdl":term.db["strings"][193],             # <<<<<<<<<<<<<<
- *         "key_select":term.db["strings"][194],
- *         "key_send":term.db["strings"][195],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 865, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 865, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xC1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 865, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_sdl, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":866
- *         "key_sdc":term.db["strings"][192],
- *         "key_sdl":term.db["strings"][193],
- *         "key_select":term.db["strings"][194],             # <<<<<<<<<<<<<<
- *         "key_send":term.db["strings"][195],
- *         "key_seol":term.db["strings"][196],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 866, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 866, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xC2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 866, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_select, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":867
- *         "key_sdl":term.db["strings"][193],
- *         "key_select":term.db["strings"][194],
- *         "key_send":term.db["strings"][195],             # <<<<<<<<<<<<<<
- *         "key_seol":term.db["strings"][196],
- *         "key_sexit":term.db["strings"][197],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 867, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 867, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xC3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 867, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_send, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":868
- *         "key_select":term.db["strings"][194],
- *         "key_send":term.db["strings"][195],
- *         "key_seol":term.db["strings"][196],             # <<<<<<<<<<<<<<
- *         "key_sexit":term.db["strings"][197],
- *         "key_sfind":term.db["strings"][198],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 868, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 868, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xC4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 868, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_seol, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":869
- *         "key_send":term.db["strings"][195],
- *         "key_seol":term.db["strings"][196],
- *         "key_sexit":term.db["strings"][197],             # <<<<<<<<<<<<<<
- *         "key_sfind":term.db["strings"][198],
- *         "key_shelp":term.db["strings"][199],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 869, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 869, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xC5, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 869, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_sexit, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":870
- *         "key_seol":term.db["strings"][196],
- *         "key_sexit":term.db["strings"][197],
- *         "key_sfind":term.db["strings"][198],             # <<<<<<<<<<<<<<
- *         "key_shelp":term.db["strings"][199],
- *         "key_shome":term.db["strings"][200],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 870, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 870, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xC6, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 870, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_sfind, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":871
- *         "key_sexit":term.db["strings"][197],
- *         "key_sfind":term.db["strings"][198],
- *         "key_shelp":term.db["strings"][199],             # <<<<<<<<<<<<<<
- *         "key_shome":term.db["strings"][200],
- *         "key_sic":term.db["strings"][201],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 871, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 871, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xC7, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 871, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_shelp, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":872
- *         "key_sfind":term.db["strings"][198],
- *         "key_shelp":term.db["strings"][199],
- *         "key_shome":term.db["strings"][200],             # <<<<<<<<<<<<<<
- *         "key_sic":term.db["strings"][201],
- *         "key_sleft":term.db["strings"][202],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 872, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 872, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xC8, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 872, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_shome, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":873
- *         "key_shelp":term.db["strings"][199],
- *         "key_shome":term.db["strings"][200],
- *         "key_sic":term.db["strings"][201],             # <<<<<<<<<<<<<<
- *         "key_sleft":term.db["strings"][202],
- *         "key_smessage":term.db["strings"][203],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 873, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 873, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xC9, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 873, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_sic, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":874
- *         "key_shome":term.db["strings"][200],
- *         "key_sic":term.db["strings"][201],
- *         "key_sleft":term.db["strings"][202],             # <<<<<<<<<<<<<<
- *         "key_smessage":term.db["strings"][203],
- *         "key_smove":term.db["strings"][204],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 874, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 874, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xCA, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 874, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_sleft, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":875
- *         "key_sic":term.db["strings"][201],
- *         "key_sleft":term.db["strings"][202],
- *         "key_smessage":term.db["strings"][203],             # <<<<<<<<<<<<<<
- *         "key_smove":term.db["strings"][204],
- *         "key_snext":term.db["strings"][205],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 875, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 875, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xCB, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 875, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_smessage, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":876
- *         "key_sleft":term.db["strings"][202],
- *         "key_smessage":term.db["strings"][203],
- *         "key_smove":term.db["strings"][204],             # <<<<<<<<<<<<<<
- *         "key_snext":term.db["strings"][205],
- *         "key_soptions":term.db["strings"][206],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 876, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 876, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xCC, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 876, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_smove, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":877
- *         "key_smessage":term.db["strings"][203],
- *         "key_smove":term.db["strings"][204],
- *         "key_snext":term.db["strings"][205],             # <<<<<<<<<<<<<<
- *         "key_soptions":term.db["strings"][206],
- *         "key_sprevious":term.db["strings"][207],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 877, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 877, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xCD, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 877, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_snext, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":878
- *         "key_smove":term.db["strings"][204],
- *         "key_snext":term.db["strings"][205],
- *         "key_soptions":term.db["strings"][206],             # <<<<<<<<<<<<<<
- *         "key_sprevious":term.db["strings"][207],
- *         "key_sprint":term.db["strings"][208],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 878, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 878, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xCE, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 878, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_soptions, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":879
- *         "key_snext":term.db["strings"][205],
- *         "key_soptions":term.db["strings"][206],
- *         "key_sprevious":term.db["strings"][207],             # <<<<<<<<<<<<<<
- *         "key_sprint":term.db["strings"][208],
- *         "key_sredo":term.db["strings"][209],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 879, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 879, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xCF, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 879, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_sprevious, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":880
- *         "key_soptions":term.db["strings"][206],
- *         "key_sprevious":term.db["strings"][207],
- *         "key_sprint":term.db["strings"][208],             # <<<<<<<<<<<<<<
- *         "key_sredo":term.db["strings"][209],
- *         "key_sreplace":term.db["strings"][210],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 880, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 880, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xD0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 880, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_sprint, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":881
- *         "key_sprevious":term.db["strings"][207],
- *         "key_sprint":term.db["strings"][208],
- *         "key_sredo":term.db["strings"][209],             # <<<<<<<<<<<<<<
- *         "key_sreplace":term.db["strings"][210],
- *         "key_sright":term.db["strings"][211],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 881, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 881, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xD1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 881, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_sredo, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":882
- *         "key_sprint":term.db["strings"][208],
- *         "key_sredo":term.db["strings"][209],
- *         "key_sreplace":term.db["strings"][210],             # <<<<<<<<<<<<<<
- *         "key_sright":term.db["strings"][211],
- *         "key_srsume":term.db["strings"][212],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 882, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 882, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xD2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 882, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_sreplace, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":883
- *         "key_sredo":term.db["strings"][209],
- *         "key_sreplace":term.db["strings"][210],
- *         "key_sright":term.db["strings"][211],             # <<<<<<<<<<<<<<
- *         "key_srsume":term.db["strings"][212],
- *         "key_ssave":term.db["strings"][213],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 883, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 883, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xD3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 883, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_sright, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":884
- *         "key_sreplace":term.db["strings"][210],
- *         "key_sright":term.db["strings"][211],
- *         "key_srsume":term.db["strings"][212],             # <<<<<<<<<<<<<<
- *         "key_ssave":term.db["strings"][213],
- *         "key_ssuspend":term.db["strings"][214],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 884, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 884, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xD4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 884, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_srsume, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":885
- *         "key_sright":term.db["strings"][211],
- *         "key_srsume":term.db["strings"][212],
- *         "key_ssave":term.db["strings"][213],             # <<<<<<<<<<<<<<
- *         "key_ssuspend":term.db["strings"][214],
- *         "key_sundo":term.db["strings"][215],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 885, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 885, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xD5, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 885, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_ssave, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":886
- *         "key_srsume":term.db["strings"][212],
- *         "key_ssave":term.db["strings"][213],
- *         "key_ssuspend":term.db["strings"][214],             # <<<<<<<<<<<<<<
- *         "key_sundo":term.db["strings"][215],
- *         "req_for_input":term.db["strings"][216],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 886, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 886, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xD6, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 886, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_ssuspend, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":887
- *         "key_ssave":term.db["strings"][213],
- *         "key_ssuspend":term.db["strings"][214],
- *         "key_sundo":term.db["strings"][215],             # <<<<<<<<<<<<<<
- *         "req_for_input":term.db["strings"][216],
- *         "key_f11":term.db["strings"][217],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 887, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 887, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xD7, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 887, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_sundo, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":888
- *         "key_ssuspend":term.db["strings"][214],
- *         "key_sundo":term.db["strings"][215],
- *         "req_for_input":term.db["strings"][216],             # <<<<<<<<<<<<<<
- *         "key_f11":term.db["strings"][217],
- *         "key_f12":term.db["strings"][218],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 888, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 888, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xD8, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 888, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_req_for_input, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":889
- *         "key_sundo":term.db["strings"][215],
- *         "req_for_input":term.db["strings"][216],
- *         "key_f11":term.db["strings"][217],             # <<<<<<<<<<<<<<
- *         "key_f12":term.db["strings"][218],
- *         "key_f13":term.db["strings"][219],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 889, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 889, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xD9, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 889, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f11, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":890
- *         "req_for_input":term.db["strings"][216],
- *         "key_f11":term.db["strings"][217],
- *         "key_f12":term.db["strings"][218],             # <<<<<<<<<<<<<<
- *         "key_f13":term.db["strings"][219],
- *         "key_f14":term.db["strings"][220],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 890, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 890, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xDA, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 890, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f12, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":891
- *         "key_f11":term.db["strings"][217],
- *         "key_f12":term.db["strings"][218],
- *         "key_f13":term.db["strings"][219],             # <<<<<<<<<<<<<<
- *         "key_f14":term.db["strings"][220],
- *         "key_f15":term.db["strings"][221],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 891, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 891, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xDB, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 891, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f13, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":892
- *         "key_f12":term.db["strings"][218],
- *         "key_f13":term.db["strings"][219],
- *         "key_f14":term.db["strings"][220],             # <<<<<<<<<<<<<<
- *         "key_f15":term.db["strings"][221],
- *         "key_f16":term.db["strings"][222],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 892, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 892, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xDC, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 892, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f14, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":893
- *         "key_f13":term.db["strings"][219],
- *         "key_f14":term.db["strings"][220],
- *         "key_f15":term.db["strings"][221],             # <<<<<<<<<<<<<<
- *         "key_f16":term.db["strings"][222],
- *         "key_f17":term.db["strings"][223],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 893, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 893, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xDD, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 893, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f15, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":894
- *         "key_f14":term.db["strings"][220],
- *         "key_f15":term.db["strings"][221],
- *         "key_f16":term.db["strings"][222],             # <<<<<<<<<<<<<<
- *         "key_f17":term.db["strings"][223],
- *         "key_f18":term.db["strings"][224],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 894, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 894, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xDE, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 894, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f16, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":895
- *         "key_f15":term.db["strings"][221],
- *         "key_f16":term.db["strings"][222],
- *         "key_f17":term.db["strings"][223],             # <<<<<<<<<<<<<<
- *         "key_f18":term.db["strings"][224],
- *         "key_f19":term.db["strings"][225],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 895, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 895, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xDF, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 895, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f17, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":896
- *         "key_f16":term.db["strings"][222],
- *         "key_f17":term.db["strings"][223],
- *         "key_f18":term.db["strings"][224],             # <<<<<<<<<<<<<<
- *         "key_f19":term.db["strings"][225],
- *         "key_f20":term.db["strings"][226],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 896, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 896, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xE0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 896, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f18, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":897
- *         "key_f17":term.db["strings"][223],
- *         "key_f18":term.db["strings"][224],
- *         "key_f19":term.db["strings"][225],             # <<<<<<<<<<<<<<
- *         "key_f20":term.db["strings"][226],
- *         "key_f21":term.db["strings"][227],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 897, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 897, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xE1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 897, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f19, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":898
- *         "key_f18":term.db["strings"][224],
- *         "key_f19":term.db["strings"][225],
- *         "key_f20":term.db["strings"][226],             # <<<<<<<<<<<<<<
- *         "key_f21":term.db["strings"][227],
- *         "key_f22":term.db["strings"][228],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 898, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 898, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xE2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 898, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f20, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":899
- *         "key_f19":term.db["strings"][225],
- *         "key_f20":term.db["strings"][226],
- *         "key_f21":term.db["strings"][227],             # <<<<<<<<<<<<<<
- *         "key_f22":term.db["strings"][228],
- *         "key_f23":term.db["strings"][229],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 899, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 899, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xE3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 899, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f21, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":900
- *         "key_f20":term.db["strings"][226],
- *         "key_f21":term.db["strings"][227],
- *         "key_f22":term.db["strings"][228],             # <<<<<<<<<<<<<<
- *         "key_f23":term.db["strings"][229],
- *         "key_f24":term.db["strings"][230],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 900, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 900, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xE4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 900, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f22, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":901
- *         "key_f21":term.db["strings"][227],
- *         "key_f22":term.db["strings"][228],
- *         "key_f23":term.db["strings"][229],             # <<<<<<<<<<<<<<
- *         "key_f24":term.db["strings"][230],
- *         "key_f25":term.db["strings"][231],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 901, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 901, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xE5, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 901, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f23, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":902
- *         "key_f22":term.db["strings"][228],
- *         "key_f23":term.db["strings"][229],
- *         "key_f24":term.db["strings"][230],             # <<<<<<<<<<<<<<
- *         "key_f25":term.db["strings"][231],
- *         "key_f26":term.db["strings"][232],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 902, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 902, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xE6, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 902, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f24, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":903
- *         "key_f23":term.db["strings"][229],
- *         "key_f24":term.db["strings"][230],
- *         "key_f25":term.db["strings"][231],             # <<<<<<<<<<<<<<
- *         "key_f26":term.db["strings"][232],
- *         "key_f27":term.db["strings"][233],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 903, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 903, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xE7, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 903, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f25, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":904
- *         "key_f24":term.db["strings"][230],
- *         "key_f25":term.db["strings"][231],
- *         "key_f26":term.db["strings"][232],             # <<<<<<<<<<<<<<
- *         "key_f27":term.db["strings"][233],
- *         "key_f28":term.db["strings"][234],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 904, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 904, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xE8, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 904, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f26, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":905
- *         "key_f25":term.db["strings"][231],
- *         "key_f26":term.db["strings"][232],
- *         "key_f27":term.db["strings"][233],             # <<<<<<<<<<<<<<
- *         "key_f28":term.db["strings"][234],
- *         "key_f29":term.db["strings"][235],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 905, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 905, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xE9, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 905, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f27, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":906
- *         "key_f26":term.db["strings"][232],
- *         "key_f27":term.db["strings"][233],
- *         "key_f28":term.db["strings"][234],             # <<<<<<<<<<<<<<
- *         "key_f29":term.db["strings"][235],
- *         "key_f30":term.db["strings"][236],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 906, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 906, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xEA, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 906, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f28, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":907
- *         "key_f27":term.db["strings"][233],
- *         "key_f28":term.db["strings"][234],
- *         "key_f29":term.db["strings"][235],             # <<<<<<<<<<<<<<
- *         "key_f30":term.db["strings"][236],
- *         "key_f31":term.db["strings"][237],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 907, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 907, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xEB, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 907, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f29, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":908
- *         "key_f28":term.db["strings"][234],
- *         "key_f29":term.db["strings"][235],
- *         "key_f30":term.db["strings"][236],             # <<<<<<<<<<<<<<
- *         "key_f31":term.db["strings"][237],
- *         "key_f32":term.db["strings"][238],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 908, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 908, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xEC, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 908, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f30, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":909
- *         "key_f29":term.db["strings"][235],
- *         "key_f30":term.db["strings"][236],
- *         "key_f31":term.db["strings"][237],             # <<<<<<<<<<<<<<
- *         "key_f32":term.db["strings"][238],
- *         "key_f33":term.db["strings"][239],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 909, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 909, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xED, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 909, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f31, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":910
- *         "key_f30":term.db["strings"][236],
- *         "key_f31":term.db["strings"][237],
- *         "key_f32":term.db["strings"][238],             # <<<<<<<<<<<<<<
- *         "key_f33":term.db["strings"][239],
- *         "key_f34":term.db["strings"][240],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 910, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 910, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xEE, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 910, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f32, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":911
- *         "key_f31":term.db["strings"][237],
- *         "key_f32":term.db["strings"][238],
- *         "key_f33":term.db["strings"][239],             # <<<<<<<<<<<<<<
- *         "key_f34":term.db["strings"][240],
- *         "key_f35":term.db["strings"][241],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 911, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 911, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xEF, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 911, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f33, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":912
- *         "key_f32":term.db["strings"][238],
- *         "key_f33":term.db["strings"][239],
- *         "key_f34":term.db["strings"][240],             # <<<<<<<<<<<<<<
- *         "key_f35":term.db["strings"][241],
- *         "key_f36":term.db["strings"][242],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 912, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 912, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xF0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 912, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f34, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":913
- *         "key_f33":term.db["strings"][239],
- *         "key_f34":term.db["strings"][240],
- *         "key_f35":term.db["strings"][241],             # <<<<<<<<<<<<<<
- *         "key_f36":term.db["strings"][242],
- *         "key_f37":term.db["strings"][243],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 913, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 913, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xF1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 913, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f35, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":914
- *         "key_f34":term.db["strings"][240],
- *         "key_f35":term.db["strings"][241],
- *         "key_f36":term.db["strings"][242],             # <<<<<<<<<<<<<<
- *         "key_f37":term.db["strings"][243],
- *         "key_f38":term.db["strings"][244],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 914, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 914, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xF2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 914, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f36, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":915
- *         "key_f35":term.db["strings"][241],
- *         "key_f36":term.db["strings"][242],
- *         "key_f37":term.db["strings"][243],             # <<<<<<<<<<<<<<
- *         "key_f38":term.db["strings"][244],
- *         "key_f39":term.db["strings"][245],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 915, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 915, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xF3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 915, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f37, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":916
- *         "key_f36":term.db["strings"][242],
- *         "key_f37":term.db["strings"][243],
- *         "key_f38":term.db["strings"][244],             # <<<<<<<<<<<<<<
- *         "key_f39":term.db["strings"][245],
- *         "key_f40":term.db["strings"][246],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 916, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 916, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xF4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 916, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f38, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":917
- *         "key_f37":term.db["strings"][243],
- *         "key_f38":term.db["strings"][244],
- *         "key_f39":term.db["strings"][245],             # <<<<<<<<<<<<<<
- *         "key_f40":term.db["strings"][246],
- *         "key_f41":term.db["strings"][247],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 917, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 917, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xF5, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 917, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f39, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":918
- *         "key_f38":term.db["strings"][244],
- *         "key_f39":term.db["strings"][245],
- *         "key_f40":term.db["strings"][246],             # <<<<<<<<<<<<<<
- *         "key_f41":term.db["strings"][247],
- *         "key_f42":term.db["strings"][248],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 918, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 918, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xF6, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 918, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f40, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":919
- *         "key_f39":term.db["strings"][245],
- *         "key_f40":term.db["strings"][246],
- *         "key_f41":term.db["strings"][247],             # <<<<<<<<<<<<<<
- *         "key_f42":term.db["strings"][248],
- *         "key_f43":term.db["strings"][249],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 919, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 919, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xF7, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 919, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f41, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":920
- *         "key_f40":term.db["strings"][246],
- *         "key_f41":term.db["strings"][247],
- *         "key_f42":term.db["strings"][248],             # <<<<<<<<<<<<<<
- *         "key_f43":term.db["strings"][249],
- *         "key_f44":term.db["strings"][250],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 920, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 920, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xF8, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 920, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f42, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":921
- *         "key_f41":term.db["strings"][247],
- *         "key_f42":term.db["strings"][248],
- *         "key_f43":term.db["strings"][249],             # <<<<<<<<<<<<<<
- *         "key_f44":term.db["strings"][250],
- *         "key_f45":term.db["strings"][251],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 921, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 921, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xF9, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 921, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f43, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":922
- *         "key_f42":term.db["strings"][248],
- *         "key_f43":term.db["strings"][249],
- *         "key_f44":term.db["strings"][250],             # <<<<<<<<<<<<<<
- *         "key_f45":term.db["strings"][251],
- *         "key_f46":term.db["strings"][252],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 922, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 922, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xFA, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 922, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f44, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":923
- *         "key_f43":term.db["strings"][249],
- *         "key_f44":term.db["strings"][250],
- *         "key_f45":term.db["strings"][251],             # <<<<<<<<<<<<<<
- *         "key_f46":term.db["strings"][252],
- *         "key_f47":term.db["strings"][253],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 923, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 923, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xFB, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 923, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f45, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":924
- *         "key_f44":term.db["strings"][250],
- *         "key_f45":term.db["strings"][251],
- *         "key_f46":term.db["strings"][252],             # <<<<<<<<<<<<<<
- *         "key_f47":term.db["strings"][253],
- *         "key_f48":term.db["strings"][254],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 924, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 924, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xFC, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 924, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f46, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":925
- *         "key_f45":term.db["strings"][251],
- *         "key_f46":term.db["strings"][252],
- *         "key_f47":term.db["strings"][253],             # <<<<<<<<<<<<<<
- *         "key_f48":term.db["strings"][254],
- *         "key_f49":term.db["strings"][255],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 925, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 925, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xFD, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 925, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f47, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":926
- *         "key_f46":term.db["strings"][252],
- *         "key_f47":term.db["strings"][253],
- *         "key_f48":term.db["strings"][254],             # <<<<<<<<<<<<<<
- *         "key_f49":term.db["strings"][255],
- *         "key_f50":term.db["strings"][256],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 926, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 926, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xFE, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 926, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f48, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":927
- *         "key_f47":term.db["strings"][253],
- *         "key_f48":term.db["strings"][254],
- *         "key_f49":term.db["strings"][255],             # <<<<<<<<<<<<<<
- *         "key_f50":term.db["strings"][256],
- *         "key_f51":term.db["strings"][257],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 927, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 927, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0xFF, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 927, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f49, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":928
- *         "key_f48":term.db["strings"][254],
- *         "key_f49":term.db["strings"][255],
- *         "key_f50":term.db["strings"][256],             # <<<<<<<<<<<<<<
- *         "key_f51":term.db["strings"][257],
- *         "key_f52":term.db["strings"][258],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 928, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 928, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x100, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 928, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f50, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":929
- *         "key_f49":term.db["strings"][255],
- *         "key_f50":term.db["strings"][256],
- *         "key_f51":term.db["strings"][257],             # <<<<<<<<<<<<<<
- *         "key_f52":term.db["strings"][258],
- *         "key_f53":term.db["strings"][259],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 929, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 929, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x101, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 929, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f51, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":930
- *         "key_f50":term.db["strings"][256],
- *         "key_f51":term.db["strings"][257],
- *         "key_f52":term.db["strings"][258],             # <<<<<<<<<<<<<<
- *         "key_f53":term.db["strings"][259],
- *         "key_f54":term.db["strings"][260],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 930, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 930, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x102, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 930, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f52, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":931
- *         "key_f51":term.db["strings"][257],
- *         "key_f52":term.db["strings"][258],
- *         "key_f53":term.db["strings"][259],             # <<<<<<<<<<<<<<
- *         "key_f54":term.db["strings"][260],
- *         "key_f55":term.db["strings"][261],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 931, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 931, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x103, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 931, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f53, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":932
- *         "key_f52":term.db["strings"][258],
- *         "key_f53":term.db["strings"][259],
- *         "key_f54":term.db["strings"][260],             # <<<<<<<<<<<<<<
- *         "key_f55":term.db["strings"][261],
- *         "key_f56":term.db["strings"][262],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 932, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 932, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x104, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 932, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f54, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":933
- *         "key_f53":term.db["strings"][259],
- *         "key_f54":term.db["strings"][260],
- *         "key_f55":term.db["strings"][261],             # <<<<<<<<<<<<<<
- *         "key_f56":term.db["strings"][262],
- *         "key_f57":term.db["strings"][263],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 933, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 933, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x105, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 933, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f55, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":934
- *         "key_f54":term.db["strings"][260],
- *         "key_f55":term.db["strings"][261],
- *         "key_f56":term.db["strings"][262],             # <<<<<<<<<<<<<<
- *         "key_f57":term.db["strings"][263],
- *         "key_f58":term.db["strings"][264],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 934, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 934, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x106, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 934, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f56, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":935
- *         "key_f55":term.db["strings"][261],
- *         "key_f56":term.db["strings"][262],
- *         "key_f57":term.db["strings"][263],             # <<<<<<<<<<<<<<
- *         "key_f58":term.db["strings"][264],
- *         "key_f59":term.db["strings"][265],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 935, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 935, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x107, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 935, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f57, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":936
- *         "key_f56":term.db["strings"][262],
- *         "key_f57":term.db["strings"][263],
- *         "key_f58":term.db["strings"][264],             # <<<<<<<<<<<<<<
- *         "key_f59":term.db["strings"][265],
- *         "key_f60":term.db["strings"][266],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 936, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 936, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x108, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 936, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f58, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":937
- *         "key_f57":term.db["strings"][263],
- *         "key_f58":term.db["strings"][264],
- *         "key_f59":term.db["strings"][265],             # <<<<<<<<<<<<<<
- *         "key_f60":term.db["strings"][266],
- *         "key_f61":term.db["strings"][267],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 937, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 937, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x109, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 937, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f59, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":938
- *         "key_f58":term.db["strings"][264],
- *         "key_f59":term.db["strings"][265],
- *         "key_f60":term.db["strings"][266],             # <<<<<<<<<<<<<<
- *         "key_f61":term.db["strings"][267],
- *         "key_f62":term.db["strings"][268],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 938, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 938, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x10A, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 938, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f60, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":939
- *         "key_f59":term.db["strings"][265],
- *         "key_f60":term.db["strings"][266],
- *         "key_f61":term.db["strings"][267],             # <<<<<<<<<<<<<<
- *         "key_f62":term.db["strings"][268],
- *         "key_f63":term.db["strings"][269],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 939, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 939, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x10B, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 939, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f61, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":940
- *         "key_f60":term.db["strings"][266],
- *         "key_f61":term.db["strings"][267],
- *         "key_f62":term.db["strings"][268],             # <<<<<<<<<<<<<<
- *         "key_f63":term.db["strings"][269],
- *         "clr_bol":term.db["strings"][270],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 940, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 940, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x10C, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 940, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f62, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":941
- *         "key_f61":term.db["strings"][267],
- *         "key_f62":term.db["strings"][268],
- *         "key_f63":term.db["strings"][269],             # <<<<<<<<<<<<<<
- *         "clr_bol":term.db["strings"][270],
- *         "clear_margins":term.db["strings"][271],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 941, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 941, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x10D, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 941, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_f63, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":942
- *         "key_f62":term.db["strings"][268],
- *         "key_f63":term.db["strings"][269],
- *         "clr_bol":term.db["strings"][270],             # <<<<<<<<<<<<<<
- *         "clear_margins":term.db["strings"][271],
- *         "set_left_margin":term.db["strings"][272],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 942, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 942, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x10E, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 942, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_clr_bol, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":943
- *         "key_f63":term.db["strings"][269],
- *         "clr_bol":term.db["strings"][270],
- *         "clear_margins":term.db["strings"][271],             # <<<<<<<<<<<<<<
- *         "set_left_margin":term.db["strings"][272],
- *         "set_right_margin":term.db["strings"][273],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 943, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 943, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x10F, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 943, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_clear_margins, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":944
- *         "clr_bol":term.db["strings"][270],
- *         "clear_margins":term.db["strings"][271],
- *         "set_left_margin":term.db["strings"][272],             # <<<<<<<<<<<<<<
- *         "set_right_margin":term.db["strings"][273],
- *         "label_format":term.db["strings"][274],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 944, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 944, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x110, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 944, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set_left_margin, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":945
- *         "clear_margins":term.db["strings"][271],
- *         "set_left_margin":term.db["strings"][272],
- *         "set_right_margin":term.db["strings"][273],             # <<<<<<<<<<<<<<
- *         "label_format":term.db["strings"][274],
- *         "set_clock":term.db["strings"][275],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 945, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 945, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x111, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 945, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set_right_margin, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":946
- *         "set_left_margin":term.db["strings"][272],
- *         "set_right_margin":term.db["strings"][273],
- *         "label_format":term.db["strings"][274],             # <<<<<<<<<<<<<<
- *         "set_clock":term.db["strings"][275],
- *         "display_clock":term.db["strings"][276],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 946, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 946, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x112, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 946, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_label_format, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":947
- *         "set_right_margin":term.db["strings"][273],
- *         "label_format":term.db["strings"][274],
- *         "set_clock":term.db["strings"][275],             # <<<<<<<<<<<<<<
- *         "display_clock":term.db["strings"][276],
- *         "remove_clock":term.db["strings"][277],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 947, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 947, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x113, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 947, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set_clock, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":948
- *         "label_format":term.db["strings"][274],
- *         "set_clock":term.db["strings"][275],
- *         "display_clock":term.db["strings"][276],             # <<<<<<<<<<<<<<
- *         "remove_clock":term.db["strings"][277],
- *         "create_window":term.db["strings"][278],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 948, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 948, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x114, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 948, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_display_clock, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":949
- *         "set_clock":term.db["strings"][275],
- *         "display_clock":term.db["strings"][276],
- *         "remove_clock":term.db["strings"][277],             # <<<<<<<<<<<<<<
- *         "create_window":term.db["strings"][278],
- *         "goto_window":term.db["strings"][279],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 949, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 949, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x115, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 949, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_remove_clock, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":950
- *         "display_clock":term.db["strings"][276],
- *         "remove_clock":term.db["strings"][277],
- *         "create_window":term.db["strings"][278],             # <<<<<<<<<<<<<<
- *         "goto_window":term.db["strings"][279],
- *         "hangup":term.db["strings"][280],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 950, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 950, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x116, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 950, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_create_window, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":951
- *         "remove_clock":term.db["strings"][277],
- *         "create_window":term.db["strings"][278],
- *         "goto_window":term.db["strings"][279],             # <<<<<<<<<<<<<<
- *         "hangup":term.db["strings"][280],
- *         "dial_phone":term.db["strings"][281],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 951, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 951, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x117, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 951, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_goto_window, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":952
- *         "create_window":term.db["strings"][278],
- *         "goto_window":term.db["strings"][279],
- *         "hangup":term.db["strings"][280],             # <<<<<<<<<<<<<<
- *         "dial_phone":term.db["strings"][281],
- *         "quick_dial":term.db["strings"][282],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 952, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 952, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x118, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 952, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_hangup, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":953
- *         "goto_window":term.db["strings"][279],
- *         "hangup":term.db["strings"][280],
- *         "dial_phone":term.db["strings"][281],             # <<<<<<<<<<<<<<
- *         "quick_dial":term.db["strings"][282],
- *         "tone":term.db["strings"][283],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 953, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 953, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x119, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 953, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dial_phone, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":954
- *         "hangup":term.db["strings"][280],
- *         "dial_phone":term.db["strings"][281],
- *         "quick_dial":term.db["strings"][282],             # <<<<<<<<<<<<<<
- *         "tone":term.db["strings"][283],
- *         "pulse":term.db["strings"][284],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 954, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 954, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x11A, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 954, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_quick_dial, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":955
- *         "dial_phone":term.db["strings"][281],
- *         "quick_dial":term.db["strings"][282],
- *         "tone":term.db["strings"][283],             # <<<<<<<<<<<<<<
- *         "pulse":term.db["strings"][284],
- *         "flash_hook":term.db["strings"][285],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 955, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 955, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x11B, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 955, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_tone, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":956
- *         "quick_dial":term.db["strings"][282],
- *         "tone":term.db["strings"][283],
- *         "pulse":term.db["strings"][284],             # <<<<<<<<<<<<<<
- *         "flash_hook":term.db["strings"][285],
- *         "fixed_pause":term.db["strings"][286],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 956, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 956, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x11C, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 956, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_pulse, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":957
- *         "tone":term.db["strings"][283],
- *         "pulse":term.db["strings"][284],
- *         "flash_hook":term.db["strings"][285],             # <<<<<<<<<<<<<<
- *         "fixed_pause":term.db["strings"][286],
- *         "wait_tone":term.db["strings"][287],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 957, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 957, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x11D, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 957, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_flash_hook, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":958
- *         "pulse":term.db["strings"][284],
- *         "flash_hook":term.db["strings"][285],
- *         "fixed_pause":term.db["strings"][286],             # <<<<<<<<<<<<<<
- *         "wait_tone":term.db["strings"][287],
- *         "user0":term.db["strings"][288],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 958, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 958, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x11E, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 958, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_fixed_pause, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":959
- *         "flash_hook":term.db["strings"][285],
- *         "fixed_pause":term.db["strings"][286],
- *         "wait_tone":term.db["strings"][287],             # <<<<<<<<<<<<<<
- *         "user0":term.db["strings"][288],
- *         "user1":term.db["strings"][289],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 959, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 959, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x11F, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 959, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_wait_tone, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":960
- *         "fixed_pause":term.db["strings"][286],
- *         "wait_tone":term.db["strings"][287],
- *         "user0":term.db["strings"][288],             # <<<<<<<<<<<<<<
- *         "user1":term.db["strings"][289],
- *         "user2":term.db["strings"][290],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 960, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 960, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x120, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 960, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_user0, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":961
- *         "wait_tone":term.db["strings"][287],
- *         "user0":term.db["strings"][288],
- *         "user1":term.db["strings"][289],             # <<<<<<<<<<<<<<
- *         "user2":term.db["strings"][290],
- *         "user3":term.db["strings"][291],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 961, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 961, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x121, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 961, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_user1, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":962
- *         "user0":term.db["strings"][288],
- *         "user1":term.db["strings"][289],
- *         "user2":term.db["strings"][290],             # <<<<<<<<<<<<<<
- *         "user3":term.db["strings"][291],
- *         "user4":term.db["strings"][292],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 962, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 962, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x122, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 962, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_user2, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":963
- *         "user1":term.db["strings"][289],
- *         "user2":term.db["strings"][290],
- *         "user3":term.db["strings"][291],             # <<<<<<<<<<<<<<
- *         "user4":term.db["strings"][292],
- *         "user5":term.db["strings"][293],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 963, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 963, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x123, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 963, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_user3, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":964
- *         "user2":term.db["strings"][290],
- *         "user3":term.db["strings"][291],
- *         "user4":term.db["strings"][292],             # <<<<<<<<<<<<<<
- *         "user5":term.db["strings"][293],
- *         "user6":term.db["strings"][294],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 964, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 964, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x124, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 964, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_user4, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":965
- *         "user3":term.db["strings"][291],
- *         "user4":term.db["strings"][292],
- *         "user5":term.db["strings"][293],             # <<<<<<<<<<<<<<
- *         "user6":term.db["strings"][294],
- *         "user7":term.db["strings"][295],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 965, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 965, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x125, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 965, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_user5, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":966
- *         "user4":term.db["strings"][292],
- *         "user5":term.db["strings"][293],
- *         "user6":term.db["strings"][294],             # <<<<<<<<<<<<<<
- *         "user7":term.db["strings"][295],
- *         "user8":term.db["strings"][296],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 966, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 966, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x126, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 966, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_user6, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":967
- *         "user5":term.db["strings"][293],
- *         "user6":term.db["strings"][294],
- *         "user7":term.db["strings"][295],             # <<<<<<<<<<<<<<
- *         "user8":term.db["strings"][296],
- *         "user9":term.db["strings"][297],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 967, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 967, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x127, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 967, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_user7, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":968
- *         "user6":term.db["strings"][294],
- *         "user7":term.db["strings"][295],
- *         "user8":term.db["strings"][296],             # <<<<<<<<<<<<<<
- *         "user9":term.db["strings"][297],
- *         "orig_pair":term.db["strings"][298],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 968, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 968, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x128, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 968, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_user8, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":969
- *         "user7":term.db["strings"][295],
- *         "user8":term.db["strings"][296],
- *         "user9":term.db["strings"][297],             # <<<<<<<<<<<<<<
- *         "orig_pair":term.db["strings"][298],
- *         "orig_colors":term.db["strings"][299],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 969, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 969, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x129, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 969, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_user9, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":970
- *         "user8":term.db["strings"][296],
- *         "user9":term.db["strings"][297],
- *         "orig_pair":term.db["strings"][298],             # <<<<<<<<<<<<<<
- *         "orig_colors":term.db["strings"][299],
- *         "initialize_color":term.db["strings"][300],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 970, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 970, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x12A, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 970, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_orig_pair, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":971
- *         "user9":term.db["strings"][297],
- *         "orig_pair":term.db["strings"][298],
- *         "orig_colors":term.db["strings"][299],             # <<<<<<<<<<<<<<
- *         "initialize_color":term.db["strings"][300],
- *         "initialize_pair":term.db["strings"][301],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 971, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 971, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x12B, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 971, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_orig_colors, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":972
- *         "orig_pair":term.db["strings"][298],
- *         "orig_colors":term.db["strings"][299],
- *         "initialize_color":term.db["strings"][300],             # <<<<<<<<<<<<<<
- *         "initialize_pair":term.db["strings"][301],
- *         "set_color_pair":term.db["strings"][302],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 972, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 972, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x12C, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 972, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_initialize_color, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":973
- *         "orig_colors":term.db["strings"][299],
- *         "initialize_color":term.db["strings"][300],
- *         "initialize_pair":term.db["strings"][301],             # <<<<<<<<<<<<<<
- *         "set_color_pair":term.db["strings"][302],
- *         "set_foreground":term.db["strings"][303],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 973, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 973, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x12D, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 973, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_initialize_pair, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":974
- *         "initialize_color":term.db["strings"][300],
- *         "initialize_pair":term.db["strings"][301],
- *         "set_color_pair":term.db["strings"][302],             # <<<<<<<<<<<<<<
- *         "set_foreground":term.db["strings"][303],
- *         "set_background":term.db["strings"][304],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 974, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 974, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x12E, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 974, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set_color_pair, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":975
- *         "initialize_pair":term.db["strings"][301],
- *         "set_color_pair":term.db["strings"][302],
- *         "set_foreground":term.db["strings"][303],             # <<<<<<<<<<<<<<
- *         "set_background":term.db["strings"][304],
- *         "change_char_pitch":term.db["strings"][305],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 975, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 975, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x12F, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 975, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set_foreground, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":976
- *         "set_color_pair":term.db["strings"][302],
- *         "set_foreground":term.db["strings"][303],
- *         "set_background":term.db["strings"][304],             # <<<<<<<<<<<<<<
- *         "change_char_pitch":term.db["strings"][305],
- *         "change_line_pitch":term.db["strings"][306],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 976, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 976, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x130, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 976, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set_background, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":977
- *         "set_foreground":term.db["strings"][303],
- *         "set_background":term.db["strings"][304],
- *         "change_char_pitch":term.db["strings"][305],             # <<<<<<<<<<<<<<
- *         "change_line_pitch":term.db["strings"][306],
- *         "change_res_horz":term.db["strings"][307],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 977, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 977, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x131, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 977, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_change_char_pitch, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":978
- *         "set_background":term.db["strings"][304],
- *         "change_char_pitch":term.db["strings"][305],
- *         "change_line_pitch":term.db["strings"][306],             # <<<<<<<<<<<<<<
- *         "change_res_horz":term.db["strings"][307],
- *         "change_res_vert":term.db["strings"][308],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 978, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 978, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x132, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 978, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_change_line_pitch, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":979
- *         "change_char_pitch":term.db["strings"][305],
- *         "change_line_pitch":term.db["strings"][306],
- *         "change_res_horz":term.db["strings"][307],             # <<<<<<<<<<<<<<
- *         "change_res_vert":term.db["strings"][308],
- *         "define_char":term.db["strings"][309],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 979, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 979, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x133, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 979, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_change_res_horz, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":980
- *         "change_line_pitch":term.db["strings"][306],
- *         "change_res_horz":term.db["strings"][307],
- *         "change_res_vert":term.db["strings"][308],             # <<<<<<<<<<<<<<
- *         "define_char":term.db["strings"][309],
- *         "enter_doublewide_mode":term.db["strings"][310],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 980, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 980, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x134, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 980, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_change_res_vert, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":981
- *         "change_res_horz":term.db["strings"][307],
- *         "change_res_vert":term.db["strings"][308],
- *         "define_char":term.db["strings"][309],             # <<<<<<<<<<<<<<
- *         "enter_doublewide_mode":term.db["strings"][310],
- *         "enter_draft_quality":term.db["strings"][311],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 981, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 981, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x135, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 981, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_define_char, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":982
- *         "change_res_vert":term.db["strings"][308],
- *         "define_char":term.db["strings"][309],
- *         "enter_doublewide_mode":term.db["strings"][310],             # <<<<<<<<<<<<<<
- *         "enter_draft_quality":term.db["strings"][311],
- *         "enter_italics_mode":term.db["strings"][312],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 982, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 982, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x136, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 982, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_doublewide_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":983
- *         "define_char":term.db["strings"][309],
- *         "enter_doublewide_mode":term.db["strings"][310],
- *         "enter_draft_quality":term.db["strings"][311],             # <<<<<<<<<<<<<<
- *         "enter_italics_mode":term.db["strings"][312],
- *         "enter_leftward_mode":term.db["strings"][313],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 983, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 983, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x137, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 983, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_draft_quality, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":984
- *         "enter_doublewide_mode":term.db["strings"][310],
- *         "enter_draft_quality":term.db["strings"][311],
- *         "enter_italics_mode":term.db["strings"][312],             # <<<<<<<<<<<<<<
- *         "enter_leftward_mode":term.db["strings"][313],
- *         "enter_micro_mode":term.db["strings"][314],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 984, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 984, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x138, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 984, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_italics_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":985
- *         "enter_draft_quality":term.db["strings"][311],
- *         "enter_italics_mode":term.db["strings"][312],
- *         "enter_leftward_mode":term.db["strings"][313],             # <<<<<<<<<<<<<<
- *         "enter_micro_mode":term.db["strings"][314],
- *         "enter_near_letter_quality":term.db["strings"][315],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 985, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 985, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x139, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 985, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_leftward_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":986
- *         "enter_italics_mode":term.db["strings"][312],
- *         "enter_leftward_mode":term.db["strings"][313],
- *         "enter_micro_mode":term.db["strings"][314],             # <<<<<<<<<<<<<<
- *         "enter_near_letter_quality":term.db["strings"][315],
- *         "enter_normal_quality":term.db["strings"][316],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 986, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 986, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x13A, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 986, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_micro_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":987
- *         "enter_leftward_mode":term.db["strings"][313],
- *         "enter_micro_mode":term.db["strings"][314],
- *         "enter_near_letter_quality":term.db["strings"][315],             # <<<<<<<<<<<<<<
- *         "enter_normal_quality":term.db["strings"][316],
- *         "enter_shadow_mode":term.db["strings"][317],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 987, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 987, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x13B, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 987, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_near_letter_quality, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":988
- *         "enter_micro_mode":term.db["strings"][314],
- *         "enter_near_letter_quality":term.db["strings"][315],
- *         "enter_normal_quality":term.db["strings"][316],             # <<<<<<<<<<<<<<
- *         "enter_shadow_mode":term.db["strings"][317],
- *         "enter_subscript_mode":term.db["strings"][318],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 988, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 988, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x13C, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 988, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_normal_quality, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":989
- *         "enter_near_letter_quality":term.db["strings"][315],
- *         "enter_normal_quality":term.db["strings"][316],
- *         "enter_shadow_mode":term.db["strings"][317],             # <<<<<<<<<<<<<<
- *         "enter_subscript_mode":term.db["strings"][318],
- *         "enter_superscript_mode":term.db["strings"][319],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 989, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 989, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x13D, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 989, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_shadow_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":990
- *         "enter_normal_quality":term.db["strings"][316],
- *         "enter_shadow_mode":term.db["strings"][317],
- *         "enter_subscript_mode":term.db["strings"][318],             # <<<<<<<<<<<<<<
- *         "enter_superscript_mode":term.db["strings"][319],
- *         "enter_upward_mode":term.db["strings"][320],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 990, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 990, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x13E, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 990, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_subscript_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":991
- *         "enter_shadow_mode":term.db["strings"][317],
- *         "enter_subscript_mode":term.db["strings"][318],
- *         "enter_superscript_mode":term.db["strings"][319],             # <<<<<<<<<<<<<<
- *         "enter_upward_mode":term.db["strings"][320],
- *         "exit_doublewide_mode":term.db["strings"][321],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 991, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 991, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x13F, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 991, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_superscript_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":992
- *         "enter_subscript_mode":term.db["strings"][318],
- *         "enter_superscript_mode":term.db["strings"][319],
- *         "enter_upward_mode":term.db["strings"][320],             # <<<<<<<<<<<<<<
- *         "exit_doublewide_mode":term.db["strings"][321],
- *         "exit_italics_mode":term.db["strings"][322],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 992, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 992, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x140, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 992, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_upward_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":993
- *         "enter_superscript_mode":term.db["strings"][319],
- *         "enter_upward_mode":term.db["strings"][320],
- *         "exit_doublewide_mode":term.db["strings"][321],             # <<<<<<<<<<<<<<
- *         "exit_italics_mode":term.db["strings"][322],
- *         "exit_leftward_mode":term.db["strings"][323],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 993, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 993, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x141, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 993, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_exit_doublewide_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":994
- *         "enter_upward_mode":term.db["strings"][320],
- *         "exit_doublewide_mode":term.db["strings"][321],
- *         "exit_italics_mode":term.db["strings"][322],             # <<<<<<<<<<<<<<
- *         "exit_leftward_mode":term.db["strings"][323],
- *         "exit_micro_mode":term.db["strings"][324],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 994, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 994, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x142, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 994, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_exit_italics_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":995
- *         "exit_doublewide_mode":term.db["strings"][321],
- *         "exit_italics_mode":term.db["strings"][322],
- *         "exit_leftward_mode":term.db["strings"][323],             # <<<<<<<<<<<<<<
- *         "exit_micro_mode":term.db["strings"][324],
- *         "exit_shadow_mode":term.db["strings"][325],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 995, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 995, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x143, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 995, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_exit_leftward_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":996
- *         "exit_italics_mode":term.db["strings"][322],
- *         "exit_leftward_mode":term.db["strings"][323],
- *         "exit_micro_mode":term.db["strings"][324],             # <<<<<<<<<<<<<<
- *         "exit_shadow_mode":term.db["strings"][325],
- *         "exit_subscript_mode":term.db["strings"][326],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 996, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 996, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x144, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 996, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_exit_micro_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":997
- *         "exit_leftward_mode":term.db["strings"][323],
- *         "exit_micro_mode":term.db["strings"][324],
- *         "exit_shadow_mode":term.db["strings"][325],             # <<<<<<<<<<<<<<
- *         "exit_subscript_mode":term.db["strings"][326],
- *         "exit_superscript_mode":term.db["strings"][327],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 997, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 997, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x145, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 997, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_exit_shadow_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":998
- *         "exit_micro_mode":term.db["strings"][324],
- *         "exit_shadow_mode":term.db["strings"][325],
- *         "exit_subscript_mode":term.db["strings"][326],             # <<<<<<<<<<<<<<
- *         "exit_superscript_mode":term.db["strings"][327],
- *         "exit_upward_mode":term.db["strings"][328],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 998, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 998, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x146, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 998, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_exit_subscript_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":999
- *         "exit_shadow_mode":term.db["strings"][325],
- *         "exit_subscript_mode":term.db["strings"][326],
- *         "exit_superscript_mode":term.db["strings"][327],             # <<<<<<<<<<<<<<
- *         "exit_upward_mode":term.db["strings"][328],
- *         "micro_column_address":term.db["strings"][329],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 999, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 999, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x147, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 999, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_exit_superscript_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1000
- *         "exit_subscript_mode":term.db["strings"][326],
- *         "exit_superscript_mode":term.db["strings"][327],
- *         "exit_upward_mode":term.db["strings"][328],             # <<<<<<<<<<<<<<
- *         "micro_column_address":term.db["strings"][329],
- *         "micro_down":term.db["strings"][330],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1000, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1000, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x148, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1000, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_exit_upward_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1001
- *         "exit_superscript_mode":term.db["strings"][327],
- *         "exit_upward_mode":term.db["strings"][328],
- *         "micro_column_address":term.db["strings"][329],             # <<<<<<<<<<<<<<
- *         "micro_down":term.db["strings"][330],
- *         "micro_left":term.db["strings"][331],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1001, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1001, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x149, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1001, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_micro_column_address, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1002
- *         "exit_upward_mode":term.db["strings"][328],
- *         "micro_column_address":term.db["strings"][329],
- *         "micro_down":term.db["strings"][330],             # <<<<<<<<<<<<<<
- *         "micro_left":term.db["strings"][331],
- *         "micro_right":term.db["strings"][332],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1002, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1002, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x14A, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1002, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_micro_down, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1003
- *         "micro_column_address":term.db["strings"][329],
- *         "micro_down":term.db["strings"][330],
- *         "micro_left":term.db["strings"][331],             # <<<<<<<<<<<<<<
- *         "micro_right":term.db["strings"][332],
- *         "micro_row_address":term.db["strings"][333],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1003, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1003, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x14B, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1003, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_micro_left, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1004
- *         "micro_down":term.db["strings"][330],
- *         "micro_left":term.db["strings"][331],
- *         "micro_right":term.db["strings"][332],             # <<<<<<<<<<<<<<
- *         "micro_row_address":term.db["strings"][333],
- *         "micro_up":term.db["strings"][334],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1004, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1004, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x14C, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1004, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_micro_right, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1005
- *         "micro_left":term.db["strings"][331],
- *         "micro_right":term.db["strings"][332],
- *         "micro_row_address":term.db["strings"][333],             # <<<<<<<<<<<<<<
- *         "micro_up":term.db["strings"][334],
- *         "order_of_pins":term.db["strings"][335],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1005, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1005, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x14D, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1005, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_micro_row_address, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1006
- *         "micro_right":term.db["strings"][332],
- *         "micro_row_address":term.db["strings"][333],
- *         "micro_up":term.db["strings"][334],             # <<<<<<<<<<<<<<
- *         "order_of_pins":term.db["strings"][335],
- *         "parm_down_micro":term.db["strings"][336],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1006, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1006, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x14E, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1006, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_micro_up, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1007
- *         "micro_row_address":term.db["strings"][333],
- *         "micro_up":term.db["strings"][334],
- *         "order_of_pins":term.db["strings"][335],             # <<<<<<<<<<<<<<
- *         "parm_down_micro":term.db["strings"][336],
- *         "parm_left_micro":term.db["strings"][337],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1007, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1007, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x14F, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1007, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_order_of_pins, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1008
- *         "micro_up":term.db["strings"][334],
- *         "order_of_pins":term.db["strings"][335],
- *         "parm_down_micro":term.db["strings"][336],             # <<<<<<<<<<<<<<
- *         "parm_left_micro":term.db["strings"][337],
- *         "parm_right_micro":term.db["strings"][338],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1008, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1008, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x150, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1008, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_parm_down_micro, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1009
- *         "order_of_pins":term.db["strings"][335],
- *         "parm_down_micro":term.db["strings"][336],
- *         "parm_left_micro":term.db["strings"][337],             # <<<<<<<<<<<<<<
- *         "parm_right_micro":term.db["strings"][338],
- *         "parm_up_micro":term.db["strings"][339],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1009, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1009, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x151, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1009, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_parm_left_micro, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1010
- *         "parm_down_micro":term.db["strings"][336],
- *         "parm_left_micro":term.db["strings"][337],
- *         "parm_right_micro":term.db["strings"][338],             # <<<<<<<<<<<<<<
- *         "parm_up_micro":term.db["strings"][339],
- *         "select_char_set":term.db["strings"][340],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1010, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1010, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x152, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1010, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_parm_right_micro, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1011
- *         "parm_left_micro":term.db["strings"][337],
- *         "parm_right_micro":term.db["strings"][338],
- *         "parm_up_micro":term.db["strings"][339],             # <<<<<<<<<<<<<<
- *         "select_char_set":term.db["strings"][340],
- *         "set_bottom_margin":term.db["strings"][341],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1011, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1011, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x153, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1011, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_parm_up_micro, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1012
- *         "parm_right_micro":term.db["strings"][338],
- *         "parm_up_micro":term.db["strings"][339],
- *         "select_char_set":term.db["strings"][340],             # <<<<<<<<<<<<<<
- *         "set_bottom_margin":term.db["strings"][341],
- *         "set_bottom_margin_parm":term.db["strings"][342],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1012, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1012, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x154, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1012, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_select_char_set, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1013
- *         "parm_up_micro":term.db["strings"][339],
- *         "select_char_set":term.db["strings"][340],
- *         "set_bottom_margin":term.db["strings"][341],             # <<<<<<<<<<<<<<
- *         "set_bottom_margin_parm":term.db["strings"][342],
- *         "set_left_margin_parm":term.db["strings"][343],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1013, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1013, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x155, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1013, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set_bottom_margin, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1014
- *         "select_char_set":term.db["strings"][340],
- *         "set_bottom_margin":term.db["strings"][341],
- *         "set_bottom_margin_parm":term.db["strings"][342],             # <<<<<<<<<<<<<<
- *         "set_left_margin_parm":term.db["strings"][343],
- *         "set_right_margin_parm":term.db["strings"][344],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1014, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1014, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x156, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1014, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set_bottom_margin_parm, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1015
- *         "set_bottom_margin":term.db["strings"][341],
- *         "set_bottom_margin_parm":term.db["strings"][342],
- *         "set_left_margin_parm":term.db["strings"][343],             # <<<<<<<<<<<<<<
- *         "set_right_margin_parm":term.db["strings"][344],
- *         "set_top_margin":term.db["strings"][345],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1015, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1015, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x157, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1015, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set_left_margin_parm, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1016
- *         "set_bottom_margin_parm":term.db["strings"][342],
- *         "set_left_margin_parm":term.db["strings"][343],
- *         "set_right_margin_parm":term.db["strings"][344],             # <<<<<<<<<<<<<<
- *         "set_top_margin":term.db["strings"][345],
- *         "set_top_margin_parm":term.db["strings"][346],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1016, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1016, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x158, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1016, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set_right_margin_parm, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1017
- *         "set_left_margin_parm":term.db["strings"][343],
- *         "set_right_margin_parm":term.db["strings"][344],
- *         "set_top_margin":term.db["strings"][345],             # <<<<<<<<<<<<<<
- *         "set_top_margin_parm":term.db["strings"][346],
- *         "start_bit_image":term.db["strings"][347],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1017, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1017, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x159, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1017, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set_top_margin, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1018
- *         "set_right_margin_parm":term.db["strings"][344],
- *         "set_top_margin":term.db["strings"][345],
- *         "set_top_margin_parm":term.db["strings"][346],             # <<<<<<<<<<<<<<
- *         "start_bit_image":term.db["strings"][347],
- *         "start_char_set_def":term.db["strings"][348],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1018, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1018, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x15A, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1018, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set_top_margin_parm, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1019
- *         "set_top_margin":term.db["strings"][345],
- *         "set_top_margin_parm":term.db["strings"][346],
- *         "start_bit_image":term.db["strings"][347],             # <<<<<<<<<<<<<<
- *         "start_char_set_def":term.db["strings"][348],
- *         "stop_bit_image":term.db["strings"][349],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1019, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1019, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x15B, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1019, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_start_bit_image, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1020
- *         "set_top_margin_parm":term.db["strings"][346],
- *         "start_bit_image":term.db["strings"][347],
- *         "start_char_set_def":term.db["strings"][348],             # <<<<<<<<<<<<<<
- *         "stop_bit_image":term.db["strings"][349],
- *         "stop_char_set_def":term.db["strings"][350],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1020, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1020, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x15C, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1020, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_start_char_set_def, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1021
- *         "start_bit_image":term.db["strings"][347],
- *         "start_char_set_def":term.db["strings"][348],
- *         "stop_bit_image":term.db["strings"][349],             # <<<<<<<<<<<<<<
- *         "stop_char_set_def":term.db["strings"][350],
- *         "subscript_characters":term.db["strings"][351],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1021, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1021, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x15D, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1021, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_stop_bit_image, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1022
- *         "start_char_set_def":term.db["strings"][348],
- *         "stop_bit_image":term.db["strings"][349],
- *         "stop_char_set_def":term.db["strings"][350],             # <<<<<<<<<<<<<<
- *         "subscript_characters":term.db["strings"][351],
- *         "superscript_characters":term.db["strings"][352],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1022, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1022, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x15E, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1022, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_stop_char_set_def, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1023
- *         "stop_bit_image":term.db["strings"][349],
- *         "stop_char_set_def":term.db["strings"][350],
- *         "subscript_characters":term.db["strings"][351],             # <<<<<<<<<<<<<<
- *         "superscript_characters":term.db["strings"][352],
- *         "these_cause_cr":term.db["strings"][353],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1023, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1023, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x15F, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1023, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_subscript_characters, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1024
- *         "stop_char_set_def":term.db["strings"][350],
- *         "subscript_characters":term.db["strings"][351],
- *         "superscript_characters":term.db["strings"][352],             # <<<<<<<<<<<<<<
- *         "these_cause_cr":term.db["strings"][353],
- *         "zero_motion":term.db["strings"][354],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1024, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1024, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x160, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1024, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_superscript_characters, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1025
- *         "subscript_characters":term.db["strings"][351],
- *         "superscript_characters":term.db["strings"][352],
- *         "these_cause_cr":term.db["strings"][353],             # <<<<<<<<<<<<<<
- *         "zero_motion":term.db["strings"][354],
- *         "char_set_names":term.db["strings"][355],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1025, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1025, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x161, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1025, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_these_cause_cr, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1026
- *         "superscript_characters":term.db["strings"][352],
- *         "these_cause_cr":term.db["strings"][353],
- *         "zero_motion":term.db["strings"][354],             # <<<<<<<<<<<<<<
- *         "char_set_names":term.db["strings"][355],
- *         "key_mouse":term.db["strings"][356],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1026, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1026, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x162, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1026, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_zero_motion, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1027
- *         "these_cause_cr":term.db["strings"][353],
- *         "zero_motion":term.db["strings"][354],
- *         "char_set_names":term.db["strings"][355],             # <<<<<<<<<<<<<<
- *         "key_mouse":term.db["strings"][356],
- *         "mouse_info":term.db["strings"][357],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1027, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1027, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x163, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1027, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_char_set_names, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1028
- *         "zero_motion":term.db["strings"][354],
- *         "char_set_names":term.db["strings"][355],
- *         "key_mouse":term.db["strings"][356],             # <<<<<<<<<<<<<<
- *         "mouse_info":term.db["strings"][357],
- *         "req_mouse_pos":term.db["strings"][358],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1028, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1028, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x164, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1028, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key_mouse, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1029
- *         "char_set_names":term.db["strings"][355],
- *         "key_mouse":term.db["strings"][356],
- *         "mouse_info":term.db["strings"][357],             # <<<<<<<<<<<<<<
- *         "req_mouse_pos":term.db["strings"][358],
- *         "get_mouse":term.db["strings"][359],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1029, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1029, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x165, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1029, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_mouse_info, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1030
- *         "key_mouse":term.db["strings"][356],
- *         "mouse_info":term.db["strings"][357],
- *         "req_mouse_pos":term.db["strings"][358],             # <<<<<<<<<<<<<<
- *         "get_mouse":term.db["strings"][359],
- *         "set_a_foreground":term.db["strings"][360],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1030, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1030, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x166, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1030, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_req_mouse_pos, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1031
- *         "mouse_info":term.db["strings"][357],
- *         "req_mouse_pos":term.db["strings"][358],
- *         "get_mouse":term.db["strings"][359],             # <<<<<<<<<<<<<<
- *         "set_a_foreground":term.db["strings"][360],
- *         "set_a_background":term.db["strings"][361],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1031, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1031, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x167, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1031, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_get_mouse, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1032
- *         "req_mouse_pos":term.db["strings"][358],
- *         "get_mouse":term.db["strings"][359],
- *         "set_a_foreground":term.db["strings"][360],             # <<<<<<<<<<<<<<
- *         "set_a_background":term.db["strings"][361],
- *         "pkey_plab":term.db["strings"][362],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1032, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1032, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x168, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1032, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set_a_foreground, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1033
- *         "get_mouse":term.db["strings"][359],
- *         "set_a_foreground":term.db["strings"][360],
- *         "set_a_background":term.db["strings"][361],             # <<<<<<<<<<<<<<
- *         "pkey_plab":term.db["strings"][362],
- *         "device_type":term.db["strings"][363],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1033, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1033, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x169, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1033, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set_a_background, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1034
- *         "set_a_foreground":term.db["strings"][360],
- *         "set_a_background":term.db["strings"][361],
- *         "pkey_plab":term.db["strings"][362],             # <<<<<<<<<<<<<<
- *         "device_type":term.db["strings"][363],
- *         "code_set_init":term.db["strings"][364],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1034, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1034, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x16A, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1034, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_pkey_plab, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1035
- *         "set_a_background":term.db["strings"][361],
- *         "pkey_plab":term.db["strings"][362],
- *         "device_type":term.db["strings"][363],             # <<<<<<<<<<<<<<
- *         "code_set_init":term.db["strings"][364],
- *         "set0_des_seq":term.db["strings"][365],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1035, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1035, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x16B, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1035, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_device_type, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1036
- *         "pkey_plab":term.db["strings"][362],
- *         "device_type":term.db["strings"][363],
- *         "code_set_init":term.db["strings"][364],             # <<<<<<<<<<<<<<
- *         "set0_des_seq":term.db["strings"][365],
- *         "set1_des_seq":term.db["strings"][366],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1036, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1036, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x16C, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1036, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_code_set_init, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1037
- *         "device_type":term.db["strings"][363],
- *         "code_set_init":term.db["strings"][364],
- *         "set0_des_seq":term.db["strings"][365],             # <<<<<<<<<<<<<<
- *         "set1_des_seq":term.db["strings"][366],
- *         "set2_des_seq":term.db["strings"][367],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1037, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1037, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x16D, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1037, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set0_des_seq, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1038
- *         "code_set_init":term.db["strings"][364],
- *         "set0_des_seq":term.db["strings"][365],
- *         "set1_des_seq":term.db["strings"][366],             # <<<<<<<<<<<<<<
- *         "set2_des_seq":term.db["strings"][367],
- *         "set3_des_seq":term.db["strings"][368],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1038, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1038, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x16E, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1038, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set1_des_seq, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1039
- *         "set0_des_seq":term.db["strings"][365],
- *         "set1_des_seq":term.db["strings"][366],
- *         "set2_des_seq":term.db["strings"][367],             # <<<<<<<<<<<<<<
- *         "set3_des_seq":term.db["strings"][368],
- *         "set_lr_margin":term.db["strings"][369],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1039, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1039, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x16F, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1039, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set2_des_seq, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1040
- *         "set1_des_seq":term.db["strings"][366],
- *         "set2_des_seq":term.db["strings"][367],
- *         "set3_des_seq":term.db["strings"][368],             # <<<<<<<<<<<<<<
- *         "set_lr_margin":term.db["strings"][369],
- *         "set_tb_margin":term.db["strings"][370],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1040, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1040, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x170, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1040, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set3_des_seq, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1041
- *         "set2_des_seq":term.db["strings"][367],
- *         "set3_des_seq":term.db["strings"][368],
- *         "set_lr_margin":term.db["strings"][369],             # <<<<<<<<<<<<<<
- *         "set_tb_margin":term.db["strings"][370],
- *         "bit_image_repeat":term.db["strings"][371],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1041, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1041, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x171, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1041, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set_lr_margin, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1042
- *         "set3_des_seq":term.db["strings"][368],
- *         "set_lr_margin":term.db["strings"][369],
- *         "set_tb_margin":term.db["strings"][370],             # <<<<<<<<<<<<<<
- *         "bit_image_repeat":term.db["strings"][371],
- *         "bit_image_newline":term.db["strings"][372],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1042, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1042, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x172, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1042, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set_tb_margin, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1043
- *         "set_lr_margin":term.db["strings"][369],
- *         "set_tb_margin":term.db["strings"][370],
- *         "bit_image_repeat":term.db["strings"][371],             # <<<<<<<<<<<<<<
- *         "bit_image_newline":term.db["strings"][372],
- *         "bit_image_carriage_return":term.db["strings"][373],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1043, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1043, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x173, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1043, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_bit_image_repeat, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1044
- *         "set_tb_margin":term.db["strings"][370],
- *         "bit_image_repeat":term.db["strings"][371],
- *         "bit_image_newline":term.db["strings"][372],             # <<<<<<<<<<<<<<
- *         "bit_image_carriage_return":term.db["strings"][373],
- *         "color_names":term.db["strings"][374],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1044, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1044, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x174, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1044, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_bit_image_newline, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1045
- *         "bit_image_repeat":term.db["strings"][371],
- *         "bit_image_newline":term.db["strings"][372],
- *         "bit_image_carriage_return":term.db["strings"][373],             # <<<<<<<<<<<<<<
- *         "color_names":term.db["strings"][374],
- *         "define_bit_image_region":term.db["strings"][375],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1045, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1045, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x175, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1045, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_bit_image_carriage_return, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1046
- *         "bit_image_newline":term.db["strings"][372],
- *         "bit_image_carriage_return":term.db["strings"][373],
- *         "color_names":term.db["strings"][374],             # <<<<<<<<<<<<<<
- *         "define_bit_image_region":term.db["strings"][375],
- *         "end_bit_image_region":term.db["strings"][376],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1046, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1046, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x176, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1046, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_color_names, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1047
- *         "bit_image_carriage_return":term.db["strings"][373],
- *         "color_names":term.db["strings"][374],
- *         "define_bit_image_region":term.db["strings"][375],             # <<<<<<<<<<<<<<
- *         "end_bit_image_region":term.db["strings"][376],
- *         "set_color_band":term.db["strings"][377],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1047, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1047, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x177, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1047, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_define_bit_image_region, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1048
- *         "color_names":term.db["strings"][374],
- *         "define_bit_image_region":term.db["strings"][375],
- *         "end_bit_image_region":term.db["strings"][376],             # <<<<<<<<<<<<<<
- *         "set_color_band":term.db["strings"][377],
- *         "set_page_length":term.db["strings"][378],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1048, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1048, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x178, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1048, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_end_bit_image_region, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1049
- *         "define_bit_image_region":term.db["strings"][375],
- *         "end_bit_image_region":term.db["strings"][376],
- *         "set_color_band":term.db["strings"][377],             # <<<<<<<<<<<<<<
- *         "set_page_length":term.db["strings"][378],
- *         "display_pc_char":term.db["strings"][379],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1049, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1049, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x179, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1049, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set_color_band, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1050
- *         "end_bit_image_region":term.db["strings"][376],
- *         "set_color_band":term.db["strings"][377],
- *         "set_page_length":term.db["strings"][378],             # <<<<<<<<<<<<<<
- *         "display_pc_char":term.db["strings"][379],
- *         "enter_pc_charset_mode":term.db["strings"][380],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1050, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1050, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x17A, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1050, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set_page_length, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1051
- *         "set_color_band":term.db["strings"][377],
- *         "set_page_length":term.db["strings"][378],
- *         "display_pc_char":term.db["strings"][379],             # <<<<<<<<<<<<<<
- *         "enter_pc_charset_mode":term.db["strings"][380],
- *         "exit_pc_charset_mode":term.db["strings"][381],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1051, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1051, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x17B, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1051, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_display_pc_char, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1052
- *         "set_page_length":term.db["strings"][378],
- *         "display_pc_char":term.db["strings"][379],
- *         "enter_pc_charset_mode":term.db["strings"][380],             # <<<<<<<<<<<<<<
- *         "exit_pc_charset_mode":term.db["strings"][381],
- *         "enter_scancode_mode":term.db["strings"][382],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1052, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1052, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x17C, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1052, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_pc_charset_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1053
- *         "display_pc_char":term.db["strings"][379],
- *         "enter_pc_charset_mode":term.db["strings"][380],
- *         "exit_pc_charset_mode":term.db["strings"][381],             # <<<<<<<<<<<<<<
- *         "enter_scancode_mode":term.db["strings"][382],
- *         "exit_scancode_mode":term.db["strings"][383],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1053, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1053, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x17D, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1053, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_exit_pc_charset_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1054
- *         "enter_pc_charset_mode":term.db["strings"][380],
- *         "exit_pc_charset_mode":term.db["strings"][381],
- *         "enter_scancode_mode":term.db["strings"][382],             # <<<<<<<<<<<<<<
- *         "exit_scancode_mode":term.db["strings"][383],
- *         "pc_term_options":term.db["strings"][384],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1054, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1054, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x17E, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1054, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_scancode_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1055
- *         "exit_pc_charset_mode":term.db["strings"][381],
- *         "enter_scancode_mode":term.db["strings"][382],
- *         "exit_scancode_mode":term.db["strings"][383],             # <<<<<<<<<<<<<<
- *         "pc_term_options":term.db["strings"][384],
- *         "scancode_escape":term.db["strings"][385],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1055, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1055, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x17F, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1055, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_exit_scancode_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1056
- *         "enter_scancode_mode":term.db["strings"][382],
- *         "exit_scancode_mode":term.db["strings"][383],
- *         "pc_term_options":term.db["strings"][384],             # <<<<<<<<<<<<<<
- *         "scancode_escape":term.db["strings"][385],
- *         "alt_scancode_esc":term.db["strings"][386],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1056, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1056, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x180, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1056, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_pc_term_options, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1057
- *         "exit_scancode_mode":term.db["strings"][383],
- *         "pc_term_options":term.db["strings"][384],
- *         "scancode_escape":term.db["strings"][385],             # <<<<<<<<<<<<<<
- *         "alt_scancode_esc":term.db["strings"][386],
- *         "enter_horizontal_hl_mode":term.db["strings"][387],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1057, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1057, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x181, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1057, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_scancode_escape, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1058
- *         "pc_term_options":term.db["strings"][384],
- *         "scancode_escape":term.db["strings"][385],
- *         "alt_scancode_esc":term.db["strings"][386],             # <<<<<<<<<<<<<<
- *         "enter_horizontal_hl_mode":term.db["strings"][387],
- *         "enter_left_hl_mode":term.db["strings"][388],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1058, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1058, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x182, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1058, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_alt_scancode_esc, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1059
- *         "scancode_escape":term.db["strings"][385],
- *         "alt_scancode_esc":term.db["strings"][386],
- *         "enter_horizontal_hl_mode":term.db["strings"][387],             # <<<<<<<<<<<<<<
- *         "enter_left_hl_mode":term.db["strings"][388],
- *         "enter_low_hl_mode":term.db["strings"][389],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1059, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1059, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x183, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1059, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_horizontal_hl_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1060
- *         "alt_scancode_esc":term.db["strings"][386],
- *         "enter_horizontal_hl_mode":term.db["strings"][387],
- *         "enter_left_hl_mode":term.db["strings"][388],             # <<<<<<<<<<<<<<
- *         "enter_low_hl_mode":term.db["strings"][389],
- *         "enter_right_hl_mode":term.db["strings"][390],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1060, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1060, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x184, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1060, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_left_hl_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1061
- *         "enter_horizontal_hl_mode":term.db["strings"][387],
- *         "enter_left_hl_mode":term.db["strings"][388],
- *         "enter_low_hl_mode":term.db["strings"][389],             # <<<<<<<<<<<<<<
- *         "enter_right_hl_mode":term.db["strings"][390],
- *         "enter_top_hl_mode":term.db["strings"][391],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1061, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1061, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x185, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1061, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_low_hl_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1062
- *         "enter_left_hl_mode":term.db["strings"][388],
- *         "enter_low_hl_mode":term.db["strings"][389],
- *         "enter_right_hl_mode":term.db["strings"][390],             # <<<<<<<<<<<<<<
- *         "enter_top_hl_mode":term.db["strings"][391],
- *         "enter_vertical_hl_mode":term.db["strings"][392],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1062, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1062, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x186, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1062, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_right_hl_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1063
- *         "enter_low_hl_mode":term.db["strings"][389],
- *         "enter_right_hl_mode":term.db["strings"][390],
- *         "enter_top_hl_mode":term.db["strings"][391],             # <<<<<<<<<<<<<<
- *         "enter_vertical_hl_mode":term.db["strings"][392],
- *         "set_a_attributes":term.db["strings"][393],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1063, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1063, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x187, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1063, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_top_hl_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1064
- *         "enter_right_hl_mode":term.db["strings"][390],
- *         "enter_top_hl_mode":term.db["strings"][391],
- *         "enter_vertical_hl_mode":term.db["strings"][392],             # <<<<<<<<<<<<<<
- *         "set_a_attributes":term.db["strings"][393],
- *         "set_pglen_inch":term.db["strings"][394],
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1064, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1064, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x188, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1064, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_enter_vertical_hl_mode, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1065
- *         "enter_top_hl_mode":term.db["strings"][391],
- *         "enter_vertical_hl_mode":term.db["strings"][392],
- *         "set_a_attributes":term.db["strings"][393],             # <<<<<<<<<<<<<<
- *         "set_pglen_inch":term.db["strings"][394],
- *     }
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1065, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1065, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x189, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1065, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set_a_attributes, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "terminfo.pyx":1066
- *         "enter_vertical_hl_mode":term.db["strings"][392],
- *         "set_a_attributes":term.db["strings"][393],
- *         "set_pglen_inch":term.db["strings"][394],             # <<<<<<<<<<<<<<
- *     }
- *     return terminfo_db
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1066, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_n_s_strings); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1066, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0x18A, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1066, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_set_pglen_inch, __pyx_t_2) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_terminfo_db = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "terminfo.pyx":1068
- *         "set_pglen_inch":term.db["strings"][394],
- *     }
+  /* "terminfo.pyx":598
+ * def clean_db(term):
+ *     terminfo_db = {}
+ *     for _type in term.db:             # <<<<<<<<<<<<<<
+ *         if _type == "terminal_names":
+ *             continue
+ */
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 598, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
+    __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_3 = 0;
+    __pyx_t_4 = NULL;
+  } else {
+    __pyx_t_3 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 598, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_4 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 598, __pyx_L1_error)
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  for (;;) {
+    if (likely(!__pyx_t_4)) {
+      if (likely(PyList_CheckExact(__pyx_t_2))) {
+        if (__pyx_t_3 >= PyList_GET_SIZE(__pyx_t_2)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 598, __pyx_L1_error)
+        #else
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 598, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        #endif
+      } else {
+        if (__pyx_t_3 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 598, __pyx_L1_error)
+        #else
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 598, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        #endif
+      }
+    } else {
+      __pyx_t_1 = __pyx_t_4(__pyx_t_2);
+      if (unlikely(!__pyx_t_1)) {
+        PyObject* exc_type = PyErr_Occurred();
+        if (exc_type) {
+          if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+          else __PYX_ERR(0, 598, __pyx_L1_error)
+        }
+        break;
+      }
+      __Pyx_GOTREF(__pyx_t_1);
+    }
+    __Pyx_XDECREF_SET(__pyx_v__type, __pyx_t_1);
+    __pyx_t_1 = 0;
+
+    /* "terminfo.pyx":599
+ *     terminfo_db = {}
+ *     for _type in term.db:
+ *         if _type == "terminal_names":             # <<<<<<<<<<<<<<
+ *             continue
+ *         for idx, value in enumerate(term.db[_type]):
+ */
+    __pyx_t_5 = (__Pyx_PyString_Equals(__pyx_v__type, __pyx_n_s_terminal_names, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 599, __pyx_L1_error)
+    if (__pyx_t_5) {
+
+      /* "terminfo.pyx":600
+ *     for _type in term.db:
+ *         if _type == "terminal_names":
+ *             continue             # <<<<<<<<<<<<<<
+ *         for idx, value in enumerate(term.db[_type]):
+ *             if _type == "booleans":
+ */
+      goto __pyx_L3_continue;
+
+      /* "terminfo.pyx":599
+ *     terminfo_db = {}
+ *     for _type in term.db:
+ *         if _type == "terminal_names":             # <<<<<<<<<<<<<<
+ *             continue
+ *         for idx, value in enumerate(term.db[_type]):
+ */
+    }
+
+    /* "terminfo.pyx":601
+ *         if _type == "terminal_names":
+ *             continue
+ *         for idx, value in enumerate(term.db[_type]):             # <<<<<<<<<<<<<<
+ *             if _type == "booleans":
+ *                 terminfo_db.update({BOOLEAN_NAMES[idx-1 if idx != 0 else idx]:value})
+ */
+    __Pyx_INCREF(__pyx_int_0);
+    __pyx_t_1 = __pyx_int_0;
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_term, __pyx_n_s_db); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 601, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_t_6, __pyx_v__type); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 601, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    if (likely(PyList_CheckExact(__pyx_t_7)) || PyTuple_CheckExact(__pyx_t_7)) {
+      __pyx_t_6 = __pyx_t_7; __Pyx_INCREF(__pyx_t_6); __pyx_t_8 = 0;
+      __pyx_t_9 = NULL;
+    } else {
+      __pyx_t_8 = -1; __pyx_t_6 = PyObject_GetIter(__pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 601, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
+      __pyx_t_9 = Py_TYPE(__pyx_t_6)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 601, __pyx_L1_error)
+    }
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    for (;;) {
+      if (likely(!__pyx_t_9)) {
+        if (likely(PyList_CheckExact(__pyx_t_6))) {
+          if (__pyx_t_8 >= PyList_GET_SIZE(__pyx_t_6)) break;
+          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+          __pyx_t_7 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_8); __Pyx_INCREF(__pyx_t_7); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 601, __pyx_L1_error)
+          #else
+          __pyx_t_7 = PySequence_ITEM(__pyx_t_6, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 601, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_7);
+          #endif
+        } else {
+          if (__pyx_t_8 >= PyTuple_GET_SIZE(__pyx_t_6)) break;
+          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+          __pyx_t_7 = PyTuple_GET_ITEM(__pyx_t_6, __pyx_t_8); __Pyx_INCREF(__pyx_t_7); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 601, __pyx_L1_error)
+          #else
+          __pyx_t_7 = PySequence_ITEM(__pyx_t_6, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 601, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_7);
+          #endif
+        }
+      } else {
+        __pyx_t_7 = __pyx_t_9(__pyx_t_6);
+        if (unlikely(!__pyx_t_7)) {
+          PyObject* exc_type = PyErr_Occurred();
+          if (exc_type) {
+            if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+            else __PYX_ERR(0, 601, __pyx_L1_error)
+          }
+          break;
+        }
+        __Pyx_GOTREF(__pyx_t_7);
+      }
+      __Pyx_XDECREF_SET(__pyx_v_value, __pyx_t_7);
+      __pyx_t_7 = 0;
+      __Pyx_INCREF(__pyx_t_1);
+      __Pyx_XDECREF_SET(__pyx_v_idx, __pyx_t_1);
+      __pyx_t_7 = __Pyx_PyInt_AddObjC(__pyx_t_1, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 601, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_7);
+      __Pyx_DECREF(__pyx_t_1);
+      __pyx_t_1 = __pyx_t_7;
+      __pyx_t_7 = 0;
+
+      /* "terminfo.pyx":602
+ *             continue
+ *         for idx, value in enumerate(term.db[_type]):
+ *             if _type == "booleans":             # <<<<<<<<<<<<<<
+ *                 terminfo_db.update({BOOLEAN_NAMES[idx-1 if idx != 0 else idx]:value})
+ *             elif _type == "numbers":
+ */
+      __pyx_t_5 = (__Pyx_PyString_Equals(__pyx_v__type, __pyx_n_s_booleans, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 602, __pyx_L1_error)
+      if (__pyx_t_5) {
+
+        /* "terminfo.pyx":603
+ *         for idx, value in enumerate(term.db[_type]):
+ *             if _type == "booleans":
+ *                 terminfo_db.update({BOOLEAN_NAMES[idx-1 if idx != 0 else idx]:value})             # <<<<<<<<<<<<<<
+ *             elif _type == "numbers":
+ *                 terminfo_db.update({NUMBER_NAMES[idx if idx != 0 else idx]:value})
+ */
+        __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 603, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_BOOLEAN_NAMES); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 603, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_10);
+        __pyx_t_12 = __Pyx_PyInt_NeObjC(__pyx_v_idx, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 603, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_12);
+        __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_12); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 603, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+        if (__pyx_t_5) {
+          __pyx_t_12 = __Pyx_PyInt_SubtractObjC(__pyx_v_idx, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 603, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_12);
+          __pyx_t_11 = __pyx_t_12;
+          __pyx_t_12 = 0;
+        } else {
+          __Pyx_INCREF(__pyx_v_idx);
+          __pyx_t_11 = __pyx_v_idx;
+        }
+        __pyx_t_12 = __Pyx_PyObject_GetItem(__pyx_t_10, __pyx_t_11); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 603, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_12);
+        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+        __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+        if (PyDict_SetItem(__pyx_t_7, __pyx_t_12, __pyx_v_value) < 0) __PYX_ERR(0, 603, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+        __pyx_t_12 = __Pyx_CallUnboundCMethod1(&__pyx_umethod_PyDict_Type_update, __pyx_v_terminfo_db, __pyx_t_7); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 603, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_12);
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+        __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+
+        /* "terminfo.pyx":602
+ *             continue
+ *         for idx, value in enumerate(term.db[_type]):
+ *             if _type == "booleans":             # <<<<<<<<<<<<<<
+ *                 terminfo_db.update({BOOLEAN_NAMES[idx-1 if idx != 0 else idx]:value})
+ *             elif _type == "numbers":
+ */
+        goto __pyx_L8;
+      }
+
+      /* "terminfo.pyx":604
+ *             if _type == "booleans":
+ *                 terminfo_db.update({BOOLEAN_NAMES[idx-1 if idx != 0 else idx]:value})
+ *             elif _type == "numbers":             # <<<<<<<<<<<<<<
+ *                 terminfo_db.update({NUMBER_NAMES[idx if idx != 0 else idx]:value})
+ *             elif _type == "string_offsets":
+ */
+      __pyx_t_5 = (__Pyx_PyString_Equals(__pyx_v__type, __pyx_n_s_numbers, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 604, __pyx_L1_error)
+      if (__pyx_t_5) {
+
+        /* "terminfo.pyx":605
+ *                 terminfo_db.update({BOOLEAN_NAMES[idx-1 if idx != 0 else idx]:value})
+ *             elif _type == "numbers":
+ *                 terminfo_db.update({NUMBER_NAMES[idx if idx != 0 else idx]:value})             # <<<<<<<<<<<<<<
+ *             elif _type == "string_offsets":
+ *                 try:
+ */
+        __pyx_t_12 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 605, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_12);
+        __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_NUMBER_NAMES); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 605, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        __pyx_t_10 = __Pyx_PyInt_NeObjC(__pyx_v_idx, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 605, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_10);
+        __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_10); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 605, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+        if (__pyx_t_5) {
+          __Pyx_INCREF(__pyx_v_idx);
+          __pyx_t_11 = __pyx_v_idx;
+        } else {
+          __Pyx_INCREF(__pyx_v_idx);
+          __pyx_t_11 = __pyx_v_idx;
+        }
+        __pyx_t_10 = __Pyx_PyObject_GetItem(__pyx_t_7, __pyx_t_11); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 605, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_10);
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+        __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+        if (PyDict_SetItem(__pyx_t_12, __pyx_t_10, __pyx_v_value) < 0) __PYX_ERR(0, 605, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+        __pyx_t_10 = __Pyx_CallUnboundCMethod1(&__pyx_umethod_PyDict_Type_update, __pyx_v_terminfo_db, __pyx_t_12); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 605, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_10);
+        __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+
+        /* "terminfo.pyx":604
+ *             if _type == "booleans":
+ *                 terminfo_db.update({BOOLEAN_NAMES[idx-1 if idx != 0 else idx]:value})
+ *             elif _type == "numbers":             # <<<<<<<<<<<<<<
+ *                 terminfo_db.update({NUMBER_NAMES[idx if idx != 0 else idx]:value})
+ *             elif _type == "string_offsets":
+ */
+        goto __pyx_L8;
+      }
+
+      /* "terminfo.pyx":606
+ *             elif _type == "numbers":
+ *                 terminfo_db.update({NUMBER_NAMES[idx if idx != 0 else idx]:value})
+ *             elif _type == "string_offsets":             # <<<<<<<<<<<<<<
+ *                 try:
+ *                     terminfo_db.update({NUMBER_NAMES[idx]:value})
+ */
+      __pyx_t_5 = (__Pyx_PyString_Equals(__pyx_v__type, __pyx_n_s_string_offsets, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 606, __pyx_L1_error)
+      if (__pyx_t_5) {
+
+        /* "terminfo.pyx":607
+ *                 terminfo_db.update({NUMBER_NAMES[idx if idx != 0 else idx]:value})
+ *             elif _type == "string_offsets":
+ *                 try:             # <<<<<<<<<<<<<<
+ *                     terminfo_db.update({NUMBER_NAMES[idx]:value})
+ *                 except:
+ */
+        {
+          __Pyx_PyThreadState_declare
+          __Pyx_PyThreadState_assign
+          __Pyx_ExceptionSave(&__pyx_t_13, &__pyx_t_14, &__pyx_t_15);
+          __Pyx_XGOTREF(__pyx_t_13);
+          __Pyx_XGOTREF(__pyx_t_14);
+          __Pyx_XGOTREF(__pyx_t_15);
+          /*try:*/ {
+
+            /* "terminfo.pyx":608
+ *             elif _type == "string_offsets":
+ *                 try:
+ *                     terminfo_db.update({NUMBER_NAMES[idx]:value})             # <<<<<<<<<<<<<<
+ *                 except:
+ *                     pass
+ */
+            __pyx_t_10 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 608, __pyx_L9_error)
+            __Pyx_GOTREF(__pyx_t_10);
+            __Pyx_GetModuleGlobalName(__pyx_t_12, __pyx_n_s_NUMBER_NAMES); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 608, __pyx_L9_error)
+            __Pyx_GOTREF(__pyx_t_12);
+            __pyx_t_11 = __Pyx_PyObject_GetItem(__pyx_t_12, __pyx_v_idx); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 608, __pyx_L9_error)
+            __Pyx_GOTREF(__pyx_t_11);
+            __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+            if (PyDict_SetItem(__pyx_t_10, __pyx_t_11, __pyx_v_value) < 0) __PYX_ERR(0, 608, __pyx_L9_error)
+            __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+            __pyx_t_11 = __Pyx_CallUnboundCMethod1(&__pyx_umethod_PyDict_Type_update, __pyx_v_terminfo_db, __pyx_t_10); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 608, __pyx_L9_error)
+            __Pyx_GOTREF(__pyx_t_11);
+            __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+            __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+
+            /* "terminfo.pyx":607
+ *                 terminfo_db.update({NUMBER_NAMES[idx if idx != 0 else idx]:value})
+ *             elif _type == "string_offsets":
+ *                 try:             # <<<<<<<<<<<<<<
+ *                     terminfo_db.update({NUMBER_NAMES[idx]:value})
+ *                 except:
+ */
+          }
+          __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
+          __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
+          __Pyx_XDECREF(__pyx_t_15); __pyx_t_15 = 0;
+          goto __pyx_L16_try_end;
+          __pyx_L9_error:;
+          __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
+          __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
+          __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
+          __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+
+          /* "terminfo.pyx":609
+ *                 try:
+ *                     terminfo_db.update({NUMBER_NAMES[idx]:value})
+ *                 except:             # <<<<<<<<<<<<<<
+ *                     pass
+ *             elif _type == "strings":
+ */
+          /*except:*/ {
+            __Pyx_ErrRestore(0,0,0);
+            goto __pyx_L10_exception_handled;
+          }
+          __pyx_L10_exception_handled:;
+          __Pyx_XGIVEREF(__pyx_t_13);
+          __Pyx_XGIVEREF(__pyx_t_14);
+          __Pyx_XGIVEREF(__pyx_t_15);
+          __Pyx_ExceptionReset(__pyx_t_13, __pyx_t_14, __pyx_t_15);
+          __pyx_L16_try_end:;
+        }
+
+        /* "terminfo.pyx":606
+ *             elif _type == "numbers":
+ *                 terminfo_db.update({NUMBER_NAMES[idx if idx != 0 else idx]:value})
+ *             elif _type == "string_offsets":             # <<<<<<<<<<<<<<
+ *                 try:
+ *                     terminfo_db.update({NUMBER_NAMES[idx]:value})
+ */
+        goto __pyx_L8;
+      }
+
+      /* "terminfo.pyx":611
+ *                 except:
+ *                     pass
+ *             elif _type == "strings":             # <<<<<<<<<<<<<<
+ *                 try:
+ *                     terminfo_db.update({STRING_NAMES[idx if idx != 0 else idx]:value})
+ */
+      __pyx_t_5 = (__Pyx_PyString_Equals(__pyx_v__type, __pyx_n_s_strings, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 611, __pyx_L1_error)
+      if (__pyx_t_5) {
+
+        /* "terminfo.pyx":612
+ *                     pass
+ *             elif _type == "strings":
+ *                 try:             # <<<<<<<<<<<<<<
+ *                     terminfo_db.update({STRING_NAMES[idx if idx != 0 else idx]:value})
+ *                 except:
+ */
+        {
+          __Pyx_PyThreadState_declare
+          __Pyx_PyThreadState_assign
+          __Pyx_ExceptionSave(&__pyx_t_15, &__pyx_t_14, &__pyx_t_13);
+          __Pyx_XGOTREF(__pyx_t_15);
+          __Pyx_XGOTREF(__pyx_t_14);
+          __Pyx_XGOTREF(__pyx_t_13);
+          /*try:*/ {
+
+            /* "terminfo.pyx":613
+ *             elif _type == "strings":
+ *                 try:
+ *                     terminfo_db.update({STRING_NAMES[idx if idx != 0 else idx]:value})             # <<<<<<<<<<<<<<
+ *                 except:
+ *                     pass
+ */
+            __pyx_t_11 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 613, __pyx_L17_error)
+            __Pyx_GOTREF(__pyx_t_11);
+            __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_STRING_NAMES); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 613, __pyx_L17_error)
+            __Pyx_GOTREF(__pyx_t_10);
+            __pyx_t_7 = __Pyx_PyInt_NeObjC(__pyx_v_idx, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 613, __pyx_L17_error)
+            __Pyx_GOTREF(__pyx_t_7);
+            __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_7); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 613, __pyx_L17_error)
+            __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+            if (__pyx_t_5) {
+              __Pyx_INCREF(__pyx_v_idx);
+              __pyx_t_12 = __pyx_v_idx;
+            } else {
+              __Pyx_INCREF(__pyx_v_idx);
+              __pyx_t_12 = __pyx_v_idx;
+            }
+            __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_t_10, __pyx_t_12); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 613, __pyx_L17_error)
+            __Pyx_GOTREF(__pyx_t_7);
+            __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+            __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+            if (PyDict_SetItem(__pyx_t_11, __pyx_t_7, __pyx_v_value) < 0) __PYX_ERR(0, 613, __pyx_L17_error)
+            __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+            __pyx_t_7 = __Pyx_CallUnboundCMethod1(&__pyx_umethod_PyDict_Type_update, __pyx_v_terminfo_db, __pyx_t_11); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 613, __pyx_L17_error)
+            __Pyx_GOTREF(__pyx_t_7);
+            __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+            __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+
+            /* "terminfo.pyx":612
+ *                     pass
+ *             elif _type == "strings":
+ *                 try:             # <<<<<<<<<<<<<<
+ *                     terminfo_db.update({STRING_NAMES[idx if idx != 0 else idx]:value})
+ *                 except:
+ */
+          }
+          __Pyx_XDECREF(__pyx_t_15); __pyx_t_15 = 0;
+          __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
+          __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
+          goto __pyx_L24_try_end;
+          __pyx_L17_error:;
+          __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
+          __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
+          __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
+          __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+
+          /* "terminfo.pyx":614
+ *                 try:
+ *                     terminfo_db.update({STRING_NAMES[idx if idx != 0 else idx]:value})
+ *                 except:             # <<<<<<<<<<<<<<
+ *                     pass
+ *     return terminfo_db
+ */
+          /*except:*/ {
+            __Pyx_ErrRestore(0,0,0);
+            goto __pyx_L18_exception_handled;
+          }
+          __pyx_L18_exception_handled:;
+          __Pyx_XGIVEREF(__pyx_t_15);
+          __Pyx_XGIVEREF(__pyx_t_14);
+          __Pyx_XGIVEREF(__pyx_t_13);
+          __Pyx_ExceptionReset(__pyx_t_15, __pyx_t_14, __pyx_t_13);
+          __pyx_L24_try_end:;
+        }
+
+        /* "terminfo.pyx":611
+ *                 except:
+ *                     pass
+ *             elif _type == "strings":             # <<<<<<<<<<<<<<
+ *                 try:
+ *                     terminfo_db.update({STRING_NAMES[idx if idx != 0 else idx]:value})
+ */
+      }
+      __pyx_L8:;
+
+      /* "terminfo.pyx":601
+ *         if _type == "terminal_names":
+ *             continue
+ *         for idx, value in enumerate(term.db[_type]):             # <<<<<<<<<<<<<<
+ *             if _type == "booleans":
+ *                 terminfo_db.update({BOOLEAN_NAMES[idx-1 if idx != 0 else idx]:value})
+ */
+    }
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "terminfo.pyx":598
+ * def clean_db(term):
+ *     terminfo_db = {}
+ *     for _type in term.db:             # <<<<<<<<<<<<<<
+ *         if _type == "terminal_names":
+ *             continue
+ */
+    __pyx_L3_continue:;
+  }
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "terminfo.pyx":616
+ *                 except:
+ *                     pass
  *     return terminfo_db             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
@@ -13316,23 +5519,30 @@ static PyObject *__pyx_pf_8terminfo_clean_db(CYTHON_UNUSED PyObject *__pyx_self,
   __pyx_r = __pyx_v_terminfo_db;
   goto __pyx_L0;
 
-  /* "terminfo.pyx":595
+  /* "terminfo.pyx":596
  * # This code is really skuf, I need to clean it up so
  * # the code is maintainable at least.
  * def clean_db(term):             # <<<<<<<<<<<<<<
- *     terminfo_db = {
- *         # Boolean names
+ *     terminfo_db = {}
+ *     for _type in term.db:
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_XDECREF(__pyx_t_10);
+  __Pyx_XDECREF(__pyx_t_11);
+  __Pyx_XDECREF(__pyx_t_12);
   __Pyx_AddTraceback("terminfo.clean_db", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_terminfo_db);
+  __Pyx_XDECREF(__pyx_v__type);
+  __Pyx_XDECREF(__pyx_v_idx);
+  __Pyx_XDECREF(__pyx_v_value);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -13632,6 +5842,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_enter_upward_mode, __pyx_k_enter_upward_mode, sizeof(__pyx_k_enter_upward_mode), 0, 0, 1, 1},
   {&__pyx_n_s_enter_vertical_hl_mode, __pyx_k_enter_vertical_hl_mode, sizeof(__pyx_k_enter_vertical_hl_mode), 0, 0, 1, 1},
   {&__pyx_n_s_enter_xon_mode, __pyx_k_enter_xon_mode, sizeof(__pyx_k_enter_xon_mode), 0, 0, 1, 1},
+  {&__pyx_n_s_enumerate, __pyx_k_enumerate, sizeof(__pyx_k_enumerate), 0, 0, 1, 1},
   {&__pyx_n_s_environ, __pyx_k_environ, sizeof(__pyx_k_environ), 0, 0, 1, 1},
   {&__pyx_n_s_erase_chars, __pyx_k_erase_chars, sizeof(__pyx_k_erase_chars), 0, 0, 1, 1},
   {&__pyx_n_s_erase_overstrike, __pyx_k_erase_overstrike, sizeof(__pyx_k_erase_overstrike), 0, 0, 1, 1},
@@ -13677,6 +5888,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_has_print_wheel, __pyx_k_has_print_wheel, sizeof(__pyx_k_has_print_wheel), 0, 0, 1, 1},
   {&__pyx_n_s_has_status_line, __pyx_k_has_status_line, sizeof(__pyx_k_has_status_line), 0, 0, 1, 1},
   {&__pyx_n_s_hue_lightness_saturation, __pyx_k_hue_lightness_saturation, sizeof(__pyx_k_hue_lightness_saturation), 0, 0, 1, 1},
+  {&__pyx_n_s_idx, __pyx_k_idx, sizeof(__pyx_k_idx), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
   {&__pyx_n_s_index, __pyx_k_index, sizeof(__pyx_k_index), 0, 0, 1, 1},
   {&__pyx_n_s_index_string_offset, __pyx_k_index_string_offset, sizeof(__pyx_k_index_string_offset), 0, 0, 1, 1},
@@ -13960,11 +6172,9 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_rb, __pyx_k_rb, sizeof(__pyx_k_rb), 0, 0, 1, 1},
   {&__pyx_n_s_read, __pyx_k_read, sizeof(__pyx_k_read), 0, 0, 1, 1},
   {&__pyx_n_s_remove_clock, __pyx_k_remove_clock, sizeof(__pyx_k_remove_clock), 0, 0, 1, 1},
-  {&__pyx_n_s_repeat_char, __pyx_k_repeat_char, sizeof(__pyx_k_repeat_char), 0, 0, 1, 1},
   {&__pyx_n_s_repeat_charreset_1string, __pyx_k_repeat_charreset_1string, sizeof(__pyx_k_repeat_charreset_1string), 0, 0, 1, 1},
   {&__pyx_n_s_req_for_input, __pyx_k_req_for_input, sizeof(__pyx_k_req_for_input), 0, 0, 1, 1},
   {&__pyx_n_s_req_mouse_pos, __pyx_k_req_mouse_pos, sizeof(__pyx_k_req_mouse_pos), 0, 0, 1, 1},
-  {&__pyx_n_s_reset_1string, __pyx_k_reset_1string, sizeof(__pyx_k_reset_1string), 0, 0, 1, 1},
   {&__pyx_n_s_reset_2string, __pyx_k_reset_2string, sizeof(__pyx_k_reset_2string), 0, 0, 1, 1},
   {&__pyx_n_s_reset_3string, __pyx_k_reset_3string, sizeof(__pyx_k_reset_3string), 0, 0, 1, 1},
   {&__pyx_n_s_reset_file, __pyx_k_reset_file, sizeof(__pyx_k_reset_file), 0, 0, 1, 1},
@@ -14034,9 +6244,11 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_to_status_line, __pyx_k_to_status_line, sizeof(__pyx_k_to_status_line), 0, 0, 1, 1},
   {&__pyx_n_s_tone, __pyx_k_tone, sizeof(__pyx_k_tone), 0, 0, 1, 1},
   {&__pyx_n_s_transparent_underline, __pyx_k_transparent_underline, sizeof(__pyx_k_transparent_underline), 0, 0, 1, 1},
+  {&__pyx_n_s_type, __pyx_k_type, sizeof(__pyx_k_type), 0, 0, 1, 1},
   {&__pyx_n_s_underline_char, __pyx_k_underline_char, sizeof(__pyx_k_underline_char), 0, 0, 1, 1},
   {&__pyx_n_s_unpack_from, __pyx_k_unpack_from, sizeof(__pyx_k_unpack_from), 0, 0, 1, 1},
   {&__pyx_n_s_up_half_line, __pyx_k_up_half_line, sizeof(__pyx_k_up_half_line), 0, 0, 1, 1},
+  {&__pyx_n_s_update, __pyx_k_update, sizeof(__pyx_k_update), 0, 0, 1, 1},
   {&__pyx_n_s_user0, __pyx_k_user0, sizeof(__pyx_k_user0), 0, 0, 1, 1},
   {&__pyx_n_s_user1, __pyx_k_user1, sizeof(__pyx_k_user1), 0, 0, 1, 1},
   {&__pyx_n_s_user2, __pyx_k_user2, sizeof(__pyx_k_user2), 0, 0, 1, 1},
@@ -14048,6 +6260,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_user8, __pyx_k_user8, sizeof(__pyx_k_user8), 0, 0, 1, 1},
   {&__pyx_n_s_user9, __pyx_k_user9, sizeof(__pyx_k_user9), 0, 0, 1, 1},
   {&__pyx_kp_s_usr_share_terminfo, __pyx_k_usr_share_terminfo, sizeof(__pyx_k_usr_share_terminfo), 0, 0, 1, 0},
+  {&__pyx_n_s_value, __pyx_k_value, sizeof(__pyx_k_value), 0, 0, 1, 1},
   {&__pyx_n_s_virtual_terminal, __pyx_k_virtual_terminal, sizeof(__pyx_k_virtual_terminal), 0, 0, 1, 1},
   {&__pyx_n_s_wait_tone, __pyx_k_wait_tone, sizeof(__pyx_k_wait_tone), 0, 0, 1, 1},
   {&__pyx_n_s_wide_char_size, __pyx_k_wide_char_size, sizeof(__pyx_k_wide_char_size), 0, 0, 1, 1},
@@ -14059,9 +6272,10 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_object = __Pyx_GetBuiltinName(__pyx_n_s_object); if (!__pyx_builtin_object) __PYX_ERR(0, 491, __pyx_L1_error)
-  __pyx_builtin_open = __Pyx_GetBuiltinName(__pyx_n_s_open); if (!__pyx_builtin_open) __PYX_ERR(0, 518, __pyx_L1_error)
-  __pyx_builtin_AttributeError = __Pyx_GetBuiltinName(__pyx_n_s_AttributeError); if (!__pyx_builtin_AttributeError) __PYX_ERR(0, 588, __pyx_L1_error)
+  __pyx_builtin_object = __Pyx_GetBuiltinName(__pyx_n_s_object); if (!__pyx_builtin_object) __PYX_ERR(0, 492, __pyx_L1_error)
+  __pyx_builtin_open = __Pyx_GetBuiltinName(__pyx_n_s_open); if (!__pyx_builtin_open) __PYX_ERR(0, 519, __pyx_L1_error)
+  __pyx_builtin_AttributeError = __Pyx_GetBuiltinName(__pyx_n_s_AttributeError); if (!__pyx_builtin_AttributeError) __PYX_ERR(0, 589, __pyx_L1_error)
+  __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(0, 601, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -14071,14 +6285,14 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "terminfo.pyx":518
+  /* "terminfo.pyx":519
  *             path = os.path.join(basepath, self.name[0], self.name)
  *             try:
  *                 with open(path, "rb") as dbfile:             # <<<<<<<<<<<<<<
  *                     self.raw_db = dbfile.read()
  *                     return
  */
-  __pyx_tuple_ = PyTuple_Pack(3, Py_None, Py_None, Py_None); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 518, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(3, Py_None, Py_None, Py_None); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 519, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
@@ -14093,88 +6307,88 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
 
-  /* "terminfo.pyx":491
+  /* "terminfo.pyx":492
  * 
  * 
  * class Term(object):             # <<<<<<<<<<<<<<
  * 
  *     SEARCH_PATHS = [
  */
-  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_builtin_object); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 491, __pyx_L1_error)
+  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_builtin_object); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 492, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
 
-  /* "terminfo.pyx":500
+  /* "terminfo.pyx":501
  *     ]
  * 
  *     def __init__(self, name):             # <<<<<<<<<<<<<<
  *         self.name = name
  *         self.raw_db = None
  */
-  __pyx_tuple__6 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_name); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 500, __pyx_L1_error)
+  __pyx_tuple__6 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_name); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 501, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
-  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_terminfo_pyx, __pyx_n_s_init, 500, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 500, __pyx_L1_error)
+  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_terminfo_pyx, __pyx_n_s_init, 501, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 501, __pyx_L1_error)
 
-  /* "terminfo.pyx":505
+  /* "terminfo.pyx":506
  *         self.db = None
  * 
  *     def load(self):             # <<<<<<<<<<<<<<
  *         self.load_db()
  *         self.db = self.parse_db()
  */
-  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 505, __pyx_L1_error)
+  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 506, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__8);
   __Pyx_GIVEREF(__pyx_tuple__8);
-  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_terminfo_pyx, __pyx_n_s_load, 505, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 505, __pyx_L1_error)
+  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_terminfo_pyx, __pyx_n_s_load, 506, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 506, __pyx_L1_error)
 
-  /* "terminfo.pyx":509
+  /* "terminfo.pyx":510
  *         self.db = self.parse_db()
  * 
  *     def load_db(self):             # <<<<<<<<<<<<<<
  *         """
  *         Get the path to the DB file on the
  */
-  __pyx_tuple__10 = PyTuple_Pack(6, __pyx_n_s_self, __pyx_n_s_basepath, __pyx_n_s_path, __pyx_n_s_dbfile, __pyx_n_s_genexpr, __pyx_n_s_genexpr); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 509, __pyx_L1_error)
+  __pyx_tuple__10 = PyTuple_Pack(6, __pyx_n_s_self, __pyx_n_s_basepath, __pyx_n_s_path, __pyx_n_s_dbfile, __pyx_n_s_genexpr, __pyx_n_s_genexpr); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 510, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__10);
   __Pyx_GIVEREF(__pyx_tuple__10);
-  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(1, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_terminfo_pyx, __pyx_n_s_load_db, 509, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(0, 509, __pyx_L1_error)
+  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(1, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_terminfo_pyx, __pyx_n_s_load_db, 510, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(0, 510, __pyx_L1_error)
 
-  /* "terminfo.pyx":526
+  /* "terminfo.pyx":527
  *             self.name))
  * 
  *     def parse_db(self):             # <<<<<<<<<<<<<<
  *         """
  *         Parse the given terminfo DB content
  */
-  __pyx_tuple__12 = PyTuple_Pack(13, __pyx_n_s_self, __pyx_n_s_offset, __pyx_n_s_magic_number, __pyx_n_s_names_section_size, __pyx_n_s_bool_sec_size, __pyx_n_s_number_sec_size, __pyx_n_s_string_sec_size, __pyx_n_s_string_table_size, __pyx_n_s_names, __pyx_n_s_bool_flags, __pyx_n_s_numbers, __pyx_n_s_string_offsets, __pyx_n_s_strings); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 526, __pyx_L1_error)
+  __pyx_tuple__12 = PyTuple_Pack(13, __pyx_n_s_self, __pyx_n_s_offset, __pyx_n_s_magic_number, __pyx_n_s_names_section_size, __pyx_n_s_bool_sec_size, __pyx_n_s_number_sec_size, __pyx_n_s_string_sec_size, __pyx_n_s_string_table_size, __pyx_n_s_names, __pyx_n_s_bool_flags, __pyx_n_s_numbers, __pyx_n_s_string_offsets, __pyx_n_s_strings); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 527, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__12);
   __Pyx_GIVEREF(__pyx_tuple__12);
-  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(1, 0, 13, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__12, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_terminfo_pyx, __pyx_n_s_parse_db, 526, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 526, __pyx_L1_error)
+  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(1, 0, 13, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__12, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_terminfo_pyx, __pyx_n_s_parse_db, 527, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 527, __pyx_L1_error)
 
-  /* "terminfo.pyx":573
+  /* "terminfo.pyx":574
  * 
  * 
  *     def __getattr__(self, name):             # <<<<<<<<<<<<<<
  *         section = None
  *         if name in BOOLEAN_NAMES:
  */
-  __pyx_tuple__14 = PyTuple_Pack(6, __pyx_n_s_self, __pyx_n_s_name, __pyx_n_s_section, __pyx_n_s_index, __pyx_n_s_index_string_offset, __pyx_n_s_cap); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 573, __pyx_L1_error)
+  __pyx_tuple__14 = PyTuple_Pack(6, __pyx_n_s_self, __pyx_n_s_name, __pyx_n_s_section, __pyx_n_s_index, __pyx_n_s_index_string_offset, __pyx_n_s_cap); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 574, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__14);
   __Pyx_GIVEREF(__pyx_tuple__14);
-  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(2, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_terminfo_pyx, __pyx_n_s_getattr, 573, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 573, __pyx_L1_error)
+  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(2, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_terminfo_pyx, __pyx_n_s_getattr, 574, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 574, __pyx_L1_error)
 
-  /* "terminfo.pyx":595
+  /* "terminfo.pyx":596
  * # This code is really skuf, I need to clean it up so
  * # the code is maintainable at least.
  * def clean_db(term):             # <<<<<<<<<<<<<<
- *     terminfo_db = {
- *         # Boolean names
+ *     terminfo_db = {}
+ *     for _type in term.db:
  */
-  __pyx_tuple__16 = PyTuple_Pack(2, __pyx_n_s_term, __pyx_n_s_terminfo_db); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 595, __pyx_L1_error)
+  __pyx_tuple__16 = PyTuple_Pack(5, __pyx_n_s_term, __pyx_n_s_terminfo_db, __pyx_n_s_type, __pyx_n_s_idx, __pyx_n_s_value); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 596, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__16);
   __Pyx_GIVEREF(__pyx_tuple__16);
-  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(1, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_terminfo_pyx, __pyx_n_s_clean_db, 595, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 595, __pyx_L1_error)
+  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(1, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_terminfo_pyx, __pyx_n_s_clean_db, 596, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 596, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -14183,8 +6397,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 }
 
 static CYTHON_SMALL_CODE int __Pyx_InitGlobals(void) {
+  __pyx_umethod_PyDict_Type_update.type = (PyObject*)&PyDict_Type;
   if (__Pyx_InitStrings(__pyx_string_tab) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   __pyx_int_0 = PyInt_FromLong(0); if (unlikely(!__pyx_int_0)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_int_1 = PyInt_FromLong(1); if (unlikely(!__pyx_int_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_2 = PyInt_FromLong(2); if (unlikely(!__pyx_int_2)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_6 = PyInt_FromLong(6); if (unlikely(!__pyx_int_6)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_12 = PyInt_FromLong(12); if (unlikely(!__pyx_int_12)) __PYX_ERR(0, 1, __pyx_L1_error)
@@ -14232,7 +6448,7 @@ static int __Pyx_modinit_type_init_code(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_init_code", 0);
   /*--- Type init code ---*/
-  if (PyType_Ready(&__pyx_type_8terminfo___pyx_scope_struct__genexpr) < 0) __PYX_ERR(0, 515, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_8terminfo___pyx_scope_struct__genexpr) < 0) __PYX_ERR(0, 516, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_8terminfo___pyx_scope_struct__genexpr.tp_print = 0;
   #endif
@@ -14788,14 +7004,14 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_NUMBER_NAMES, __pyx_t_1) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "terminfo.pyx":93
+  /* "terminfo.pyx":94
  * ]
  * 
  * STRING_NAMES = [             # <<<<<<<<<<<<<<
  *     "back_tab",
  *     "bell",
  */
-  __pyx_t_1 = PyList_New(393); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 93, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(393); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 94, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_n_s_back_tab);
   __Pyx_GIVEREF(__pyx_n_s_back_tab);
@@ -15976,34 +8192,34 @@ if (!__Pyx_RefNanny) {
   __Pyx_INCREF(__pyx_n_s_set_pglen_inch);
   __Pyx_GIVEREF(__pyx_n_s_set_pglen_inch);
   PyList_SET_ITEM(__pyx_t_1, 392, __pyx_n_s_set_pglen_inch);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_STRING_NAMES, __pyx_t_1) < 0) __PYX_ERR(0, 93, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_STRING_NAMES, __pyx_t_1) < 0) __PYX_ERR(0, 94, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "terminfo.pyx":491
+  /* "terminfo.pyx":492
  * 
  * 
  * class Term(object):             # <<<<<<<<<<<<<<
  * 
  *     SEARCH_PATHS = [
  */
-  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_tuple__5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 491, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_tuple__5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 492, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_tuple__5, __pyx_n_s_Term, __pyx_n_s_Term, (PyObject *) NULL, __pyx_n_s_terminfo, (PyObject *) NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 491, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_tuple__5, __pyx_n_s_Term, __pyx_n_s_Term, (PyObject *) NULL, __pyx_n_s_terminfo, (PyObject *) NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 492, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "terminfo.pyx":494
+  /* "terminfo.pyx":495
  * 
  *     SEARCH_PATHS = [
  *         os.environ.get("USER"),             # <<<<<<<<<<<<<<
  *         "/etc/terminfo",
  *         "/lib/terminfo",
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_os); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 494, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_os); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 495, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_environ); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 494, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_environ); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 495, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_get); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 494, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_get); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 495, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_5 = NULL;
@@ -16018,18 +8234,18 @@ if (!__Pyx_RefNanny) {
   }
   __pyx_t_3 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_n_s_USER) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_n_s_USER);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 494, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 495, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "terminfo.pyx":493
+  /* "terminfo.pyx":494
  * class Term(object):
  * 
  *     SEARCH_PATHS = [             # <<<<<<<<<<<<<<
  *         os.environ.get("USER"),
  *         "/etc/terminfo",
  */
-  __pyx_t_4 = PyList_New(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 493, __pyx_L1_error)
+  __pyx_t_4 = PyList_New(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 494, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_3);
   PyList_SET_ITEM(__pyx_t_4, 0, __pyx_t_3);
@@ -16043,93 +8259,93 @@ if (!__Pyx_RefNanny) {
   __Pyx_GIVEREF(__pyx_kp_s_usr_share_terminfo);
   PyList_SET_ITEM(__pyx_t_4, 3, __pyx_kp_s_usr_share_terminfo);
   __pyx_t_3 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_SEARCH_PATHS, __pyx_t_4) < 0) __PYX_ERR(0, 493, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_SEARCH_PATHS, __pyx_t_4) < 0) __PYX_ERR(0, 494, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "terminfo.pyx":500
+  /* "terminfo.pyx":501
  *     ]
  * 
  *     def __init__(self, name):             # <<<<<<<<<<<<<<
  *         self.name = name
  *         self.raw_db = None
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_8terminfo_4Term_1__init__, 0, __pyx_n_s_Term___init, NULL, __pyx_n_s_terminfo, __pyx_d, ((PyObject *)__pyx_codeobj__7)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 500, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_8terminfo_4Term_1__init__, 0, __pyx_n_s_Term___init, NULL, __pyx_n_s_terminfo, __pyx_d, ((PyObject *)__pyx_codeobj__7)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 501, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_init, __pyx_t_4) < 0) __PYX_ERR(0, 500, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_init, __pyx_t_4) < 0) __PYX_ERR(0, 501, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "terminfo.pyx":505
+  /* "terminfo.pyx":506
  *         self.db = None
  * 
  *     def load(self):             # <<<<<<<<<<<<<<
  *         self.load_db()
  *         self.db = self.parse_db()
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_8terminfo_4Term_3load, 0, __pyx_n_s_Term_load, NULL, __pyx_n_s_terminfo, __pyx_d, ((PyObject *)__pyx_codeobj__9)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 505, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_8terminfo_4Term_3load, 0, __pyx_n_s_Term_load, NULL, __pyx_n_s_terminfo, __pyx_d, ((PyObject *)__pyx_codeobj__9)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 506, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_load, __pyx_t_4) < 0) __PYX_ERR(0, 505, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_load, __pyx_t_4) < 0) __PYX_ERR(0, 506, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "terminfo.pyx":509
+  /* "terminfo.pyx":510
  *         self.db = self.parse_db()
  * 
  *     def load_db(self):             # <<<<<<<<<<<<<<
  *         """
  *         Get the path to the DB file on the
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_8terminfo_4Term_5load_db, 0, __pyx_n_s_Term_load_db, NULL, __pyx_n_s_terminfo, __pyx_d, ((PyObject *)__pyx_codeobj__11)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 509, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_8terminfo_4Term_5load_db, 0, __pyx_n_s_Term_load_db, NULL, __pyx_n_s_terminfo, __pyx_d, ((PyObject *)__pyx_codeobj__11)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 510, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_load_db, __pyx_t_4) < 0) __PYX_ERR(0, 509, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_load_db, __pyx_t_4) < 0) __PYX_ERR(0, 510, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "terminfo.pyx":526
+  /* "terminfo.pyx":527
  *             self.name))
  * 
  *     def parse_db(self):             # <<<<<<<<<<<<<<
  *         """
  *         Parse the given terminfo DB content
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_8terminfo_4Term_7parse_db, 0, __pyx_n_s_Term_parse_db, NULL, __pyx_n_s_terminfo, __pyx_d, ((PyObject *)__pyx_codeobj__13)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 526, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_8terminfo_4Term_7parse_db, 0, __pyx_n_s_Term_parse_db, NULL, __pyx_n_s_terminfo, __pyx_d, ((PyObject *)__pyx_codeobj__13)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 527, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_parse_db, __pyx_t_4) < 0) __PYX_ERR(0, 526, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_parse_db, __pyx_t_4) < 0) __PYX_ERR(0, 527, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "terminfo.pyx":573
+  /* "terminfo.pyx":574
  * 
  * 
  *     def __getattr__(self, name):             # <<<<<<<<<<<<<<
  *         section = None
  *         if name in BOOLEAN_NAMES:
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_8terminfo_4Term_9__getattr__, 0, __pyx_n_s_Term___getattr, NULL, __pyx_n_s_terminfo, __pyx_d, ((PyObject *)__pyx_codeobj__15)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 573, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_8terminfo_4Term_9__getattr__, 0, __pyx_n_s_Term___getattr, NULL, __pyx_n_s_terminfo, __pyx_d, ((PyObject *)__pyx_codeobj__15)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 574, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_getattr, __pyx_t_4) < 0) __PYX_ERR(0, 573, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_getattr, __pyx_t_4) < 0) __PYX_ERR(0, 574, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "terminfo.pyx":491
+  /* "terminfo.pyx":492
  * 
  * 
  * class Term(object):             # <<<<<<<<<<<<<<
  * 
  *     SEARCH_PATHS = [
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_Term, __pyx_tuple__5, __pyx_t_2, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 491, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_Term, __pyx_tuple__5, __pyx_t_2, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 492, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Term, __pyx_t_4) < 0) __PYX_ERR(0, 491, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Term, __pyx_t_4) < 0) __PYX_ERR(0, 492, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "terminfo.pyx":595
+  /* "terminfo.pyx":596
  * # This code is really skuf, I need to clean it up so
  * # the code is maintainable at least.
  * def clean_db(term):             # <<<<<<<<<<<<<<
- *     terminfo_db = {
- *         # Boolean names
+ *     terminfo_db = {}
+ *     for _type in term.db:
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8terminfo_1clean_db, NULL, __pyx_n_s_terminfo); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 595, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8terminfo_1clean_db, NULL, __pyx_n_s_terminfo); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 596, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_clean_db, __pyx_t_1) < 0) __PYX_ERR(0, 595, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_clean_db, __pyx_t_1) < 0) __PYX_ERR(0, 596, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "terminfo.pyx":1
@@ -17664,6 +9880,542 @@ static PyObject *__Pyx_PyObject_GetItem(PyObject *obj, PyObject* key) {
     return __Pyx_PyObject_GetIndex(obj, key);
 }
 #endif
+
+/* BytesEquals */
+static CYTHON_INLINE int __Pyx_PyBytes_Equals(PyObject* s1, PyObject* s2, int equals) {
+#if CYTHON_COMPILING_IN_PYPY
+    return PyObject_RichCompareBool(s1, s2, equals);
+#else
+    if (s1 == s2) {
+        return (equals == Py_EQ);
+    } else if (PyBytes_CheckExact(s1) & PyBytes_CheckExact(s2)) {
+        const char *ps1, *ps2;
+        Py_ssize_t length = PyBytes_GET_SIZE(s1);
+        if (length != PyBytes_GET_SIZE(s2))
+            return (equals == Py_NE);
+        ps1 = PyBytes_AS_STRING(s1);
+        ps2 = PyBytes_AS_STRING(s2);
+        if (ps1[0] != ps2[0]) {
+            return (equals == Py_NE);
+        } else if (length == 1) {
+            return (equals == Py_EQ);
+        } else {
+            int result;
+#if CYTHON_USE_UNICODE_INTERNALS
+            Py_hash_t hash1, hash2;
+            hash1 = ((PyBytesObject*)s1)->ob_shash;
+            hash2 = ((PyBytesObject*)s2)->ob_shash;
+            if (hash1 != hash2 && hash1 != -1 && hash2 != -1) {
+                return (equals == Py_NE);
+            }
+#endif
+            result = memcmp(ps1, ps2, (size_t)length);
+            return (equals == Py_EQ) ? (result == 0) : (result != 0);
+        }
+    } else if ((s1 == Py_None) & PyBytes_CheckExact(s2)) {
+        return (equals == Py_NE);
+    } else if ((s2 == Py_None) & PyBytes_CheckExact(s1)) {
+        return (equals == Py_NE);
+    } else {
+        int result;
+        PyObject* py_result = PyObject_RichCompare(s1, s2, equals);
+        if (!py_result)
+            return -1;
+        result = __Pyx_PyObject_IsTrue(py_result);
+        Py_DECREF(py_result);
+        return result;
+    }
+#endif
+}
+
+/* UnicodeEquals */
+static CYTHON_INLINE int __Pyx_PyUnicode_Equals(PyObject* s1, PyObject* s2, int equals) {
+#if CYTHON_COMPILING_IN_PYPY
+    return PyObject_RichCompareBool(s1, s2, equals);
+#else
+#if PY_MAJOR_VERSION < 3
+    PyObject* owned_ref = NULL;
+#endif
+    int s1_is_unicode, s2_is_unicode;
+    if (s1 == s2) {
+        goto return_eq;
+    }
+    s1_is_unicode = PyUnicode_CheckExact(s1);
+    s2_is_unicode = PyUnicode_CheckExact(s2);
+#if PY_MAJOR_VERSION < 3
+    if ((s1_is_unicode & (!s2_is_unicode)) && PyString_CheckExact(s2)) {
+        owned_ref = PyUnicode_FromObject(s2);
+        if (unlikely(!owned_ref))
+            return -1;
+        s2 = owned_ref;
+        s2_is_unicode = 1;
+    } else if ((s2_is_unicode & (!s1_is_unicode)) && PyString_CheckExact(s1)) {
+        owned_ref = PyUnicode_FromObject(s1);
+        if (unlikely(!owned_ref))
+            return -1;
+        s1 = owned_ref;
+        s1_is_unicode = 1;
+    } else if (((!s2_is_unicode) & (!s1_is_unicode))) {
+        return __Pyx_PyBytes_Equals(s1, s2, equals);
+    }
+#endif
+    if (s1_is_unicode & s2_is_unicode) {
+        Py_ssize_t length;
+        int kind;
+        void *data1, *data2;
+        if (unlikely(__Pyx_PyUnicode_READY(s1) < 0) || unlikely(__Pyx_PyUnicode_READY(s2) < 0))
+            return -1;
+        length = __Pyx_PyUnicode_GET_LENGTH(s1);
+        if (length != __Pyx_PyUnicode_GET_LENGTH(s2)) {
+            goto return_ne;
+        }
+#if CYTHON_USE_UNICODE_INTERNALS
+        {
+            Py_hash_t hash1, hash2;
+        #if CYTHON_PEP393_ENABLED
+            hash1 = ((PyASCIIObject*)s1)->hash;
+            hash2 = ((PyASCIIObject*)s2)->hash;
+        #else
+            hash1 = ((PyUnicodeObject*)s1)->hash;
+            hash2 = ((PyUnicodeObject*)s2)->hash;
+        #endif
+            if (hash1 != hash2 && hash1 != -1 && hash2 != -1) {
+                goto return_ne;
+            }
+        }
+#endif
+        kind = __Pyx_PyUnicode_KIND(s1);
+        if (kind != __Pyx_PyUnicode_KIND(s2)) {
+            goto return_ne;
+        }
+        data1 = __Pyx_PyUnicode_DATA(s1);
+        data2 = __Pyx_PyUnicode_DATA(s2);
+        if (__Pyx_PyUnicode_READ(kind, data1, 0) != __Pyx_PyUnicode_READ(kind, data2, 0)) {
+            goto return_ne;
+        } else if (length == 1) {
+            goto return_eq;
+        } else {
+            int result = memcmp(data1, data2, (size_t)(length * kind));
+            #if PY_MAJOR_VERSION < 3
+            Py_XDECREF(owned_ref);
+            #endif
+            return (equals == Py_EQ) ? (result == 0) : (result != 0);
+        }
+    } else if ((s1 == Py_None) & s2_is_unicode) {
+        goto return_ne;
+    } else if ((s2 == Py_None) & s1_is_unicode) {
+        goto return_ne;
+    } else {
+        int result;
+        PyObject* py_result = PyObject_RichCompare(s1, s2, equals);
+        #if PY_MAJOR_VERSION < 3
+        Py_XDECREF(owned_ref);
+        #endif
+        if (!py_result)
+            return -1;
+        result = __Pyx_PyObject_IsTrue(py_result);
+        Py_DECREF(py_result);
+        return result;
+    }
+return_eq:
+    #if PY_MAJOR_VERSION < 3
+    Py_XDECREF(owned_ref);
+    #endif
+    return (equals == Py_EQ);
+return_ne:
+    #if PY_MAJOR_VERSION < 3
+    Py_XDECREF(owned_ref);
+    #endif
+    return (equals == Py_NE);
+#endif
+}
+
+/* PyIntBinop */
+#if !CYTHON_COMPILING_IN_PYPY
+static PyObject* __Pyx_PyInt_AddObjC(PyObject *op1, PyObject *op2, CYTHON_UNUSED long intval, int inplace, int zerodivision_check) {
+    (void)inplace;
+    (void)zerodivision_check;
+    #if PY_MAJOR_VERSION < 3
+    if (likely(PyInt_CheckExact(op1))) {
+        const long b = intval;
+        long x;
+        long a = PyInt_AS_LONG(op1);
+            x = (long)((unsigned long)a + b);
+            if (likely((x^a) >= 0 || (x^b) >= 0))
+                return PyInt_FromLong(x);
+            return PyLong_Type.tp_as_number->nb_add(op1, op2);
+    }
+    #endif
+    #if CYTHON_USE_PYLONG_INTERNALS
+    if (likely(PyLong_CheckExact(op1))) {
+        const long b = intval;
+        long a, x;
+#ifdef HAVE_LONG_LONG
+        const PY_LONG_LONG llb = intval;
+        PY_LONG_LONG lla, llx;
+#endif
+        const digit* digits = ((PyLongObject*)op1)->ob_digit;
+        const Py_ssize_t size = Py_SIZE(op1);
+        if (likely(__Pyx_sst_abs(size) <= 1)) {
+            a = likely(size) ? digits[0] : 0;
+            if (size == -1) a = -a;
+        } else {
+            switch (size) {
+                case -2:
+                    if (8 * sizeof(long) - 1 > 2 * PyLong_SHIFT) {
+                        a = -(long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 2 * PyLong_SHIFT) {
+                        lla = -(PY_LONG_LONG) (((((unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                    CYTHON_FALLTHROUGH;
+                case 2:
+                    if (8 * sizeof(long) - 1 > 2 * PyLong_SHIFT) {
+                        a = (long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 2 * PyLong_SHIFT) {
+                        lla = (PY_LONG_LONG) (((((unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                    CYTHON_FALLTHROUGH;
+                case -3:
+                    if (8 * sizeof(long) - 1 > 3 * PyLong_SHIFT) {
+                        a = -(long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 3 * PyLong_SHIFT) {
+                        lla = -(PY_LONG_LONG) (((((((unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                    CYTHON_FALLTHROUGH;
+                case 3:
+                    if (8 * sizeof(long) - 1 > 3 * PyLong_SHIFT) {
+                        a = (long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 3 * PyLong_SHIFT) {
+                        lla = (PY_LONG_LONG) (((((((unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                    CYTHON_FALLTHROUGH;
+                case -4:
+                    if (8 * sizeof(long) - 1 > 4 * PyLong_SHIFT) {
+                        a = -(long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 4 * PyLong_SHIFT) {
+                        lla = -(PY_LONG_LONG) (((((((((unsigned PY_LONG_LONG)digits[3]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                    CYTHON_FALLTHROUGH;
+                case 4:
+                    if (8 * sizeof(long) - 1 > 4 * PyLong_SHIFT) {
+                        a = (long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 4 * PyLong_SHIFT) {
+                        lla = (PY_LONG_LONG) (((((((((unsigned PY_LONG_LONG)digits[3]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                    CYTHON_FALLTHROUGH;
+                default: return PyLong_Type.tp_as_number->nb_add(op1, op2);
+            }
+        }
+                x = a + b;
+            return PyLong_FromLong(x);
+#ifdef HAVE_LONG_LONG
+        long_long:
+                llx = lla + llb;
+            return PyLong_FromLongLong(llx);
+#endif
+        
+        
+    }
+    #endif
+    if (PyFloat_CheckExact(op1)) {
+        const long b = intval;
+        double a = PyFloat_AS_DOUBLE(op1);
+            double result;
+            PyFPE_START_PROTECT("add", return NULL)
+            result = ((double)a) + (double)b;
+            PyFPE_END_PROTECT(result)
+            return PyFloat_FromDouble(result);
+    }
+    return (inplace ? PyNumber_InPlaceAdd : PyNumber_Add)(op1, op2);
+}
+#endif
+
+/* PyIntCompare */
+static CYTHON_INLINE PyObject* __Pyx_PyInt_NeObjC(PyObject *op1, PyObject *op2, CYTHON_UNUSED long intval, CYTHON_UNUSED long inplace) {
+    if (op1 == op2) {
+        Py_RETURN_FALSE;
+    }
+    #if PY_MAJOR_VERSION < 3
+    if (likely(PyInt_CheckExact(op1))) {
+        const long b = intval;
+        long a = PyInt_AS_LONG(op1);
+        if (a != b) Py_RETURN_TRUE; else Py_RETURN_FALSE;
+    }
+    #endif
+    #if CYTHON_USE_PYLONG_INTERNALS
+    if (likely(PyLong_CheckExact(op1))) {
+        int unequal;
+        unsigned long uintval;
+        Py_ssize_t size = Py_SIZE(op1);
+        const digit* digits = ((PyLongObject*)op1)->ob_digit;
+        if (intval == 0) {
+            if (size != 0) Py_RETURN_TRUE; else Py_RETURN_FALSE;
+        } else if (intval < 0) {
+            if (size >= 0)
+                Py_RETURN_TRUE;
+            intval = -intval;
+            size = -size;
+        } else {
+            if (size <= 0)
+                Py_RETURN_TRUE;
+        }
+        uintval = (unsigned long) intval;
+#if PyLong_SHIFT * 4 < SIZEOF_LONG*8
+        if (uintval >> (PyLong_SHIFT * 4)) {
+            unequal = (size != 5) || (digits[0] != (uintval & (unsigned long) PyLong_MASK))
+                 | (digits[1] != ((uintval >> (1 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[2] != ((uintval >> (2 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[3] != ((uintval >> (3 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[4] != ((uintval >> (4 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK));
+        } else
+#endif
+#if PyLong_SHIFT * 3 < SIZEOF_LONG*8
+        if (uintval >> (PyLong_SHIFT * 3)) {
+            unequal = (size != 4) || (digits[0] != (uintval & (unsigned long) PyLong_MASK))
+                 | (digits[1] != ((uintval >> (1 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[2] != ((uintval >> (2 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[3] != ((uintval >> (3 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK));
+        } else
+#endif
+#if PyLong_SHIFT * 2 < SIZEOF_LONG*8
+        if (uintval >> (PyLong_SHIFT * 2)) {
+            unequal = (size != 3) || (digits[0] != (uintval & (unsigned long) PyLong_MASK))
+                 | (digits[1] != ((uintval >> (1 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[2] != ((uintval >> (2 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK));
+        } else
+#endif
+#if PyLong_SHIFT * 1 < SIZEOF_LONG*8
+        if (uintval >> (PyLong_SHIFT * 1)) {
+            unequal = (size != 2) || (digits[0] != (uintval & (unsigned long) PyLong_MASK))
+                 | (digits[1] != ((uintval >> (1 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK));
+        } else
+#endif
+            unequal = (size != 1) || (((unsigned long) digits[0]) != (uintval & (unsigned long) PyLong_MASK));
+        if (unequal != 0) Py_RETURN_TRUE; else Py_RETURN_FALSE;
+    }
+    #endif
+    if (PyFloat_CheckExact(op1)) {
+        const long b = intval;
+        double a = PyFloat_AS_DOUBLE(op1);
+        if ((double)a != (double)b) Py_RETURN_TRUE; else Py_RETURN_FALSE;
+    }
+    return (
+        PyObject_RichCompare(op1, op2, Py_NE));
+}
+
+/* PyIntBinop */
+#if !CYTHON_COMPILING_IN_PYPY
+static PyObject* __Pyx_PyInt_SubtractObjC(PyObject *op1, PyObject *op2, CYTHON_UNUSED long intval, int inplace, int zerodivision_check) {
+    (void)inplace;
+    (void)zerodivision_check;
+    #if PY_MAJOR_VERSION < 3
+    if (likely(PyInt_CheckExact(op1))) {
+        const long b = intval;
+        long x;
+        long a = PyInt_AS_LONG(op1);
+            x = (long)((unsigned long)a - b);
+            if (likely((x^a) >= 0 || (x^~b) >= 0))
+                return PyInt_FromLong(x);
+            return PyLong_Type.tp_as_number->nb_subtract(op1, op2);
+    }
+    #endif
+    #if CYTHON_USE_PYLONG_INTERNALS
+    if (likely(PyLong_CheckExact(op1))) {
+        const long b = intval;
+        long a, x;
+#ifdef HAVE_LONG_LONG
+        const PY_LONG_LONG llb = intval;
+        PY_LONG_LONG lla, llx;
+#endif
+        const digit* digits = ((PyLongObject*)op1)->ob_digit;
+        const Py_ssize_t size = Py_SIZE(op1);
+        if (likely(__Pyx_sst_abs(size) <= 1)) {
+            a = likely(size) ? digits[0] : 0;
+            if (size == -1) a = -a;
+        } else {
+            switch (size) {
+                case -2:
+                    if (8 * sizeof(long) - 1 > 2 * PyLong_SHIFT) {
+                        a = -(long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 2 * PyLong_SHIFT) {
+                        lla = -(PY_LONG_LONG) (((((unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                    CYTHON_FALLTHROUGH;
+                case 2:
+                    if (8 * sizeof(long) - 1 > 2 * PyLong_SHIFT) {
+                        a = (long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 2 * PyLong_SHIFT) {
+                        lla = (PY_LONG_LONG) (((((unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                    CYTHON_FALLTHROUGH;
+                case -3:
+                    if (8 * sizeof(long) - 1 > 3 * PyLong_SHIFT) {
+                        a = -(long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 3 * PyLong_SHIFT) {
+                        lla = -(PY_LONG_LONG) (((((((unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                    CYTHON_FALLTHROUGH;
+                case 3:
+                    if (8 * sizeof(long) - 1 > 3 * PyLong_SHIFT) {
+                        a = (long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 3 * PyLong_SHIFT) {
+                        lla = (PY_LONG_LONG) (((((((unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                    CYTHON_FALLTHROUGH;
+                case -4:
+                    if (8 * sizeof(long) - 1 > 4 * PyLong_SHIFT) {
+                        a = -(long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 4 * PyLong_SHIFT) {
+                        lla = -(PY_LONG_LONG) (((((((((unsigned PY_LONG_LONG)digits[3]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                    CYTHON_FALLTHROUGH;
+                case 4:
+                    if (8 * sizeof(long) - 1 > 4 * PyLong_SHIFT) {
+                        a = (long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 4 * PyLong_SHIFT) {
+                        lla = (PY_LONG_LONG) (((((((((unsigned PY_LONG_LONG)digits[3]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                    CYTHON_FALLTHROUGH;
+                default: return PyLong_Type.tp_as_number->nb_subtract(op1, op2);
+            }
+        }
+                x = a - b;
+            return PyLong_FromLong(x);
+#ifdef HAVE_LONG_LONG
+        long_long:
+                llx = lla - llb;
+            return PyLong_FromLongLong(llx);
+#endif
+        
+        
+    }
+    #endif
+    if (PyFloat_CheckExact(op1)) {
+        const long b = intval;
+        double a = PyFloat_AS_DOUBLE(op1);
+            double result;
+            PyFPE_START_PROTECT("subtract", return NULL)
+            result = ((double)a) - (double)b;
+            PyFPE_END_PROTECT(result)
+            return PyFloat_FromDouble(result);
+    }
+    return (inplace ? PyNumber_InPlaceSubtract : PyNumber_Subtract)(op1, op2);
+}
+#endif
+
+/* UnpackUnboundCMethod */
+static int __Pyx_TryUnpackUnboundCMethod(__Pyx_CachedCFunction* target) {
+    PyObject *method;
+    method = __Pyx_PyObject_GetAttrStr(target->type, *target->method_name);
+    if (unlikely(!method))
+        return -1;
+    target->method = method;
+#if CYTHON_COMPILING_IN_CPYTHON
+    #if PY_MAJOR_VERSION >= 3
+    if (likely(__Pyx_TypeCheck(method, &PyMethodDescr_Type)))
+    #endif
+    {
+        PyMethodDescrObject *descr = (PyMethodDescrObject*) method;
+        target->func = descr->d_method->ml_meth;
+        target->flag = descr->d_method->ml_flags & ~(METH_CLASS | METH_STATIC | METH_COEXIST | METH_STACKLESS);
+    }
+#endif
+    return 0;
+}
+
+/* CallUnboundCMethod1 */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_CallUnboundCMethod1(__Pyx_CachedCFunction* cfunc, PyObject* self, PyObject* arg) {
+    if (likely(cfunc->func)) {
+        int flag = cfunc->flag;
+        if (flag == METH_O) {
+            return (*(cfunc->func))(self, arg);
+        } else if (PY_VERSION_HEX >= 0x030600B1 && flag == METH_FASTCALL) {
+            if (PY_VERSION_HEX >= 0x030700A0) {
+                return (*(__Pyx_PyCFunctionFast)(void*)(PyCFunction)cfunc->func)(self, &arg, 1);
+            } else {
+                return (*(__Pyx_PyCFunctionFastWithKeywords)(void*)(PyCFunction)cfunc->func)(self, &arg, 1, NULL);
+            }
+        } else if (PY_VERSION_HEX >= 0x030700A0 && flag == (METH_FASTCALL | METH_KEYWORDS)) {
+            return (*(__Pyx_PyCFunctionFastWithKeywords)(void*)(PyCFunction)cfunc->func)(self, &arg, 1, NULL);
+        }
+    }
+    return __Pyx__CallUnboundCMethod1(cfunc, self, arg);
+}
+#endif
+static PyObject* __Pyx__CallUnboundCMethod1(__Pyx_CachedCFunction* cfunc, PyObject* self, PyObject* arg){
+    PyObject *args, *result = NULL;
+    if (unlikely(!cfunc->func && !cfunc->method) && unlikely(__Pyx_TryUnpackUnboundCMethod(cfunc) < 0)) return NULL;
+#if CYTHON_COMPILING_IN_CPYTHON
+    if (cfunc->func && (cfunc->flag & METH_VARARGS)) {
+        args = PyTuple_New(1);
+        if (unlikely(!args)) goto bad;
+        Py_INCREF(arg);
+        PyTuple_SET_ITEM(args, 0, arg);
+        if (cfunc->flag & METH_KEYWORDS)
+            result = (*(PyCFunctionWithKeywords)(void*)(PyCFunction)cfunc->func)(self, args, NULL);
+        else
+            result = (*cfunc->func)(self, args);
+    } else {
+        args = PyTuple_New(2);
+        if (unlikely(!args)) goto bad;
+        Py_INCREF(self);
+        PyTuple_SET_ITEM(args, 0, self);
+        Py_INCREF(arg);
+        PyTuple_SET_ITEM(args, 1, arg);
+        result = __Pyx_PyObject_Call(cfunc->method, args, NULL);
+    }
+#else
+    args = PyTuple_Pack(2, self, arg);
+    if (unlikely(!args)) goto bad;
+    result = __Pyx_PyObject_Call(cfunc->method, args, NULL);
+#endif
+bad:
+    Py_XDECREF(args);
+    return result;
+}
 
 /* PyObject_GenericGetAttrNoDict */
 #if CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP && PY_VERSION_HEX < 0x03070000
