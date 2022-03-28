@@ -19,4 +19,4 @@ def tc_line(x1, y1, x2, y2):
     puts("\n")
 
 tc_enter_alt_screen()
-tc_line(0, 0, 16, 16)
+tc_line(3,6, 20, 17)
