@@ -1,0 +1,9 @@
+README.md
+setup.py
+tercontrol/tercontrol.c
+tercontrol.egg-info/PKG-INFO
+tercontrol.egg-info/SOURCES.txt
+tercontrol.egg-info/dependency_links.txt
+tercontrol.egg-info/requires.txt
+tercontrol.egg-info/top_level.txt
+tercontrol/libs/terminfo.c
