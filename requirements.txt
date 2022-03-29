@@ -1,0 +1,5 @@
+# These are all the requirements for building the pypi wheel for TerControl
+wheel
+numpy
+auditwheel  # auditwheel requires patchelf to be installed on the system
+twine
