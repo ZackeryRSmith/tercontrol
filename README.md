@@ -73,12 +73,20 @@ End of installation
 Start of build
 -->
 ## Build <a name="build" />
-I am currently working on optimising TerControl. I have switched to using a cython module to speed up code. If the compiled binary I supplied in the [releases](https://github.com/ZackeryRSmith/cval/releases) does not work please compile your own.
+If you insist you can build TerControl
 1. Enter TerControl's directory
-2. Run `python setup.py build_ext --inplace`
-3. Your compiled binary should be in the same directory
-4. Place the compiled binary into your project
-5. import it E.g. `from tercontrol import *`
+2. Run the commands: 
+  ```
+  python3 setup.py sdist bdist_wheel
+  auditwheel repair dist/<your_wheel_name>
+  mv wheelhouse/* dist
+  rm dist/*-cp38-cp38-linux_x86_64.whl
+  ```
+3. Enter the dist directory
+4. Open the .whl file with an archive utility
+5. Extract the `.so` file
+6. Place the `.so` file into your project
+7. import it E.g. `from tercontrol import *`
 <!--
 End of build
 -->
