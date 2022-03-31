@@ -1,3 +1,0 @@
-
-[:platform_system == "Linux"]
-PyGObject
