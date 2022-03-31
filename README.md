@@ -1,3 +1,9 @@
+<h2 align="center">🚧 Please note TerControl's README is going under contruction 🚧</h2>
+
+Some may know but TerControl is going under a switch from Cython -> C code. Due to this switch all releases up to now are **not** the C version. I'll give a little notice when all contruction is done :)
+
+
+
 <h1 align="center">TerControl</h1>
 
 <!-- TABLE OF CONTENTS -->
