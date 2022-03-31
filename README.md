@@ -1,3 +1,8 @@
+# THIS VERSION OF TERCONTROL IS NO LONGER MAINTAINED
+I have switched TerControl from Cython -> C. You can still use TerControl with python but please don't expect new features!
+
+
+
 <h1 align="center">TerControl</h1>
 
 <!-- TABLE OF CONTENTS -->
