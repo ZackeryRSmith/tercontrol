@@ -2,7 +2,7 @@
 
 Some may know but TerControl is going under a switch from Cython -> C code. Due to this switch all releases up to now are **not** the C version. I'll give a little notice when all contruction is done :) 
 
-*For those wondering the Cython version will always be found [here](https://github.com/ZackeryRSmith/tercontrol/tree/Cython) (note it will no longer be maintained!)
+*For those wondering the Cython version will always be found [here](https://github.com/ZackeryRSmith/tercontrol/tree/Cython) (note it will no longer be maintained!)*
 
 
 
