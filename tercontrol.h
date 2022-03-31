@@ -68,42 +68,6 @@
 
 //////////////////////////////////////
 
-#define tc_clear_screen() puts("\x1B[2J")
-#define tc_clear_from_top_to_cursor() puts("\x1B[1J")
-#define tc_clear_from_cursor_to_bottom() puts("\x1B[0J")
-
-/*
-def tc_clear_partial(x, y, width, height):
-	olpos = tc_get_cursor()
-
-  tc_set_cursor(x, y)
-  for i in range(height):
-  	tc_set_cursor(x, y)
-    sys.stdout.write(" "*width)
-    y += 1
-  	tc_set_cursor(olpos[0], olpos[1])
-*/
-
-#define tc_clear_entire_line() puts("\x1B[2K")
-#define tc_clear_line_till_cursor() puts("\x1B[1K")
-#define tc_clear_line_from_cursor() puts("\x1B[0K")
-
-#define tc_set_cursor(X, Y) printf("\033[%d;%dH", Y, X)
-void tc_move_cursor(int X, int Y) {
-	if(X > 0) { 
-		printf("\033[%dC", X);
-	} else if(X < 0) {
-		printf("\033[%dD", (X*-1));
-	}
-
-	if(Y > 0) { 
-		printf("\033[%dB", Y);
-	} else if(Y < 0) {
-		printf("\033[%dA", (Y*-1));
-	}
-	
-}
-
 void tc_get_cols_rows(int *cols, int *rows);
 
 //////////////////////////////
@@ -158,3 +122,44 @@ void tc_canon_off(){
 	term.c_lflag &= ~ICANON;
 	tcsetattr(1, TCSANOW, &term);
 }
+
+#define tc_clear_entire_line() puts("\x1B[2K")
+#define tc_clear_line_till_cursor() puts("\x1B[1K")
+#define tc_clear_line_from_cursor() puts("\x1B[0K")
+
+void tc_get_cursor(int *X, int *Y) {
+  tc_echo_off();
+  tc_canon_off();
+  printf("\033[6n");
+  scanf("\033[%d;%dR", X, Y);
+}
+#define tc_set_cursor(X, Y) printf("\033[%d;%dH", Y, X)
+void tc_move_cursor(int X, int Y) {
+	if(X > 0) { 
+		printf("\033[%dC", X);
+	} else if(X < 0) {
+		printf("\033[%dD", (X*-1));
+	}
+
+	if(Y > 0) { 
+		printf("\033[%dB", Y);
+	} else if(Y < 0) {
+		printf("\033[%dA", (Y*-1));
+	}
+}
+
+#define tc_clear_screen() puts("\x1B[2J")
+#define tc_clear_from_top_to_cursor() puts("\x1B[1J")
+#define tc_clear_from_cursor_to_bottom() puts("\x1B[0J")
+
+/*
+void tc_clear_partial(int X, int Y, int width, int height) {
+	//olpos = tc_get_cursor();  // I could do without reseting the cursor position and let the user do it :/
+	tc_set_cursor(X, Y);
+	for(int i = 0; i <= height; i++) {
+		tc_set_cursor(X, Y);
+		printf("")
+	}
+}
+*/
+
