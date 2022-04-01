@@ -22,7 +22,7 @@ Start of about
 ###### <a name="about-tercontrol" />
 **TerControl** is a lightweight opinion based terminal control library for C/C++. TerControl gives the end-user all the tools needed to manipulate the terminal (Look at [features](#features) for a full list of features). 
 
-TerControl was created to suit my needs for terminal control without having to rely on Curses or NCurses, thus TerControl is heavily influenced by my needs. I'm very open to ideas and suggestions so if you have an idea open an issue with a feature request! 
+TerControl was created to suit my needs for terminal control without having to rely on Curses or NCurses, thus TerControl is heavily influenced by my needs. I'm very open to ideas and suggestions so if you have an idea open an issue with a feature request! Currently, TerControl is compatible with Windows and POSIX systems.
 <!--
 End of about
 -->
