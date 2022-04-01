@@ -51,8 +51,27 @@
 #define TC_BG_CYN "\x1B[46m"   /* Background Cyan */
 #define TC_BG_WHT "\x1B[47m"   /* Background White */
 
-//def tc_color_id(cid, l): return HEX+("[48" if l == 0 else "[38")+";5;%sm" % (cid)
-//def tc_rgb(r, g, b, l): return HEX+("[48" if l == 0 else "[38")+";2;%s;%s;%sm" % (r, g, b)
+// `asprintf` is usable on any POSIX-2008 compliant system (any modern Linux system)
+// My compiler likes to complain about it.. Another way to preform this is with `vfprintf`
+// Or maybe I'm just a bad programmer :I
+char* tc_color_id(unsigned char cid, int l) { 
+	char* esc;
+	if (l == 0) {
+		asprintf(&esc, "\x1B[48;5;%dm", cid);
+	} else {
+		asprintf(&esc, "\x1B[38;5;%dm", cid);
+	}
+	return esc;
+}
+char* tc_rgb(int r, int g, int b, int l) {
+	char* esc;
+	if (l == 0) {
+		asprintf(&esc, "\x1B[48;2;%d;%d;%dm", r, g, b); 
+	} else { 
+		asprintf(&esc, "\x1B[38;2;%d;%d;%dm", r, g, b); 
+	}
+	return esc;
+}
 
 //////////////////////////////////////
 //   Additional formatting (ANSI)   //
@@ -152,14 +171,16 @@ void tc_move_cursor(int X, int Y) {
 #define tc_clear_from_top_to_cursor() puts("\x1B[1J")
 #define tc_clear_from_cursor_to_bottom() puts("\x1B[0J")
 
-/*
+/* Having some issues with this :/
 void tc_clear_partial(int X, int Y, int width, int height) {
-	//olpos = tc_get_cursor();  // I could do without reseting the cursor position and let the user do it :/
-	tc_set_cursor(X, Y);
-	for(int i = 0; i <= height; i++) {
-		tc_set_cursor(X, Y);
-		printf("")
+	char *buf = (char*) calloc(width+1, sizeof(char));
+	memset (buf, 32, width);
+	for (int i = 0; i < height; i++)
+	{
+  	tc_set_cursor(X, Y+height);
+  	fwrite (buf, width, sizeof(char), stdout);
 	}
 }
 */
+
 
