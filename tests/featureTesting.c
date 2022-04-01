@@ -14,6 +14,10 @@ int main() {
 	printf("Hello from line 1\nHello from line 2\nHello from line 3\nHello from line 4\n");
 	tc_clear_partial(0, 0, 3, 3);
 	*/
+	
+	//printf("%sHello in cyan!%s\n", tc_color_id(69,1), TC_NRM);
 
-	printf("%sHello in cyan!%s\n", tc_color_id(69,1), TC_NRM);
+	int cols, rows;
+	tc_get_cols_rows(&cols, &rows);
+	printf("(%d, %d)\n", cols, rows);
 }
