@@ -61,7 +61,7 @@ Start of installation
 ## Installation <a name="installation" />
 **This may be changed in the future!**
 For now please:
-1. install the header file
+1. install the [header file](https://github.com/ZackeryRSmith/tercontrol/blob/main/tercontrol.h)
 2. place it into your project directory
 3. include it like so `#include "tercontrol.h"`
 <!--
