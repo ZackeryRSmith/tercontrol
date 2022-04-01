@@ -1,5 +1,5 @@
-# Hey I lied
-I will be maintaining the Cython version of TerControl aswell as the C version! The C version will be favored but the PYPI repo will stay up to date with features and bug fixes!
+# Ok ok ok
+I will be maintaining the Cython version of Tercontrol (new releases will not be made but the PYPI repo will be up to date with a changelog!). I will be keeping the C version maintained, it will be favored over the Cython version aswell. I will not neglect the python version though!
 
 
 <h1 align="center">TerControl</h1>

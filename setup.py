@@ -18,7 +18,7 @@ setup(
     # Build `terminfo.pyx`
     #ext_modules=cythonize("terminfo.pyx"),
     name="tercontrol",
-    version="1.0.4",
+    version="1.0.5",
     packages=find_packages(),
     author="Zackery .R. Smith",
     description="Currently testing the PYPI package. Description will be updated later!",
