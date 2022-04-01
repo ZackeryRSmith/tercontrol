@@ -41,16 +41,15 @@ Start of features
     - Foreground color (16 base colors)
     - Background color (16 base colors)
     - 256 (ANSI) color support
-    - RGB color support
+    - RGB color support (Linux)
     - Text attributes (bold, dim, italic, underscore, crossed, reversed, blink, invisible)
 - Terminal 
     - Clear (all lines, current line, from cursor down and up, clear partial)
     - Get the terminal size
-    - Save/restore screen
     - Alternate screen
     - Exit alternate screen
-<!-- - Event
-    - Input Events -->
+- Event
+    - Input Events
 <!--
 End of features
 -->
@@ -118,7 +117,7 @@ End of contact
 Start of thanks
 -->
 ## Thanks <a name="thanks">
-- **[anic17](https://github.com/anic17)** | Great help to the dvelopment of TerControl, motivating me to constantaly work on this project!
+- **[anic17](https://github.com/anic17)** | Great help to the devlopment of TerControl, motivating me to constantaly work on this project!
 
 I would also like to thank the entirety of the [Program Dream](https://discord.gg/gfmaxgE) discord server for being a great place! Personally being active there gave me a new thing to do, I bet I'll be active on there a lot more so join! It's a non-toxic programming community and it's just a great place to be!
 <!--
