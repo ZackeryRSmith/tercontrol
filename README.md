@@ -41,7 +41,7 @@ Start of features
 ## Features <a name="features" />
 
 - No dependencies (other then C's standard library) 
-- Terminfo support (Linux)
+<!-- - Terminfo support (Linux) -->
 - Cursor
     - Move the cursor N times (up, down, left, right)
     - Set/get the cursor position
