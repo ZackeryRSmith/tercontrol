@@ -20,7 +20,7 @@
 Start of about
 -->
 ###### <a name="about-tercontrol" />
-**TerControl** is a lightweight opinion based terminal control library for C. TerControl gives the end-user all the tools needed to manipulate the terminal (Look at [features](#features) for a full list of features). 
+**TerControl** is a lightweight opinion based terminal control library for C/C++. TerControl gives the end-user all the tools needed to manipulate the terminal (Look at [features](#features) for a full list of features). 
 
 TerControl was created to suit my needs for terminal control without having to rely on Curses or NCurses, thus TerControl is heavily influenced by my needs. I'm very open to ideas and suggestions so if you have an idea open an issue with a feature request! 
 <!--
@@ -118,6 +118,8 @@ End of contact
 Start of thanks
 -->
 ## Thanks <a name="thanks">
+- [anic17](https://github.com/anic17); Great help to the dvelopment of TerControl, motivating me to constantaly work on this project!
+
 I would like to thank the entirety of the [Program Dream](https://discord.gg/gfmaxgE) discord server for being a great place! Personally being active there gave me a new thing to do, I bet I'll be active on there a lot more so join! It's a non-toxic programming community and it's just a great place to be!
 <!--
 End of thanks
