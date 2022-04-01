@@ -1,6 +1,8 @@
 # Ok ok ok
 I will be maintaining the Cython version of Tercontrol (new releases will not be made but the PYPI repo will be up to date with a changelog!). I will be keeping the C version maintained, it will be favored over the Cython version aswell. I will not neglect the python version though!
 
+**ALSO, I WILL NOT EVER WORK ON WINDOWS SUPPORT FOR THE CYTHON VERSION!**
+Only the C version will have Windows support, sorry.
 
 <h1 align="center">TerControl</h1>
 
