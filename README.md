@@ -40,8 +40,7 @@ Start of features
 -->
 ## Features <a name="features" />
 
-- No dependencies (other then C's standard library) 
-<!-- - Terminfo support (Linux) -->
+- No dependencies (other then C's standard library) <!-- - Terminfo support (Linux) -->
 - Cursor
     - Move the cursor N times (up, down, left, right)
     - Set/get the cursor position
@@ -49,8 +48,8 @@ Start of features
 - Styled output 
     - Foreground color (16 base colors)
     - Background color (16 base colors)
-    <!-- - 256 (ANSI) color support
-    - RGB color support -->
+    - 256 (ANSI) color support
+    - RGB color support
     - Text attributes (bold, dim, italic, underscore, crossed, reversed, blink, invisible)
 - Terminal 
     - Clear (all lines, current line, from cursor down and up, clear partial)
