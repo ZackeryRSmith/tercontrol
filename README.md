@@ -118,9 +118,9 @@ End of contact
 Start of thanks
 -->
 ## Thanks <a name="thanks">
-- [anic17](https://github.com/anic17); Great help to the dvelopment of TerControl, motivating me to constantaly work on this project!
+- **[anic17](https://github.com/anic17)** | Great help to the dvelopment of TerControl, motivating me to constantaly work on this project!
 
-I would like to thank the entirety of the [Program Dream](https://discord.gg/gfmaxgE) discord server for being a great place! Personally being active there gave me a new thing to do, I bet I'll be active on there a lot more so join! It's a non-toxic programming community and it's just a great place to be!
+I would also like to thank the entirety of the [Program Dream](https://discord.gg/gfmaxgE) discord server for being a great place! Personally being active there gave me a new thing to do, I bet I'll be active on there a lot more so join! It's a non-toxic programming community and it's just a great place to be!
 <!--
 End of thanks
 -->
