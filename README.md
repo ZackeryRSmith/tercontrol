@@ -1,6 +1,5 @@
-# THIS VERSION OF TERCONTROL IS NO LONGER MAINTAINED
-I have switched TerControl from Cython -> C. You can still use TerControl with python but please don't expect new features!
-
+# Hey I lied
+I will be maintaining the Cython version of TerControl aswell as the C version! The C version will be favored but the PYPI repo will stay up to date with features and bug fixes!
 
 
 <h1 align="center">TerControl</h1>

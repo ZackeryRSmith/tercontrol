@@ -70,7 +70,7 @@ elif os_type == "Linux" or "Linux2" or "Darwin":
     
     TC_BLD     =  HEX+"[1m"     # Bold
     TC_DIM     =  HEX+"[2m"     # Dim
-    TC_SNSO    =  HEX+"[3m"     # Standout (italics)
+    TC_SNDO    =  HEX+"[3m"     # Standout (italics)
     TC_UNDR    =  HEX+"[4m"     # Underline
     TC_BLNK    =  HEX+"[5m"     # Blink
     TC_REV     =  HEX+"[7m"     # Reverse
