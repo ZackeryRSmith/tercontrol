@@ -53,7 +53,7 @@ Start of features
     - Text attributes (bold, dim, italic, underscore, crossed, reversed, blink, invisible)
 - Terminal 
     - Clear (all lines, current line, from cursor down and up, clear partial)
-    <!-- - Get the terminal size -->
+    - Get the terminal size
     - Save/restore screen
     - Alternate screen
     - Exit alternate screen
