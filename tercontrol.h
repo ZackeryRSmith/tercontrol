@@ -61,7 +61,7 @@ CONSOLE_CURSOR_INFO cci;
 #define TC_BG_WHT "\x1B[47m" /* Background White */
 
 // `asprintf` is usable on any POSIX-2008 compliant system (any modern Linux system)
-// My compiler likes to complain about it.. Another way to preform this is with `vfprintf`
+// My compiler likes to complain about it.. Another way to preform this is with `vsprintf`
 // Or maybe I'm just a bad programmer :I
 
 #ifdef _WIN32
@@ -386,32 +386,32 @@ void tc_canon_off()
 	tcsetattr(1, TCSANOW, &term);
 }
 
-void tc_get_cursor(int *X, int *Y)
+void tc_get_cursor(int *x, int *y)
 {
 	tc_echo_off();
 	tc_canon_off();
 	printf("\033[6n");
-	scanf("\033[%d;%dR", X, Y);
+	scanf("\033[%d;%dR", x, y);
 }
-#define tc_set_cursor(X, Y) printf("\033[%d;%dH", Y, X)
-void tc_move_cursor(int X, int Y)
+#define tc_set_cursor(x, y) printf("\033[%d;%dH", y,x)
+void tc_move_cursor(int x, int y)
 {
-	if (X > 0)
+	if (x > 0)
 	{
-		printf("\033[%dC", X);
+		printf("\033[%dC", x);
 	}
-	else if (X < 0)
+	else if (x < 0)
 	{
-		printf("\033[%dD", (X * -1));
+		printf("\033[%dD", (x * -1));
 	}
 
-	if (Y > 0)
+	if (y > 0)
 	{
-		printf("\033[%dB", Y);
+		printf("\033[%dB", y);
 	}
-	else if (Y < 0)
+	else if (y < 0)
 	{
-		printf("\033[%dA", (Y * -1));
+		printf("\033[%dA", (y * -1));
 	}
 }
 
@@ -439,7 +439,15 @@ void tc_print(const char *s)
 
 int tc_getch() // TODO: Implement this
 {
-	return 0;
+	struct termios oldattr, newattr;
+  int ch;
+  tcgetattr(STDIN_FILENO, &oldattr );
+  newattr = oldattr;
+  newattr.c_lflag &= ~( ICANON | ECHO );
+  tcsetattr( STDIN_FILENO, TCSANOW, &newattr );
+  ch = getchar();
+  tcsetattr( STDIN_FILENO, TCSANOW, &oldattr );
+  return ch;
 }
 
 #endif
