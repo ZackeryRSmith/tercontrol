@@ -9,7 +9,6 @@
 ***********************************************************************************/
 #ifndef TC_H
 #define TC_H
-#endif
 
 #include <stdio.h>
 #ifdef _WIN32
@@ -451,3 +450,4 @@ int tc_getch() // TODO: Implement this
 }
 
 #endif
+#endif /* TC_H */
